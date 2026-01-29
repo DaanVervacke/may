@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Vehicles{% endblock %}
+
+{% block content %}
+<div class="sm:flex sm:items-center sm:justify-between mb-6">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Vehicles</h1>
+        <p class="text-gray-500">Manage your cars, vans, motorbikes, and scooters</p>
+    </div>
+    <a href="{{ url_for('vehicles.new') }}"
+       class="mt-4 sm:mt-0 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700">
+        <svg class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+        Add Vehicle
+    </a>
+</div>
+
+{% if vehicles %}
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for vehicle in vehicles %}
+    <a href="{{ url_for('vehicles.view', vehicle_id=vehicle.id) }}"
+       class="bg-white rounded-lg shadow hover:shadow-md transition-shadow overflow-hidden">
+        {% if vehicle.image_filename %}
+        <div class="h-40 bg-gray-200">
+            <img src="{{ url_for('api.uploaded_file', filename=vehicle.image_filename) }}"
+                 alt="{{ vehicle.name }}"
+                 class="w-full h-full object-cover">
+        </div>
+        {% else %}
+        <div class="h-40 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+            {% if vehicle.vehicle_type == 'car' %}
+            <svg class="h-16 w-16 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+            </svg>
+            {% elif vehicle.vehicle_type == 'van' %}
+            <svg class="h-16 w-16 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+            </svg>
+            {% elif vehicle.vehicle_type == 'motorbike' %}
+            <svg class="h-16 w-16 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+            </svg>
+            {% else %}
+            <svg class="h-16 w-16 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="p-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-medium text-gray-900">{{ vehicle.name }}</h3>
+                {% if not vehicle.is_active %}
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">Inactive</span>
+                {% endif %}
+            </div>
+            <p class="text-sm text-gray-500">{{ vehicle.make or '' }} {{ vehicle.model or '' }} {% if vehicle.year %}({{ vehicle.year }}){% endif %}</p>
+            <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-gray-500 capitalize">{{ vehicle.vehicle_type }}</span>
+                <span class="font-medium text-gray-900">{{ "%.2f"|format(vehicle.get_total_cost()) }} {{ current_user.currency }}</span>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-12 bg-white rounded-lg shadow">
+    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+    </svg>
+    <h3 class="mt-2 text-sm font-medium text-gray-900">No vehicles</h3>
+    <p class="mt-1 text-sm text-gray-500">Get started by adding your first vehicle.</p>
+    <div class="mt-6">
+        <a href="{{ url_for('vehicles.new') }}"
+           class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700">
+            <svg class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Add Vehicle
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

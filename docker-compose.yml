@@ -1,0 +1,16 @@
+services:
+  may:
+    build: .
+    container_name: may
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - may_data:/app/data
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+      - DATABASE_URL=sqlite:////app/data/may.db
+      - UPLOAD_FOLDER=/app/data/uploads
+
+volumes:
+  may_data:
