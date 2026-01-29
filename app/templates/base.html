@@ -84,26 +84,26 @@
                         </div>
                         <div class="hidden sm:ml-8 sm:flex sm:space-x-4">
                             <a href="{{ url_for('main.dashboard') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium {% if request.endpoint == 'main.dashboard' %}text-primary-600 border-b-2 border-primary-600{% else %}text-gray-500 hover:text-gray-700{% endif %}">
-                                Dashboard
+                                {{ _('Dashboard') }}
                             </a>
                             <a href="{{ url_for('vehicles.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium {% if 'vehicles' in request.endpoint %}text-primary-600 border-b-2 border-primary-600{% else %}text-gray-500 hover:text-gray-700{% endif %}">
-                                Vehicles
+                                {{ _('Vehicles') }}
                             </a>
                             <a href="{{ url_for('fuel.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium {% if 'fuel' in request.endpoint %}text-primary-600 border-b-2 border-primary-600{% else %}text-gray-500 hover:text-gray-700{% endif %}">
-                                Fuel Logs
+                                {{ _('Fuel Logs') }}
                             </a>
                             <a href="{{ url_for('expenses.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium {% if 'expenses' in request.endpoint %}text-primary-600 border-b-2 border-primary-600{% else %}text-gray-500 hover:text-gray-700{% endif %}">
-                                Expenses
+                                {{ _('Expenses') }}
                             </a>
                         </div>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
                         {% if current_user.is_admin %}
-                        <a href="{{ url_for('auth.users') }}" class="text-sm text-gray-500 hover:text-gray-700">Users</a>
+                        <a href="{{ url_for('auth.users') }}" class="text-sm text-gray-500 hover:text-gray-700">{{ _('Users') }}</a>
                         {% endif %}
-                        <a href="{{ url_for('auth.settings') }}" class="text-sm text-gray-500 hover:text-gray-700">Settings</a>
+                        <a href="{{ url_for('auth.settings') }}" class="text-sm text-gray-500 hover:text-gray-700">{{ _('Settings') }}</a>
                         <span class="text-sm text-gray-400">{{ current_user.username }}</span>
-                        <a href="{{ url_for('auth.logout') }}" class="text-sm text-red-500 hover:text-red-700">Logout</a>
+                        <a href="{{ url_for('auth.logout') }}" class="text-sm text-red-500 hover:text-red-700">{{ _('Logout') }}</a>
                     </div>
                     <div class="flex items-center sm:hidden">
                         <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500">
@@ -116,12 +116,12 @@
             </div>
             <div class="sm:hidden hidden" id="mobile-menu">
                 <div class="space-y-1 pb-3 pt-2">
-                    <a href="{{ url_for('main.dashboard') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">Dashboard</a>
-                    <a href="{{ url_for('vehicles.index') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">Vehicles</a>
-                    <a href="{{ url_for('fuel.index') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">Fuel Logs</a>
-                    <a href="{{ url_for('expenses.index') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">Expenses</a>
-                    <a href="{{ url_for('auth.settings') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">Settings</a>
-                    <a href="{{ url_for('auth.logout') }}" class="block px-4 py-2 text-base font-medium text-red-500 hover:bg-gray-100">Logout</a>
+                    <a href="{{ url_for('main.dashboard') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">{{ _('Dashboard') }}</a>
+                    <a href="{{ url_for('vehicles.index') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">{{ _('Vehicles') }}</a>
+                    <a href="{{ url_for('fuel.index') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">{{ _('Fuel Logs') }}</a>
+                    <a href="{{ url_for('expenses.index') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">{{ _('Expenses') }}</a>
+                    <a href="{{ url_for('auth.settings') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100">{{ _('Settings') }}</a>
+                    <a href="{{ url_for('auth.logout') }}" class="block px-4 py-2 text-base font-medium text-red-500 hover:bg-gray-100">{{ _('Logout') }}</a>
                 </div>
             </div>
         </nav>

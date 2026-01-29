@@ -1,0 +1,169 @@
+# Translations template for May Vehicle Management
+# Copyright (C) 2024
+# This file is distributed under the same license as the May project.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: May 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Manual\n"
+
+#: Navigation
+msgid "Dashboard"
+msgstr ""
+
+msgid "Vehicles"
+msgstr ""
+
+msgid "Fuel Logs"
+msgstr ""
+
+msgid "Expenses"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+#: Common actions
+msgid "Save"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+#: Vehicles
+msgid "Add Vehicle"
+msgstr ""
+
+msgid "Edit Vehicle"
+msgstr ""
+
+msgid "No vehicles"
+msgstr ""
+
+msgid "Vehicle Type"
+msgstr ""
+
+msgid "Make"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Year"
+msgstr ""
+
+msgid "Registration"
+msgstr ""
+
+msgid "Fuel Type"
+msgstr ""
+
+#: Fuel Logs
+msgid "Add Fuel Log"
+msgstr ""
+
+msgid "Odometer"
+msgstr ""
+
+msgid "Volume"
+msgstr ""
+
+msgid "Price per unit"
+msgstr ""
+
+msgid "Total Cost"
+msgstr ""
+
+msgid "Full Tank"
+msgstr ""
+
+msgid "Station"
+msgstr ""
+
+#: Expenses
+msgid "Add Expense"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Cost"
+msgstr ""
+
+msgid "Vendor"
+msgstr ""
+
+#: Settings
+msgid "Units & Values"
+msgstr ""
+
+msgid "Account & Security"
+msgstr ""
+
+msgid "Integrations"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Distance"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Save Changes"
+msgstr ""
+
+#: Stats
+msgid "Total Fuel Cost"
+msgstr ""
+
+msgid "Total Distance"
+msgstr ""
+
+msgid "Average Consumption"
+msgstr ""
+
+#: Messages
+msgid "Settings updated successfully"
+msgstr ""
+
+msgid "Vehicle added successfully"
+msgstr ""
+
+msgid "Vehicle updated successfully"
+msgstr ""
+
+msgid "Access denied"
+msgstr ""

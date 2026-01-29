@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Settings{% endblock %}
+{% block title %}{{ _('Settings') }}{% endblock %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto">
-    <h1 class="text-2xl font-bold text-gray-900 mb-2">Settings</h1>
-    <p class="text-gray-500 mb-8">Manage your preferences and account</p>
+    <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ _('Settings') }}</h1>
+    <p class="text-gray-500 mb-8">{{ _('Manage your preferences and account') }}</p>
 
     <div class="flex flex-col lg:flex-row gap-8">
         <!-- Sidebar Navigation -->
@@ -15,7 +15,7 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
                         </svg>
-                        Units & Values
+                        {{ _('Units & Values') }}
                     </a>
                 </li>
                 <li>
@@ -23,7 +23,7 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                         </svg>
-                        Account & Security
+                        {{ _('Account & Security') }}
                     </a>
                 </li>
                 <li>
@@ -31,7 +31,7 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
                         </svg>
-                        Integrations
+                        {{ _('Integrations') }}
                     </a>
                 </li>
                 {% if current_user.is_admin %}
@@ -40,7 +40,7 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
                         </svg>
-                        Branding
+                        {{ _('Branding') }}
                     </a>
                 </li>
                 {% endif %}
@@ -54,14 +54,14 @@
                 <div id="section-units" class="settings-section">
                     <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">Units & Values</h2>
-                            <p class="mt-1 text-sm text-gray-500">Configure how measurements and currencies are displayed</p>
+                            <h2 class="text-lg font-medium text-gray-900">{{ _('Units & Values') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500">{{ _('Configure how measurements and currencies are displayed') }}</p>
                         </div>
 
                         <div class="p-6 space-y-6">
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 <div class="sm:col-span-2">
-                                    <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
+                                    <label for="language" class="block text-sm font-medium text-gray-700">{{ _('Language') }}</label>
                                     <select name="language" id="language"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         {% for code, name in LANGUAGES.items() %}
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="distance_unit" class="block text-sm font-medium text-gray-700">Distance</label>
+                                    <label for="distance_unit" class="block text-sm font-medium text-gray-700">{{ _('Distance') }}</label>
                                     <select name="distance_unit" id="distance_unit"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="km" {% if current_user.distance_unit == 'km' %}selected{% endif %}>Kilometers (km)</option>
@@ -80,7 +80,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="volume_unit" class="block text-sm font-medium text-gray-700">Volume</label>
+                                    <label for="volume_unit" class="block text-sm font-medium text-gray-700">{{ _('Volume') }}</label>
                                     <select name="volume_unit" id="volume_unit"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="L" {% if current_user.volume_unit == 'L' %}selected{% endif %}>Liters (L)</option>
@@ -90,7 +90,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="consumption_unit" class="block text-sm font-medium text-gray-700">Fuel Consumption</label>
+                                    <label for="consumption_unit" class="block text-sm font-medium text-gray-700">{{ _('Fuel Consumption') }}</label>
                                     <select name="consumption_unit" id="consumption_unit"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="L/100km" {% if current_user.consumption_unit == 'L/100km' %}selected{% endif %}>L/100km</option>
@@ -100,7 +100,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="currency" class="block text-sm font-medium text-gray-700">Currency</label>
+                                    <label for="currency" class="block text-sm font-medium text-gray-700">{{ _('Currency') }}</label>
                                     <select name="currency" id="currency"
                                             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="USD" {% if current_user.currency == 'USD' %}selected{% endif %}>USD ($)</option>
@@ -126,7 +126,7 @@
                         <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
                             <button type="submit"
                                     class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                                Save Changes
+                                {{ _('Save Changes') }}
                             </button>
                         </div>
                     </div>
@@ -138,21 +138,21 @@
                         <!-- Account Info -->
                         <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
                             <div class="p-6">
-                                <h2 class="text-lg font-medium text-gray-900">Account Information</h2>
-                                <p class="mt-1 text-sm text-gray-500">Your account details</p>
+                                <h2 class="text-lg font-medium text-gray-900">{{ _('Account Information') }}</h2>
+                                <p class="mt-1 text-sm text-gray-500">{{ _('Your account details') }}</p>
                             </div>
 
                             <div class="p-6 space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">Username</label>
+                                    <label class="block text-sm font-medium text-gray-700">{{ _('Username') }}</label>
                                     <p class="mt-1 text-sm text-gray-900">{{ current_user.username }}</p>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                                    <label class="block text-sm font-medium text-gray-700">{{ _('Email') }}</label>
                                     <p class="mt-1 text-sm text-gray-900">{{ current_user.email }}</p>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">Member Since</label>
+                                    <label class="block text-sm font-medium text-gray-700">{{ _('Member Since') }}</label>
                                     <p class="mt-1 text-sm text-gray-900">{{ current_user.created_at.strftime('%B %d, %Y') }}</p>
                                 </div>
                             </div>
@@ -161,20 +161,20 @@
                         <!-- Change Password -->
                         <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
                             <div class="p-6">
-                                <h2 class="text-lg font-medium text-gray-900">Change Password</h2>
-                                <p class="mt-1 text-sm text-gray-500">Update your password to keep your account secure</p>
+                                <h2 class="text-lg font-medium text-gray-900">{{ _('Change Password') }}</h2>
+                                <p class="mt-1 text-sm text-gray-500">{{ _('Update your password to keep your account secure') }}</p>
                             </div>
 
                             <div class="p-6">
                                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                     <div>
-                                        <label for="new_password" class="block text-sm font-medium text-gray-700">New Password</label>
+                                        <label for="new_password" class="block text-sm font-medium text-gray-700">{{ _('New Password') }}</label>
                                         <input type="password" name="new_password" id="new_password"
                                                class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                     </div>
 
                                     <div>
-                                        <label for="confirm_new_password" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                                        <label for="confirm_new_password" class="block text-sm font-medium text-gray-700">{{ _('Confirm New Password') }}</label>
                                         <input type="password" name="confirm_new_password" id="confirm_new_password"
                                                class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                     </div>
@@ -184,7 +184,7 @@
                             <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
                                 <button type="submit"
                                         class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                                    Update Password
+                                    {{ _('Update Password') }}
                                 </button>
                             </div>
                         </div>
@@ -192,19 +192,19 @@
                         <!-- Danger Zone -->
                         <div class="bg-white shadow rounded-lg divide-y divide-gray-200 border border-red-200">
                             <div class="p-6">
-                                <h2 class="text-lg font-medium text-red-600">Danger Zone</h2>
-                                <p class="mt-1 text-sm text-gray-500">Irreversible actions</p>
+                                <h2 class="text-lg font-medium text-red-600">{{ _('Danger Zone') }}</h2>
+                                <p class="mt-1 text-sm text-gray-500">{{ _('Irreversible actions') }}</p>
                             </div>
 
                             <div class="p-6">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h3 class="text-sm font-medium text-gray-900">Delete Account</h3>
-                                        <p class="text-sm text-gray-500">Permanently delete your account and all data</p>
+                                        <h3 class="text-sm font-medium text-gray-900">{{ _('Delete Account') }}</h3>
+                                        <p class="text-sm text-gray-500">{{ _('Permanently delete your account and all data') }}</p>
                                     </div>
                                     <button type="button" disabled
                                             class="px-4 py-2 border border-red-300 rounded-md text-sm font-medium text-red-700 bg-white hover:bg-red-50 opacity-50 cursor-not-allowed">
-                                        Delete Account
+                                        {{ _('Delete Account') }}
                                     </button>
                                 </div>
                             </div>
@@ -219,8 +219,8 @@
                     <!-- Import Data -->
                     <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">Import Data</h2>
-                            <p class="mt-1 text-sm text-gray-500">Import your data from other fuel tracking applications</p>
+                            <h2 class="text-lg font-medium text-gray-900">{{ _('Import Data') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500">{{ _('Import your data from other fuel tracking applications') }}</p>
                         </div>
 
                         <div class="p-6 space-y-4">
@@ -281,30 +281,30 @@
                     <!-- Export Data -->
                     <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">Export Data</h2>
-                            <p class="mt-1 text-sm text-gray-500">Download your data for backup or migration</p>
+                            <h2 class="text-lg font-medium text-gray-900">{{ _('Export Data') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500">{{ _('Download your data for backup or migration') }}</p>
                         </div>
 
                         <div class="p-6 space-y-4">
                             <div class="flex items-center justify-between py-3">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Export as CSV</h3>
-                                    <p class="text-sm text-gray-500">Download all your vehicles, fuel logs, and expenses as CSV files (ZIP archive)</p>
+                                    <h3 class="text-sm font-medium text-gray-900">{{ _('Export as CSV') }}</h3>
+                                    <p class="text-sm text-gray-500">{{ _('Download all your vehicles, fuel logs, and expenses as CSV files (ZIP archive)') }}</p>
                                 </div>
                                 <a href="{{ url_for('api.export_csv') }}"
                                    class="w-36 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                                    Download CSV
+                                    {{ _('Download CSV') }}
                                 </a>
                             </div>
 
                             <div class="flex items-center justify-between py-3 border-t border-gray-200">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Export as JSON</h3>
-                                    <p class="text-sm text-gray-500">Download a complete backup of your data in JSON format</p>
+                                    <h3 class="text-sm font-medium text-gray-900">{{ _('Export as JSON') }}</h3>
+                                    <p class="text-sm text-gray-500">{{ _('Download a complete backup of your data in JSON format') }}</p>
                                 </div>
                                 <a href="{{ url_for('api.export_json') }}"
                                    class="w-36 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                                    Download JSON
+                                    {{ _('Download JSON') }}
                                 </a>
                             </div>
                         </div>
@@ -315,10 +315,10 @@
                         <div class="p-6">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <h2 class="text-lg font-medium text-gray-900">API Access</h2>
-                                    <p class="mt-1 text-sm text-gray-500">Connect external applications and services</p>
+                                    <h2 class="text-lg font-medium text-gray-900">{{ _('API Access') }}</h2>
+                                    <p class="mt-1 text-sm text-gray-500">{{ _('Connect external applications and services') }}</p>
                                 </div>
-                                <a href="{{ url_for('api.docs') }}" class="text-sm text-primary-600 hover:text-primary-500">View API Docs &rarr;</a>
+                                <a href="{{ url_for('api.docs') }}" class="text-sm text-primary-600 hover:text-primary-500">{{ _('View API Docs') }} &rarr;</a>
                             </div>
                         </div>
 
@@ -403,14 +403,14 @@
                 <form method="POST" action="{{ url_for('auth.branding') }}" enctype="multipart/form-data">
                     <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">Application Branding</h2>
-                            <p class="mt-1 text-sm text-gray-500">Customize how May appears to all users</p>
+                            <h2 class="text-lg font-medium text-gray-900">{{ _('Application Branding') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500">{{ _('Customize how May appears to all users') }}</p>
                         </div>
 
                         <div class="p-6 space-y-6">
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 <div class="sm:col-span-2">
-                                    <label for="app_name" class="block text-sm font-medium text-gray-700">Application Name</label>
+                                    <label for="app_name" class="block text-sm font-medium text-gray-700">{{ _('Application Name') }}</label>
                                     <input type="text" name="app_name" id="app_name"
                                            value="{{ branding.app_name or 'May' }}"
                                            placeholder="May"
@@ -418,7 +418,7 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="app_tagline" class="block text-sm font-medium text-gray-700">Tagline</label>
+                                    <label for="app_tagline" class="block text-sm font-medium text-gray-700">{{ _('Tagline') }}</label>
                                     <input type="text" name="app_tagline" id="app_tagline"
                                            value="{{ branding.app_tagline or 'Vehicle Management' }}"
                                            placeholder="Vehicle Management"
@@ -426,7 +426,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="primary_color" class="block text-sm font-medium text-gray-700">Primary Color</label>
+                                    <label for="primary_color" class="block text-sm font-medium text-gray-700">{{ _('Primary Color') }}</label>
                                     <div class="mt-1 flex items-center gap-3">
                                         <input type="color" name="primary_color" id="primary_color"
                                                value="{{ branding.primary_color or '#0284c7' }}"
@@ -438,12 +438,12 @@
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">Logo</label>
+                                    <label class="block text-sm font-medium text-gray-700">{{ _('Logo') }}</label>
                                     {% if branding.logo_filename %}
                                     <div class="mt-2 mb-2 flex items-center gap-3">
                                         <img src="{{ url_for('api.uploaded_file', filename=branding.logo_filename) }}"
-                                             alt="Current logo" class="h-10 w-auto">
-                                        <span class="text-xs text-gray-500">Current logo</span>
+                                             alt="{{ _('Current logo') }}" class="h-10 w-auto">
+                                        <span class="text-xs text-gray-500">{{ _('Current logo') }}</span>
                                     </div>
                                     {% endif %}
                                     <input type="file" name="logo" accept="image/*"
@@ -455,7 +455,7 @@
                         <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
                             <button type="submit"
                                     class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                                Save Branding
+                                {{ _('Save Branding') }}
                             </button>
                         </div>
                     </div>

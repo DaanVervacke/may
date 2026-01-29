@@ -1,0 +1,291 @@
+# German translations for May Vehicle Management
+# Copyright (C) 2024
+# This file is distributed under the same license as the May project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: May 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: de\n"
+"Language-Team: German\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Manual\n"
+
+#: Navigation
+msgid "Dashboard"
+msgstr "Übersicht"
+
+msgid "Vehicles"
+msgstr "Fahrzeuge"
+
+msgid "Fuel Logs"
+msgstr "Tankprotokoll"
+
+msgid "Expenses"
+msgstr "Ausgaben"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Logout"
+msgstr "Abmelden"
+
+#: Common actions
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Back"
+msgstr "Zurück"
+
+#: Vehicles
+msgid "Add Vehicle"
+msgstr "Fahrzeug hinzufügen"
+
+msgid "Edit Vehicle"
+msgstr "Fahrzeug bearbeiten"
+
+msgid "No vehicles"
+msgstr "Keine Fahrzeuge"
+
+msgid "Vehicle Type"
+msgstr "Fahrzeugtyp"
+
+msgid "Make"
+msgstr "Marke"
+
+msgid "Model"
+msgstr "Modell"
+
+msgid "Year"
+msgstr "Baujahr"
+
+msgid "Registration"
+msgstr "Kennzeichen"
+
+msgid "Fuel Type"
+msgstr "Kraftstoffart"
+
+#: Fuel Logs
+msgid "Add Fuel Log"
+msgstr "Tankvorgang hinzufügen"
+
+msgid "Odometer"
+msgstr "Kilometerstand"
+
+msgid "Volume"
+msgstr "Menge"
+
+msgid "Price per unit"
+msgstr "Preis pro Einheit"
+
+msgid "Total Cost"
+msgstr "Gesamtkosten"
+
+msgid "Full Tank"
+msgstr "Vollgetankt"
+
+msgid "Station"
+msgstr "Tankstelle"
+
+#: Expenses
+msgid "Add Expense"
+msgstr "Ausgabe hinzufügen"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Cost"
+msgstr "Kosten"
+
+msgid "Vendor"
+msgstr "Anbieter"
+
+#: Settings
+msgid "Units & Values"
+msgstr "Einheiten & Werte"
+
+msgid "Account & Security"
+msgstr "Konto & Sicherheit"
+
+msgid "Integrations"
+msgstr "Integrationen"
+
+msgid "Branding"
+msgstr "Branding"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Distance"
+msgstr "Entfernung"
+
+msgid "Currency"
+msgstr "Währung"
+
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+msgid "Manage your preferences and account"
+msgstr "Verwalten Sie Ihre Einstellungen und Ihr Konto"
+
+msgid "Configure how measurements and currencies are displayed"
+msgstr "Konfigurieren Sie, wie Maßeinheiten und Währungen angezeigt werden"
+
+msgid "Fuel Consumption"
+msgstr "Kraftstoffverbrauch"
+
+#: Account section
+msgid "Account Information"
+msgstr "Kontoinformationen"
+
+msgid "Your account details"
+msgstr "Ihre Kontodetails"
+
+msgid "Username"
+msgstr "Benutzername"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Member Since"
+msgstr "Mitglied seit"
+
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+msgid "Update your password to keep your account secure"
+msgstr "Aktualisieren Sie Ihr Passwort, um Ihr Konto zu schützen"
+
+msgid "New Password"
+msgstr "Neues Passwort"
+
+msgid "Confirm New Password"
+msgstr "Neues Passwort bestätigen"
+
+msgid "Update Password"
+msgstr "Passwort aktualisieren"
+
+msgid "Danger Zone"
+msgstr "Gefahrenzone"
+
+msgid "Irreversible actions"
+msgstr "Unwiderrufliche Aktionen"
+
+msgid "Delete Account"
+msgstr "Konto löschen"
+
+msgid "Permanently delete your account and all data"
+msgstr "Konto und alle Daten dauerhaft löschen"
+
+#: Import/Export
+msgid "Import Data"
+msgstr "Daten importieren"
+
+msgid "Import your data from other fuel tracking applications"
+msgstr "Importieren Sie Ihre Daten aus anderen Kraftstoff-Tracking-Anwendungen"
+
+msgid "Export Data"
+msgstr "Daten exportieren"
+
+msgid "Download your data for backup or migration"
+msgstr "Laden Sie Ihre Daten für Backup oder Migration herunter"
+
+msgid "Export as CSV"
+msgstr "Als CSV exportieren"
+
+msgid "Download all your vehicles, fuel logs, and expenses as CSV files (ZIP archive)"
+msgstr "Laden Sie alle Ihre Fahrzeuge, Tankprotokolle und Ausgaben als CSV-Dateien herunter (ZIP-Archiv)"
+
+msgid "Download CSV"
+msgstr "CSV herunterladen"
+
+msgid "Export as JSON"
+msgstr "Als JSON exportieren"
+
+msgid "Download a complete backup of your data in JSON format"
+msgstr "Laden Sie ein vollständiges Backup Ihrer Daten im JSON-Format herunter"
+
+msgid "Download JSON"
+msgstr "JSON herunterladen"
+
+#: API
+msgid "API Access"
+msgstr "API-Zugriff"
+
+msgid "Connect external applications and services"
+msgstr "Externe Anwendungen und Dienste verbinden"
+
+msgid "View API Docs"
+msgstr "API-Dokumentation anzeigen"
+
+#: Branding
+msgid "Application Branding"
+msgstr "Anwendungs-Branding"
+
+msgid "Customize how May appears to all users"
+msgstr "Passen Sie an, wie May allen Benutzern angezeigt wird"
+
+msgid "Application Name"
+msgstr "Anwendungsname"
+
+msgid "Tagline"
+msgstr "Slogan"
+
+msgid "Primary Color"
+msgstr "Primärfarbe"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Current logo"
+msgstr "Aktuelles Logo"
+
+msgid "Save Branding"
+msgstr "Branding speichern"
+
+#: Stats
+msgid "Total Fuel Cost"
+msgstr "Gesamte Kraftstoffkosten"
+
+msgid "Total Distance"
+msgstr "Gesamtstrecke"
+
+msgid "Average Consumption"
+msgstr "Durchschnittsverbrauch"
+
+#: Messages
+msgid "Settings updated successfully"
+msgstr "Einstellungen erfolgreich aktualisiert"
+
+msgid "Vehicle added successfully"
+msgstr "Fahrzeug erfolgreich hinzugefügt"
+
+msgid "Vehicle updated successfully"
+msgstr "Fahrzeug erfolgreich aktualisiert"
+
+msgid "Access denied"
+msgstr "Zugriff verweigert"
