@@ -5,11 +5,11 @@ WORKDIR /app
 # Install system dependencies including WeasyPrint requirements
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
-    libpango1.0-0 \
-    libpangocairo-1.0-0 \
-    libgdk-pixbuf-2.0-0 \
     libffi-dev \
-    shared-mime-info \
+    libpango-1.0-0 \
+    libpangoft2-1.0-0 \
+    libharfbuzz0b \
+    libgdk-pixbuf2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
