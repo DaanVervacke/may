@@ -245,6 +245,42 @@ msgstr "Externe Anwendungen und Dienste verbinden"
 msgid "View API Docs"
 msgstr "API-Dokumentation anzeigen"
 
+msgid "API"
+msgstr "API"
+
+msgid "Your API Key"
+msgstr "Ihr API-Schlüssel"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Created"
+msgstr "Erstellt"
+
+msgid "Regenerate Key"
+msgstr "Schlüssel neu generieren"
+
+msgid "Revoke Key"
+msgstr "Schlüssel widerrufen"
+
+msgid "API Key"
+msgstr "API-Schlüssel"
+
+msgid "Generate an API key to access May programmatically. You can use it to integrate with other applications or build your own tools."
+msgstr "Generieren Sie einen API-Schlüssel, um programmgesteuert auf May zuzugreifen. Sie können ihn verwenden, um andere Anwendungen zu integrieren oder eigene Tools zu erstellen."
+
+msgid "Generate API Key"
+msgstr "API-Schlüssel generieren"
+
+msgid "API Key Generated"
+msgstr "API-Schlüssel generiert"
+
+msgid "Copy your API key now. For security, it won't be shown in full again."
+msgstr "Kopieren Sie jetzt Ihren API-Schlüssel. Aus Sicherheitsgründen wird er nicht mehr vollständig angezeigt."
+
+msgid "Done"
+msgstr "Fertig"
+
 #: Branding
 msgid "Application Branding"
 msgstr "Anwendungs-Branding"
