@@ -4,7 +4,7 @@
 
 A modern, self-hosted vehicle management application for tracking fuel consumption, expenses, reminders, and maintenance across your entire fleet.
 
-![Flask](https://img.shields.io/badge/Flask-Python-blue) ![Version](https://img.shields.io/badge/version-0.3.0-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED) ![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8)
+![Flask](https://img.shields.io/badge/Flask-Python-blue) ![GitHub Release](https://img.shields.io/github/v/release/dannymcc/may) ![License](https://img.shields.io/badge/license-MIT-green) ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED) ![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8)
 
 Named after James May, completing the trio of Top Gear presenters (alongside [Clarkson](https://github.com/linuxserver/Clarkson) and [Hammond](https://github.com/AlfHou/hammond)).
 
@@ -42,12 +42,25 @@ Named after James May, completing the trio of Top Gear presenters (alongside [Cl
 ### Quick Start with Docker
 
 ```bash
-# Clone the repository
-git clone https://github.com/dannymcc/may.git
-cd may
+# Create a directory for May
+mkdir may && cd may
 
-# Start with Docker Compose
+# Download docker-compose.yml
+curl -O https://raw.githubusercontent.com/dannymcc/may/main/docker-compose.yml
+
+# Start the container
 docker compose up -d
+```
+
+Or run directly with Docker:
+
+```bash
+docker run -d \
+  --name may \
+  -p 5050:5050 \
+  -v may_data:/app/data \
+  -e SECRET_KEY=your-secret-key \
+  ghcr.io/dannymcc/may:latest
 ```
 
 Access the application at `http://localhost:5050`

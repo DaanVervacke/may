@@ -1,6 +1,8 @@
 services:
   may:
-    build: .
+    image: ghcr.io/dannymcc/may:latest
+    # To build locally instead, comment out 'image' above and uncomment:
+    # build: .
     container_name: may
     restart: unless-stopped
     ports:

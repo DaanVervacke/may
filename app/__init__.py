@@ -90,6 +90,11 @@ def create_app(config_class=Config):
     app.register_blueprint(homeassistant.bp)
     app.register_blueprint(calendar.bp)
 
+    # Health check endpoint for container orchestration
+    @app.route('/health')
+    def health_check():
+        return {'status': 'healthy'}, 200
+
     with app.app_context():
         db.create_all()
         # Create default admin user if no users exist
