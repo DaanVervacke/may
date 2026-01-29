@@ -1,3 +1,4 @@
+import secrets
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -26,6 +27,10 @@ class User(UserMixin, db.Model):
     consumption_unit = db.Column(db.String(10), default='L/100km')  # L/100km, mpg, mpg_us
     currency = db.Column(db.String(10), default='USD')
 
+    # API access
+    api_key = db.Column(db.String(64), unique=True, index=True)
+    api_key_created_at = db.Column(db.DateTime)
+
     # Relationships
     owned_vehicles = db.relationship('Vehicle', backref='owner', lazy='dynamic',
                                      foreign_keys='Vehicle.owner_id')
@@ -45,6 +50,24 @@ class User(UserMixin, db.Model):
         owned = list(self.owned_vehicles.all())
         shared = list(self.shared_vehicles)
         return list(set(owned + shared))
+
+    def generate_api_key(self):
+        """Generate a new API key for this user"""
+        self.api_key = f"may_{secrets.token_hex(32)}"
+        self.api_key_created_at = datetime.utcnow()
+        return self.api_key
+
+    def revoke_api_key(self):
+        """Revoke the current API key"""
+        self.api_key = None
+        self.api_key_created_at = None
+
+    @staticmethod
+    def get_by_api_key(api_key):
+        """Find user by API key"""
+        if not api_key:
+            return None
+        return User.query.filter_by(api_key=api_key).first()
 
 
 class Vehicle(db.Model):
@@ -115,6 +138,30 @@ class Vehicle(db.Model):
         last_log = self.fuel_logs.order_by(FuelLog.odometer.desc()).first()
         return last_log.odometer if last_log else 0
 
+    def to_dict(self):
+        """Serialize vehicle to dictionary for API"""
+        return {
+            'id': self.id,
+            'name': self.name,
+            'vehicle_type': self.vehicle_type,
+            'make': self.make,
+            'model': self.model,
+            'year': self.year,
+            'registration': self.registration,
+            'vin': self.vin,
+            'fuel_type': self.fuel_type,
+            'tank_capacity': self.tank_capacity,
+            'is_active': self.is_active,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'stats': {
+                'total_fuel_cost': round(self.get_total_fuel_cost(), 2),
+                'total_expense_cost': round(self.get_total_expense_cost(), 2),
+                'total_distance': round(self.get_total_distance(), 2),
+                'average_consumption': round(self.get_average_consumption(), 2) if self.get_average_consumption() else None,
+                'last_odometer': self.get_last_odometer()
+            }
+        }
+
 
 class FuelLog(db.Model):
     __tablename__ = 'fuel_logs'
@@ -158,6 +205,24 @@ class FuelLog(db.Model):
                 return (self.volume / distance) * 100  # L/100km
         return None
 
+    def to_dict(self):
+        """Serialize fuel log to dictionary for API"""
+        return {
+            'id': self.id,
+            'vehicle_id': self.vehicle_id,
+            'date': self.date.isoformat() if self.date else None,
+            'odometer': self.odometer,
+            'volume': self.volume,
+            'price_per_unit': self.price_per_unit,
+            'total_cost': self.total_cost,
+            'is_full_tank': self.is_full_tank,
+            'is_missed': self.is_missed,
+            'station': self.station,
+            'notes': self.notes,
+            'consumption': round(self.get_consumption(), 2) if self.get_consumption() else None,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
 
 class Expense(db.Model):
     __tablename__ = 'expenses'
@@ -180,6 +245,21 @@ class Expense(db.Model):
     # Relationships
     attachments = db.relationship('Attachment', backref='expense', lazy='dynamic',
                                   cascade='all, delete-orphan')
+
+    def to_dict(self):
+        """Serialize expense to dictionary for API"""
+        return {
+            'id': self.id,
+            'vehicle_id': self.vehicle_id,
+            'date': self.date.isoformat() if self.date else None,
+            'category': self.category,
+            'description': self.description,
+            'cost': self.cost,
+            'odometer': self.odometer,
+            'vendor': self.vendor,
+            'notes': self.notes,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
 
 
 class Attachment(db.Model):
