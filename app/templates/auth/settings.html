@@ -92,18 +92,18 @@
             <form method="POST">
                 <!-- Units & Values Section -->
                 <div id="section-units" class="settings-section">
-                    <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">{{ _('Units & Values') }}</h2>
-                            <p class="mt-1 text-sm text-gray-500">{{ _('Configure how measurements and currencies are displayed') }}</p>
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Units & Values') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Configure how measurements and currencies are displayed') }}</p>
                         </div>
 
                         <div class="p-6 space-y-6">
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 <div class="sm:col-span-2">
-                                    <label for="language" class="block text-sm font-medium text-gray-700">{{ _('Language') }}</label>
+                                    <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Language') }}</label>
                                     <select name="language" id="language"
-                                            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         {% for code, name in LANGUAGES.items() %}
                                         <option value="{{ code }}" {% if current_user.language == code %}selected{% endif %}>{{ name }}</option>
                                         {% endfor %}
@@ -111,18 +111,18 @@
                                 </div>
 
                                 <div>
-                                    <label for="distance_unit" class="block text-sm font-medium text-gray-700">{{ _('Distance') }}</label>
+                                    <label for="distance_unit" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Distance') }}</label>
                                     <select name="distance_unit" id="distance_unit"
-                                            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="km" {% if current_user.distance_unit == 'km' %}selected{% endif %}>Kilometers (km)</option>
                                         <option value="mi" {% if current_user.distance_unit == 'mi' %}selected{% endif %}>Miles (mi)</option>
                                     </select>
                                 </div>
 
                                 <div>
-                                    <label for="volume_unit" class="block text-sm font-medium text-gray-700">{{ _('Volume') }}</label>
+                                    <label for="volume_unit" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Volume') }}</label>
                                     <select name="volume_unit" id="volume_unit"
-                                            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="L" {% if current_user.volume_unit == 'L' %}selected{% endif %}>Liters (L)</option>
                                         <option value="gal" {% if current_user.volume_unit == 'gal' %}selected{% endif %}>UK Gallons (gal)</option>
                                         <option value="us_gal" {% if current_user.volume_unit == 'us_gal' %}selected{% endif %}>US Gallons (gal)</option>
@@ -130,9 +130,9 @@
                                 </div>
 
                                 <div>
-                                    <label for="consumption_unit" class="block text-sm font-medium text-gray-700">{{ _('Fuel Consumption') }}</label>
+                                    <label for="consumption_unit" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Fuel Consumption') }}</label>
                                     <select name="consumption_unit" id="consumption_unit"
-                                            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="L/100km" {% if current_user.consumption_unit == 'L/100km' %}selected{% endif %}>L/100km</option>
                                         <option value="mpg" {% if current_user.consumption_unit == 'mpg' %}selected{% endif %}>MPG (UK)</option>
                                         <option value="mpg_us" {% if current_user.consumption_unit == 'mpg_us' %}selected{% endif %}>MPG (US)</option>
@@ -140,9 +140,9 @@
                                 </div>
 
                                 <div>
-                                    <label for="currency" class="block text-sm font-medium text-gray-700">{{ _('Currency') }}</label>
+                                    <label for="currency" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Currency') }}</label>
                                     <select name="currency" id="currency"
-                                            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="USD" {% if current_user.currency == 'USD' %}selected{% endif %}>USD ($)</option>
                                         <option value="EUR" {% if current_user.currency == 'EUR' %}selected{% endif %}>EUR (&euro;)</option>
                                         <option value="GBP" {% if current_user.currency == 'GBP' %}selected{% endif %}>GBP (&pound;)</option>
@@ -163,7 +163,7 @@
                             </div>
                         </div>
 
-                        <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
+                        <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 rounded-b-lg flex justify-end">
                             <button type="submit"
                                     class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                 {{ _('Save Changes') }}
@@ -176,24 +176,24 @@
                 <div id="section-account" class="settings-section hidden">
                     <div class="space-y-6">
                         <!-- Account Info -->
-                        <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                        <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="p-6">
-                                <h2 class="text-lg font-medium text-gray-900">{{ _('Account Information') }}</h2>
-                                <p class="mt-1 text-sm text-gray-500">{{ _('Your account details') }}</p>
+                                <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Account Information') }}</h2>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Your account details') }}</p>
                             </div>
 
                             <div class="p-6 space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">{{ _('Username') }}</label>
-                                    <p class="mt-1 text-sm text-gray-900">{{ current_user.username }}</p>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Username') }}</label>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">{{ current_user.username }}</p>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">{{ _('Email') }}</label>
-                                    <p class="mt-1 text-sm text-gray-900">{{ current_user.email }}</p>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Email') }}</label>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">{{ current_user.email }}</p>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">{{ _('Member Since') }}</label>
-                                    <p class="mt-1 text-sm text-gray-900">{{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Member Since') }}</label>
+                                    <p class="mt-1 text-sm text-gray-900 dark:text-white">{{ current_user.created_at.strftime('%B %d, %Y') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -244,29 +244,29 @@
                         {% endif %}
 
                         <!-- Change Password -->
-                        <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                        <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="p-6">
-                                <h2 class="text-lg font-medium text-gray-900">{{ _('Change Password') }}</h2>
-                                <p class="mt-1 text-sm text-gray-500">{{ _('Update your password to keep your account secure') }}</p>
+                                <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Change Password') }}</h2>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Update your password to keep your account secure') }}</p>
                             </div>
 
                             <div class="p-6">
                                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                     <div>
-                                        <label for="new_password" class="block text-sm font-medium text-gray-700">{{ _('New Password') }}</label>
+                                        <label for="new_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('New Password') }}</label>
                                         <input type="password" name="new_password" id="new_password"
-                                               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                               class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                     </div>
 
                                     <div>
-                                        <label for="confirm_new_password" class="block text-sm font-medium text-gray-700">{{ _('Confirm New Password') }}</label>
+                                        <label for="confirm_new_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Confirm New Password') }}</label>
                                         <input type="password" name="confirm_new_password" id="confirm_new_password"
-                                               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                               class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
+                            <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 rounded-b-lg flex justify-end">
                                 <button type="submit"
                                         class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                     {{ _('Update Password') }}
@@ -275,17 +275,17 @@
                         </div>
 
                         <!-- Danger Zone -->
-                        <div class="bg-white shadow rounded-lg divide-y divide-gray-200 border border-red-200">
+                        <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700 border border-red-200 dark:border-red-800">
                             <div class="p-6">
                                 <h2 class="text-lg font-medium text-red-600">{{ _('Danger Zone') }}</h2>
-                                <p class="mt-1 text-sm text-gray-500">{{ _('Irreversible actions') }}</p>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Irreversible actions') }}</p>
                             </div>
 
                             <div class="p-6">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h3 class="text-sm font-medium text-gray-900">{{ _('Delete Account') }}</h3>
-                                        <p class="text-sm text-gray-500">{{ _('Permanently delete your account and all data') }}</p>
+                                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Delete Account') }}</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Permanently delete your account and all data') }}</p>
                                     </div>
                                     <button type="button" disabled
                                             class="px-4 py-2 border border-red-300 rounded-md text-sm font-medium text-red-700 bg-white hover:bg-red-50 opacity-50 cursor-not-allowed">
@@ -328,7 +328,7 @@
                             </div>
 
                             <!-- Quick Entry Button -->
-                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700 dark:border-gray-700">
                                 <div>
                                     <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Quick Entry Button') }}</h3>
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Show a quick fuel entry button in the navigation bar for rapid logging') }}</p>
@@ -341,7 +341,7 @@
                             </div>
 
                             <!-- Menu Items -->
-                            <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <div class="pt-3 border-t border-gray-200 dark:border-gray-700 dark:border-gray-700">
                                 <h3 class="text-sm font-medium text-gray-900 dark:text-white mb-3">{{ _('Show Menu Items') }}</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{{ _('Choose which items appear in the navigation menu') }}</p>
 
@@ -404,65 +404,65 @@
             <div id="section-integrations" class="settings-section hidden">
                 <div class="space-y-6">
                     <!-- Import Data -->
-                    <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">{{ _('Import Data') }}</h2>
-                            <p class="mt-1 text-sm text-gray-500">{{ _('Import your data from other fuel tracking applications') }}</p>
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Import Data') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Import your data from other fuel tracking applications') }}</p>
                         </div>
 
                         <div class="p-6 space-y-4">
                             <div class="flex items-center justify-between py-3">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Hammond</h3>
-                                    <p class="text-sm text-gray-500">Import from Hammond SQLite database (.db file)</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Hammond</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Import from Hammond SQLite database (.db file)</p>
                                 </div>
                                 <form method="POST" action="{{ url_for('api.import_hammond') }}" enctype="multipart/form-data" class="flex items-center gap-2">
                                     <input type="file" name="file" accept=".db,.sqlite,.sqlite3" required
-                                           class="text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                                           class="text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:bg-gray-100 dark:file:bg-gray-600 file:text-gray-700 dark:file:text-gray-200 hover:file:bg-gray-200 dark:hover:file:bg-gray-500">
                                     <button type="submit"
-                                            class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                            class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         Import
                                     </button>
                                 </form>
                             </div>
 
-                            <div class="flex items-center justify-between py-3 border-t border-gray-200">
+                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Clarkson</h3>
-                                    <p class="text-sm text-gray-500">Import from Clarkson MySQL dump (.sql file)</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Clarkson</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Import from Clarkson MySQL dump (.sql file)</p>
                                 </div>
                                 <form method="POST" action="{{ url_for('api.import_clarkson') }}" enctype="multipart/form-data" class="flex items-center gap-2">
                                     <input type="file" name="file" accept=".sql" required
-                                           class="text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                                           class="text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:bg-gray-100 dark:file:bg-gray-600 file:text-gray-700 dark:file:text-gray-200 hover:file:bg-gray-200 dark:hover:file:bg-gray-500">
                                     <button type="submit"
-                                            class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                            class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         Import
                                     </button>
                                 </form>
                             </div>
 
-                            <div class="flex items-center justify-between py-3 border-t border-gray-200">
+                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Fuelly</h3>
-                                    <p class="text-sm text-gray-500">Import from Fuelly CSV export (.csv file)</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Fuelly</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Import from Fuelly CSV export (.csv file)</p>
                                 </div>
                                 <form method="POST" action="{{ url_for('api.import_fuelly') }}" enctype="multipart/form-data" class="flex items-center gap-2">
                                     <input type="file" name="file" accept=".csv" required
-                                           class="text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                                           class="text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:bg-gray-100 dark:file:bg-gray-600 file:text-gray-700 dark:file:text-gray-200 hover:file:bg-gray-200 dark:hover:file:bg-gray-500">
                                     <button type="submit"
-                                            class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                            class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         Import
                                     </button>
                                 </form>
                             </div>
 
-                            <div class="flex items-center justify-between py-3 border-t border-gray-200">
+                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Drivvo</h3>
-                                    <p class="text-sm text-gray-500">Import from Drivvo backup files</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Drivvo</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Import from Drivvo backup files</p>
                                 </div>
                                 <button type="button" disabled
-                                        class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed">
+                                        class="w-24 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700 cursor-not-allowed">
                                     Soon
                                 </button>
                             </div>
@@ -470,31 +470,31 @@
                     </div>
 
                     <!-- Export Data -->
-                    <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">{{ _('Export Data') }}</h2>
-                            <p class="mt-1 text-sm text-gray-500">{{ _('Download your data for backup or migration') }}</p>
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Export Data') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Download your data for backup or migration') }}</p>
                         </div>
 
                         <div class="p-6 space-y-4">
                             <div class="flex items-center justify-between py-3">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">{{ _('Export as CSV') }}</h3>
-                                    <p class="text-sm text-gray-500">{{ _('Download all your vehicles, fuel logs, and expenses as CSV files (ZIP archive)') }}</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Export as CSV') }}</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Download all your vehicles, fuel logs, and expenses as CSV files (ZIP archive)') }}</p>
                                 </div>
                                 <a href="{{ url_for('api.export_csv') }}"
-                                   class="w-36 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                   class="w-36 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     {{ _('Download CSV') }}
                                 </a>
                             </div>
 
-                            <div class="flex items-center justify-between py-3 border-t border-gray-200">
+                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">{{ _('Export as JSON') }}</h3>
-                                    <p class="text-sm text-gray-500">{{ _('Download a complete backup of your data in JSON format') }}</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Export as JSON') }}</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Download a complete backup of your data in JSON format') }}</p>
                                 </div>
                                 <a href="{{ url_for('api.export_json') }}"
-                                   class="w-36 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                   class="w-36 text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     {{ _('Download JSON') }}
                                 </a>
                             </div>
@@ -530,7 +530,7 @@
                                                    value="{{ current_user.api_key }}"
                                                    class="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white px-3 py-2 pr-20 text-sm font-mono">
                                             <button type="button" onclick="toggleApiKeyVisibility()"
-                                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-400">
                                                 <svg id="eye-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -584,7 +584,7 @@
                                     </div>
                                 </div>
                                 <button type="button" onclick="location.reload()"
-                                        class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                        class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     {{ _('Done') }}
                                 </button>
                             </div>
@@ -929,18 +929,18 @@
                 <div class="space-y-6">
                     <!-- User Notification Preferences -->
                     <form method="POST" action="{{ url_for('auth.notifications') }}">
-                        <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                        <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                             <div class="p-6">
-                                <h2 class="text-lg font-medium text-gray-900">{{ _('Notification Preferences') }}</h2>
-                                <p class="mt-1 text-sm text-gray-500">{{ _('Configure how you receive reminders about your vehicles') }}</p>
+                                <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Notification Preferences') }}</h2>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Configure how you receive reminders about your vehicles') }}</p>
                             </div>
 
                             <div class="p-6 space-y-6">
                                 <!-- Enable Notifications Toggle -->
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h3 class="text-sm font-medium text-gray-900">{{ _('Enable Reminders') }}</h3>
-                                        <p class="text-sm text-gray-500">{{ _('Receive notifications for upcoming reminders') }}</p>
+                                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Enable Reminders') }}</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Receive notifications for upcoming reminders') }}</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" name="email_reminders" value="true"
@@ -952,10 +952,10 @@
 
                                 <!-- Default Reminder Days -->
                                 <div>
-                                    <label for="reminder_days_before" class="block text-sm font-medium text-gray-700">{{ _('Default Reminder Lead Time') }}</label>
+                                    <label for="reminder_days_before" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Default Reminder Lead Time') }}</label>
                                     <p class="text-sm text-gray-500 mb-2">{{ _('How many days before the due date should you be notified?') }}</p>
                                     <select name="reminder_days_before" id="reminder_days_before"
-                                            class="block w-full sm:w-48 rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="block w-full sm:w-48 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="0" {% if current_user.reminder_days_before == 0 %}selected{% endif %}>{{ _('On the due date') }}</option>
                                         <option value="1" {% if current_user.reminder_days_before == 1 %}selected{% endif %}>{{ _('1 day before') }}</option>
                                         <option value="3" {% if current_user.reminder_days_before == 3 %}selected{% endif %}>{{ _('3 days before') }}</option>
@@ -967,11 +967,11 @@
 
                                 <!-- Notification Method -->
                                 <div>
-                                    <label for="notification_method" class="block text-sm font-medium text-gray-700">{{ _('Notification Method') }}</label>
+                                    <label for="notification_method" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Notification Method') }}</label>
                                     <p class="text-sm text-gray-500 mb-2">{{ _('Choose how you want to receive notifications') }}</p>
                                     <select name="notification_method" id="notification_method"
                                             onchange="toggleNotificationFields()"
-                                            class="block w-full sm:w-64 rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                            class="block w-full sm:w-64 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         <option value="email" {% if current_user.notification_method == 'email' or not current_user.notification_method %}selected{% endif %} {% if not smtp_configured %}disabled{% endif %}>
                                             {{ _('Email') }}{% if not smtp_configured %} ({{ _('not configured') }}){% endif %}
                                         </option>
@@ -984,8 +984,8 @@
                                 </div>
 
                                 <!-- Email-specific info -->
-                                <div id="notification-email" class="notification-field p-4 bg-gray-50 rounded-lg">
-                                    <p class="text-sm text-gray-600">
+                                <div id="notification-email" class="notification-field p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
                                         <svg class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                         </svg>
@@ -1002,56 +1002,56 @@
                                 </div>
 
                                 <!-- ntfy settings -->
-                                <div id="notification-ntfy" class="notification-field hidden p-4 bg-gray-50 rounded-lg space-y-3">
-                                    <p class="text-sm text-gray-600">
+                                <div id="notification-ntfy" class="notification-field hidden p-4 bg-gray-50 dark:bg-gray-700 rounded-lg space-y-3">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
                                         <a href="https://ntfy.sh" target="_blank" class="text-primary-600 hover:underline">ntfy.sh</a>
                                         {{ _('is a simple pub-sub notification service. Enter your topic below.') }}
                                     </p>
                                     <div>
-                                        <label for="ntfy_topic" class="block text-sm font-medium text-gray-700">{{ _('ntfy Topic or Server URL') }}</label>
+                                        <label for="ntfy_topic" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('ntfy Topic or Server URL') }}</label>
                                         <input type="text" name="ntfy_topic" id="ntfy_topic"
                                                value="{{ current_user.ntfy_topic or '' }}"
                                                placeholder="my-vehicle-reminders or https://ntfy.example.com/topic"
-                                               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
-                                        <p class="mt-1 text-xs text-gray-500">{{ _('For ntfy.sh, just enter your topic name. For self-hosted, enter the full URL.') }}</p>
+                                               class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ _('For ntfy.sh, just enter your topic name. For self-hosted, enter the full URL.') }}</p>
                                     </div>
                                 </div>
 
                                 <!-- Pushover settings -->
-                                <div id="notification-pushover" class="notification-field hidden p-4 bg-gray-50 rounded-lg space-y-3">
-                                    <p class="text-sm text-gray-600">
+                                <div id="notification-pushover" class="notification-field hidden p-4 bg-gray-50 dark:bg-gray-700 rounded-lg space-y-3">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
                                         <a href="https://pushover.net" target="_blank" class="text-primary-600 hover:underline">Pushover</a>
                                         {{ _('sends notifications to your devices. Enter your User Key below.') }}
                                     </p>
                                     <div>
-                                        <label for="pushover_user_key" class="block text-sm font-medium text-gray-700">{{ _('Pushover User Key') }}</label>
+                                        <label for="pushover_user_key" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Pushover User Key') }}</label>
                                         <input type="text" name="pushover_user_key" id="pushover_user_key"
                                                value="{{ current_user.pushover_user_key or '' }}"
                                                placeholder="uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
-                                               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
-                                        <p class="mt-1 text-xs text-gray-500">{{ _('Find your User Key on your Pushover dashboard.') }}</p>
+                                               class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ _('Find your User Key on your Pushover dashboard.') }}</p>
                                     </div>
                                 </div>
 
                                 <!-- Webhook settings -->
-                                <div id="notification-webhook" class="notification-field hidden p-4 bg-gray-50 rounded-lg space-y-3">
-                                    <p class="text-sm text-gray-600">
+                                <div id="notification-webhook" class="notification-field hidden p-4 bg-gray-50 dark:bg-gray-700 rounded-lg space-y-3">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
                                         {{ _('Notifications will be sent as JSON POST requests to your webhook URL.') }}
                                     </p>
                                     <div>
-                                        <label for="webhook_url" class="block text-sm font-medium text-gray-700">{{ _('Webhook URL') }}</label>
+                                        <label for="webhook_url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Webhook URL') }}</label>
                                         <input type="url" name="webhook_url" id="webhook_url"
                                                value="{{ current_user.webhook_url or '' }}"
                                                placeholder="https://example.com/webhook"
-                                               class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
-                                        <p class="mt-1 text-xs text-gray-500">{{ _('JSON payload: {title, message, reminder_id, vehicle_name, due_date}') }}</p>
+                                               class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ _('JSON payload: {title, message, reminder_id, vehicle_name, due_date}') }}</p>
                                     </div>
                                 </div>
 
                                 <!-- Test Notification Button -->
-                                <div class="pt-4 border-t border-gray-200">
+                                <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
                                     <button type="button" onclick="sendTestNotification()"
-                                            class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                            class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                                         </svg>
@@ -1061,7 +1061,7 @@
                                 </div>
                             </div>
 
-                            <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
+                            <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 rounded-b-lg flex justify-end">
                                 <button type="submit"
                                         class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                     {{ _('Save Preferences') }}
@@ -1072,17 +1072,17 @@
 
                     {% if current_user.is_admin %}
                     <!-- Admin Notification Configuration -->
-                    <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                         <div class="p-6">
                             <div class="flex items-center">
                                 <svg class="h-5 w-5 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
-                                <h2 class="text-lg font-medium text-gray-900">{{ _('Notification Services') }}</h2>
+                                <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Notification Services') }}</h2>
                                 <span class="ml-2 px-2 py-1 text-xs font-medium bg-amber-100 text-amber-800 rounded">{{ _('Admin') }}</span>
                             </div>
-                            <p class="mt-1 text-sm text-gray-500">{{ _('Configure notification services available to all users') }}</p>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Configure notification services available to all users') }}</p>
                         </div>
 
                         <div class="p-6">
@@ -1094,7 +1094,7 @@
                                             <svg class="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                             </svg>
-                                            <h3 class="text-sm font-medium text-gray-900">{{ _('Email (SMTP)') }}</h3>
+                                            <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Email (SMTP)') }}</h3>
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" name="smtp_enabled" value="true"
@@ -1106,46 +1106,46 @@
 
                                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                         <div>
-                                            <label for="smtp_host" class="block text-sm font-medium text-gray-700">{{ _('SMTP Host') }}</label>
+                                            <label for="smtp_host" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('SMTP Host') }}</label>
                                             <input type="text" name="smtp_host" id="smtp_host"
                                                    value="{{ smtp_settings.host or '' }}"
                                                    placeholder="smtp.gmail.com"
-                                                   class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                                   class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         </div>
                                         <div>
-                                            <label for="smtp_port" class="block text-sm font-medium text-gray-700">{{ _('SMTP Port') }}</label>
+                                            <label for="smtp_port" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('SMTP Port') }}</label>
                                             <input type="number" name="smtp_port" id="smtp_port"
                                                    value="{{ smtp_settings.port or '587' }}"
                                                    placeholder="587"
-                                                   class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                                   class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         </div>
                                         <div>
-                                            <label for="smtp_username" class="block text-sm font-medium text-gray-700">{{ _('SMTP Username') }}</label>
+                                            <label for="smtp_username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('SMTP Username') }}</label>
                                             <input type="text" name="smtp_username" id="smtp_username"
                                                    value="{{ smtp_settings.username or '' }}"
                                                    placeholder="your-email@gmail.com"
-                                                   class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                                   class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         </div>
                                         <div>
-                                            <label for="smtp_password" class="block text-sm font-medium text-gray-700">{{ _('SMTP Password') }}</label>
+                                            <label for="smtp_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('SMTP Password') }}</label>
                                             <input type="password" name="smtp_password" id="smtp_password"
                                                    value="{{ smtp_settings.password or '' }}"
                                                    placeholder="{% if smtp_settings.password %}••••••••{% else %}App password{% endif %}"
-                                                   class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                                   class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         </div>
                                         <div>
-                                            <label for="smtp_sender" class="block text-sm font-medium text-gray-700">{{ _('Sender Email') }}</label>
+                                            <label for="smtp_sender" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Sender Email') }}</label>
                                             <input type="email" name="smtp_sender" id="smtp_sender"
                                                    value="{{ smtp_settings.sender or '' }}"
                                                    placeholder="noreply@example.com"
-                                                   class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                                   class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         </div>
                                         <div>
-                                            <label for="smtp_sender_name" class="block text-sm font-medium text-gray-700">{{ _('Sender Name') }}</label>
+                                            <label for="smtp_sender_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Sender Name') }}</label>
                                             <input type="text" name="smtp_sender_name" id="smtp_sender_name"
                                                    value="{{ smtp_settings.sender_name or '' }}"
                                                    placeholder="{{ APP_NAME }}"
-                                                   class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                                   class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                         </div>
                                     </div>
 
@@ -1154,16 +1154,16 @@
                                             <input type="checkbox" name="smtp_tls" value="true"
                                                    {% if smtp_settings.tls != 'false' %}checked{% endif %}
                                                    class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
-                                            <span class="ml-2 text-sm text-gray-700">{{ _('Use TLS') }}</span>
+                                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">{{ _('Use TLS') }}</span>
                                         </label>
                                         <label class="flex items-center">
                                             <input type="checkbox" name="smtp_ssl" value="true"
                                                    {% if smtp_settings.ssl == 'true' %}checked{% endif %}
                                                    class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
-                                            <span class="ml-2 text-sm text-gray-700">{{ _('Use SSL') }}</span>
+                                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">{{ _('Use SSL') }}</span>
                                         </label>
                                         <button type="button" onclick="testSmtpSettings()"
-                                                class="ml-auto inline-flex items-center px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                                class="ml-auto inline-flex items-center px-3 py-1.5 border border-gray-300 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             {{ _('Test') }}
                                         </button>
                                     </div>
@@ -1177,7 +1177,7 @@
                                             <svg class="h-5 w-5 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                                             </svg>
-                                            <h3 class="text-sm font-medium text-gray-900">{{ _('Pushover') }}</h3>
+                                            <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Pushover') }}</h3>
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" name="pushover_enabled" value="true"
@@ -1191,12 +1191,12 @@
                                         {{ _('sends push notifications to iOS and Android devices.') }}
                                     </p>
                                     <div>
-                                        <label for="pushover_app_token" class="block text-sm font-medium text-gray-700">{{ _('Application Token') }}</label>
+                                        <label for="pushover_app_token" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Application Token') }}</label>
                                         <input type="text" name="pushover_app_token" id="pushover_app_token"
                                                value="{{ smtp_settings.pushover_app_token or '' }}"
                                                placeholder="azGDORePK8gMaC0QOYAMyEEuzJnyUi"
-                                               class="mt-1 block w-full sm:w-96 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
-                                        <p class="mt-1 text-xs text-gray-500">{{ _('Create an application at pushover.net to get your token') }}</p>
+                                               class="mt-1 block w-full sm:w-96 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ _('Create an application at pushover.net to get your token') }}</p>
                                     </div>
                                 </div>
 
@@ -1206,10 +1206,10 @@
                                         <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                                         </svg>
-                                        <h3 class="text-sm font-medium text-gray-900">{{ _('ntfy') }}</h3>
+                                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('ntfy') }}</h3>
                                         <span class="ml-2 px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded">{{ _('Always available') }}</span>
                                     </div>
-                                    <p class="text-sm text-gray-500">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">
                                         <a href="https://ntfy.sh" target="_blank" class="text-primary-600 hover:underline">ntfy.sh</a>
                                         {{ _('is a free, open-source notification service that requires no admin configuration. Users can set their own topic.') }}
                                     </p>
@@ -1221,10 +1221,10 @@
                                         <svg class="h-5 w-5 text-purple-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                                         </svg>
-                                        <h3 class="text-sm font-medium text-gray-900">{{ _('Webhook') }}</h3>
+                                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Webhook') }}</h3>
                                         <span class="ml-2 px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded">{{ _('Always available') }}</span>
                                     </div>
-                                    <p class="text-sm text-gray-500">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">
                                         {{ _('Webhooks allow users to integrate with any service that accepts HTTP POST requests (Home Assistant, Discord, Slack, etc.)') }}
                                     </p>
                                 </div>
@@ -1241,10 +1241,10 @@
                     {% endif %}
 
                     <!-- Upcoming Reminders Link -->
-                    <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">{{ _('Manage Reminders') }}</h2>
-                            <p class="mt-1 text-sm text-gray-500">{{ _('View and manage your upcoming reminders') }}</p>
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Manage Reminders') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('View and manage your upcoming reminders') }}</p>
                         </div>
                         <div class="p-6">
                             <a href="{{ url_for('reminders.index') }}"
@@ -1263,49 +1263,49 @@
             {% if current_user.is_admin %}
             <div id="section-branding" class="settings-section hidden">
                 <form method="POST" action="{{ url_for('auth.branding') }}" enctype="multipart/form-data">
-                    <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                         <div class="p-6">
-                            <h2 class="text-lg font-medium text-gray-900">{{ _('Application Branding') }}</h2>
-                            <p class="mt-1 text-sm text-gray-500">{{ _('Customize how May appears to all users') }}</p>
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('Application Branding') }}</h2>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Customize how May appears to all users') }}</p>
                         </div>
 
                         <div class="p-6 space-y-6">
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 <div class="sm:col-span-2">
-                                    <label for="app_name" class="block text-sm font-medium text-gray-700">{{ _('Application Name') }}</label>
+                                    <label for="app_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Application Name') }}</label>
                                     <input type="text" name="app_name" id="app_name"
                                            value="{{ branding.app_name or 'May' }}"
                                            placeholder="May"
-                                           class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                           class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <label for="app_tagline" class="block text-sm font-medium text-gray-700">{{ _('Tagline') }}</label>
+                                    <label for="app_tagline" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Tagline') }}</label>
                                     <input type="text" name="app_tagline" id="app_tagline"
                                            value="{{ branding.app_tagline or 'Vehicle Management' }}"
                                            placeholder="Vehicle Management"
-                                           class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
+                                           class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500">
                                 </div>
 
                                 <div>
-                                    <label for="primary_color" class="block text-sm font-medium text-gray-700">{{ _('Primary Color') }}</label>
+                                    <label for="primary_color" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Primary Color') }}</label>
                                     <div class="mt-1 flex items-center gap-3">
                                         <input type="color" name="primary_color" id="primary_color"
                                                value="{{ branding.primary_color or '#0284c7' }}"
                                                class="h-10 w-14 rounded border border-gray-300 cursor-pointer">
                                         <input type="text" id="primary_color_hex" readonly
                                                value="{{ branding.primary_color or '#0284c7' }}"
-                                               class="flex-1 rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-mono">
+                                               class="flex-1 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm font-mono">
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">{{ _('Logo') }}</label>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ _('Logo') }}</label>
                                     {% if branding.logo_filename %}
                                     <div class="mt-2 mb-2 flex items-center gap-3">
                                         <img src="{{ url_for('api.uploaded_file', filename=branding.logo_filename) }}"
                                              alt="{{ _('Current logo') }}" class="h-10 w-auto">
-                                        <span class="text-xs text-gray-500">{{ _('Current logo') }}</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">{{ _('Current logo') }}</span>
                                     </div>
                                     {% endif %}
                                     <input type="file" name="logo" accept="image/*"
@@ -1314,7 +1314,7 @@
                             </div>
                         </div>
 
-                        <div class="px-6 py-4 bg-gray-50 rounded-b-lg flex justify-end">
+                        <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 rounded-b-lg flex justify-end">
                             <button type="submit"
                                     class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                 {{ _('Save Branding') }}
@@ -1327,21 +1327,21 @@
 
             <!-- About Section -->
             <div id="section-about" class="settings-section hidden">
-                <div class="bg-white shadow rounded-lg divide-y divide-gray-200">
+                <div class="bg-white dark:bg-gray-800 shadow rounded-lg divide-y divide-gray-200 dark:divide-gray-700">
                     <div class="p-6">
-                        <h2 class="text-lg font-medium text-gray-900">{{ _('About') }}</h2>
-                        <p class="mt-1 text-sm text-gray-500">{{ _('Version information and updates') }}</p>
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-white">{{ _('About') }}</h2>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ _('Version information and updates') }}</p>
                     </div>
 
                     <div class="p-6 space-y-6">
                         <!-- Current Version -->
                         <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="text-sm font-medium text-gray-900">{{ _('Current Version') }}</h3>
+                                <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Current Version') }}</h3>
                                 <p class="text-2xl font-bold text-primary-600">v{{ app_version }}</p>
                             </div>
                             <a href="https://github.com/{{ github_repo }}" target="_blank" rel="noopener"
-                               class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700">
+                               class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-300">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
                                 </svg>
@@ -1350,10 +1350,10 @@
                         </div>
 
                         <!-- Update Check -->
-                        <div class="border-t border-gray-200 pt-6">
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <h3 class="text-sm font-medium text-gray-900">{{ _('Check for Updates') }}</h3>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Check for Updates') }}</h3>
                                     <p class="text-sm text-gray-500" id="update-status">{{ _('Click to check for newer versions') }}</p>
                                 </div>
                                 <button type="button" onclick="checkForUpdates()"
@@ -1399,36 +1399,36 @@
                         </div>
 
                         <!-- Links -->
-                        <div class="border-t border-gray-200 pt-6">
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
                             <h3 class="text-sm font-medium text-gray-900 mb-3">{{ _('Resources') }}</h3>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <a href="https://github.com/{{ github_repo }}" target="_blank" rel="noopener"
-                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                     <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
                                     </svg>
-                                    <span class="text-sm text-gray-700">{{ _('Source Code') }}</span>
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">{{ _('Source Code') }}</span>
                                 </a>
                                 <a href="https://github.com/{{ github_repo }}/issues" target="_blank" rel="noopener"
-                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                     <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    <span class="text-sm text-gray-700">{{ _('Report an Issue') }}</span>
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">{{ _('Report an Issue') }}</span>
                                 </a>
                                 <a href="https://github.com/{{ github_repo }}/releases" target="_blank" rel="noopener"
-                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                     <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                     </svg>
-                                    <span class="text-sm text-gray-700">{{ _('All Releases') }}</span>
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">{{ _('All Releases') }}</span>
                                 </a>
                                 <a href="https://github.com/{{ github_repo }}#readme" target="_blank" rel="noopener"
-                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                                   class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                     <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                                     </svg>
-                                    <span class="text-sm text-gray-700">{{ _('Documentation') }}</span>
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">{{ _('Documentation') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -1451,6 +1451,17 @@
     .settings-nav-item.active {
         color: #0284c7;
         background-color: #e0f2fe;
+    }
+    .dark .settings-nav-item {
+        color: #9ca3af;
+    }
+    .dark .settings-nav-item:hover {
+        color: #f3f4f6;
+        background-color: #374151;
+    }
+    .dark .settings-nav-item.active {
+        color: #38bdf8;
+        background-color: #1e3a5f;
     }
 </style>
 
