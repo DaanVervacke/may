@@ -209,6 +209,8 @@ def menu_preferences():
     current_user.show_menu_recurring = request.form.get('show_menu_recurring') == 'on'
     current_user.show_menu_documents = request.form.get('show_menu_documents') == 'on'
     current_user.show_menu_stations = request.form.get('show_menu_stations') == 'on'
+    current_user.show_menu_trips = request.form.get('show_menu_trips') == 'on'
+    current_user.show_menu_charging = request.form.get('show_menu_charging') == 'on'
     current_user.show_quick_entry = request.form.get('show_quick_entry') == 'on'
     db.session.commit()
     flash('Menu preferences updated', 'success')
@@ -359,11 +361,23 @@ def check_updates():
         if response.status_code == 200:
             data = response.json()
             latest_version = data.get('tag_name', '').lstrip('v')
+
+            # Compare versions properly (semver-style)
+            def parse_version(v):
+                try:
+                    return tuple(int(x) for x in v.split('.'))
+                except (ValueError, AttributeError):
+                    return (0, 0, 0)
+
+            current_tuple = parse_version(APP_VERSION)
+            latest_tuple = parse_version(latest_version)
+            update_available = latest_tuple > current_tuple
+
             return jsonify({
                 'success': True,
                 'latest_version': latest_version,
                 'current_version': APP_VERSION,
-                'update_available': latest_version != APP_VERSION,
+                'update_available': update_available,
                 'release_url': data.get('html_url'),
                 'release_notes': data.get('body', ''),
                 'published_at': data.get('published_at')

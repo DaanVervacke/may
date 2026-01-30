@@ -240,20 +240,37 @@
                                     </a>
                                 </div>
 
-                                <form method="POST" action="{{ url_for('auth.registration_settings') }}">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Allow Registration') }}</h3>
-                                            <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Allow new users to create accounts') }}</p>
-                                        </div>
-                                        <label class="relative inline-flex items-center cursor-pointer">
-                                            <input type="checkbox" name="registration_enabled" class="sr-only peer"
-                                                   {% if registration_enabled %}checked{% endif %}
-                                                   onchange="this.form.submit()">
-                                            <div class="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
-                                        </label>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ _('Allow Registration') }}</h3>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ _('Allow new users to create accounts') }}</p>
                                     </div>
-                                </form>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="registration_enabled" class="sr-only peer"
+                                               {% if registration_enabled %}checked{% endif %}
+                                               onchange="toggleRegistration(this.checked)">
+                                        <div class="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                                    </label>
+                                </div>
+                                <script>
+                                function toggleRegistration(enabled) {
+                                    const formData = new FormData();
+                                    if (enabled) formData.append('registration_enabled', 'on');
+                                    fetch('{{ url_for("auth.registration_settings") }}', {
+                                        method: 'POST',
+                                        body: formData
+                                    }).then(response => {
+                                        if (response.ok) {
+                                            // Show success feedback
+                                            const toast = document.createElement('div');
+                                            toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                                            toast.textContent = 'Registration settings updated';
+                                            document.body.appendChild(toast);
+                                            setTimeout(() => toast.remove(), 3000);
+                                        }
+                                    });
+                                }
+                                </script>
                             </div>
                         </div>
                         {% endif %}
@@ -339,6 +356,8 @@
                                     <option value="recurring" {% if current_user.start_page == 'recurring' %}selected{% endif %}>{{ _('Recurring Expenses') }}</option>
                                     <option value="documents" {% if current_user.start_page == 'documents' %}selected{% endif %}>{{ _('Documents') }}</option>
                                     <option value="stations" {% if current_user.start_page == 'stations' %}selected{% endif %}>{{ _('Fuel Stations') }}</option>
+                                    <option value="trips" {% if current_user.start_page == 'trips' %}selected{% endif %}>{{ _('Trips') }}</option>
+                                    <option value="charging" {% if current_user.start_page == 'charging' %}selected{% endif %}>{{ _('EV Charging') }}</option>
                                 </select>
                             </div>
 
@@ -400,6 +419,16 @@
                                         <input type="checkbox" name="show_menu_stations" {% if current_user.show_menu_stations is not defined or current_user.show_menu_stations %}checked{% endif %}
                                                class="rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500">
                                         <span class="ml-3 text-sm text-gray-700 dark:text-gray-300">{{ _('Fuel Stations') }}</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="show_menu_trips" {% if current_user.show_menu_trips is not defined or current_user.show_menu_trips %}checked{% endif %}
+                                               class="rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500">
+                                        <span class="ml-3 text-sm text-gray-700 dark:text-gray-300">{{ _('Trips') }}</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="show_menu_charging" {% if current_user.show_menu_charging is not defined or current_user.show_menu_charging %}checked{% endif %}
+                                               class="rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500">
+                                        <span class="ml-3 text-sm text-gray-700 dark:text-gray-300">{{ _('EV Charging') }}</span>
                                     </label>
                                 </div>
                             </div>
