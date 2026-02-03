@@ -11,5 +11,8 @@ fi
 mkdir -p /app/data/uploads
 chown -R may:may /app/data
 
+# Run database migrations as the may user
+gosu may flask db upgrade 2>/dev/null || true
+
 # Drop to 'may' user and run the application
 exec gosu may "$@"

@@ -1,5 +1,6 @@
 from flask import Flask, request, g
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CSRFProtect
 from flask_babel import Babel, gettext as _
@@ -8,6 +9,7 @@ import os
 import secrets
 
 db = SQLAlchemy()
+migrate = Migrate()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.login_message_category = 'info'
@@ -34,6 +36,71 @@ LANGUAGES = {
 }
 
 
+def _run_schema_migrations(app):
+    """Add missing columns to existing tables.
+
+    SQLite doesn't support adding columns via db.create_all() for existing tables,
+    so we manually add any missing columns here.
+    """
+    from sqlalchemy import text, inspect
+
+    # Define schema migrations: table -> [(column_name, column_type), ...]
+    migrations = {
+        'vehicles': [
+            ('tessie_vin', 'VARCHAR(20)'),
+            ('tessie_enabled', 'BOOLEAN DEFAULT 0'),
+            ('tessie_last_odometer', 'FLOAT'),
+            ('tessie_battery_level', 'INTEGER'),
+            ('tessie_battery_range', 'FLOAT'),
+            ('tessie_last_updated', 'DATETIME'),
+        ],
+        'charging_sessions': [
+            ('tessie_charge_id', 'VARCHAR(50)'),
+        ],
+    }
+
+    # Define unique indexes to create after adding columns
+    # SQLite doesn't support adding UNIQUE columns directly via ALTER TABLE
+    unique_indexes = [
+        ('charging_sessions', 'tessie_charge_id', 'ix_charging_sessions_tessie_charge_id'),
+    ]
+
+    with db.engine.connect() as conn:
+        inspector = inspect(db.engine)
+
+        for table_name, columns in migrations.items():
+            # Check if table exists
+            if table_name not in inspector.get_table_names():
+                continue
+
+            # Get existing columns
+            existing_cols = [col['name'] for col in inspector.get_columns(table_name)]
+
+            # Add missing columns
+            for col_name, col_type in columns:
+                if col_name not in existing_cols:
+                    try:
+                        conn.execute(text(f'ALTER TABLE {table_name} ADD COLUMN {col_name} {col_type}'))
+                        app.logger.info(f'Added column {col_name} to {table_name}')
+                    except Exception as e:
+                        app.logger.warning(f'Could not add column {col_name} to {table_name}: {e}')
+
+        # Create unique indexes
+        for table_name, col_name, index_name in unique_indexes:
+            if table_name not in inspector.get_table_names():
+                continue
+            # Check if index already exists
+            existing_indexes = [idx['name'] for idx in inspector.get_indexes(table_name)]
+            if index_name not in existing_indexes:
+                try:
+                    conn.execute(text(f'CREATE UNIQUE INDEX {index_name} ON {table_name} ({col_name})'))
+                    app.logger.info(f'Created unique index {index_name} on {table_name}.{col_name}')
+                except Exception as e:
+                    app.logger.warning(f'Could not create index {index_name}: {e}')
+
+        conn.commit()
+
+
 def get_locale():
     """Select the best language for the user"""
     # If user is logged in and has a language preference, use it
@@ -57,6 +124,7 @@ def create_app(config_class=Config):
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
     db.init_app(app)
+    migrate.init_app(app, db)
     login_manager.init_app(app)
     csrf.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
@@ -122,6 +190,8 @@ def create_app(config_class=Config):
 
     with app.app_context():
         db.create_all()
+        # Run schema migrations for new columns on existing tables
+        _run_schema_migrations(app)
         # Create default admin user if no users exist
         if User.query.count() == 0:
             admin_username = os.environ.get('ADMIN_USERNAME', 'admin')

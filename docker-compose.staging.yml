@@ -1,0 +1,32 @@
+services:
+  may:
+    image: ghcr.io/dannymcc/may:dev
+    container_name: may-dev
+    restart: unless-stopped
+    ports:
+      - "5051:5050"
+    volumes:
+      - may_staging_data:/app/data
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-staging}
+      - DATABASE_URL=sqlite:////app/data/may.db
+      - UPLOAD_FOLDER=/app/data/uploads
+      - RELEASE_CHANNEL=dev
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # Optional: Watchtower to auto-pull new dev images
+  watchtower:
+    image: containrrr/watchtower
+    container_name: may-dev-watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_POLL_INTERVAL=300
+    command: --interval 300
+
+volumes:
+  may_staging_data:

@@ -10,7 +10,7 @@ from app.security import (
     get_safe_redirect_url, validate_password_strength,
     validate_webhook_url, admin_required
 )
-from config import APP_VERSION, GITHUB_REPO
+from config import APP_VERSION, RELEASE_CHANNEL, GITHUB_REPO
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -180,6 +180,13 @@ def settings():
             'api_key': AppSettings.get('dvla_api_key'),
         }
 
+    # Get Tessie settings for admins
+    tessie_settings = {}
+    if current_user.is_admin:
+        tessie_settings = {
+            'api_token': AppSettings.get('tessie_api_token'),
+        }
+
     # Get registration setting
     registration_enabled = AppSettings.get('registration_enabled', 'true') == 'true'
 
@@ -189,7 +196,9 @@ def settings():
                            smtp_configured=smtp_configured,
                            pushover_configured=pushover_configured,
                            dvla_settings=dvla_settings,
+                           tessie_settings=tessie_settings,
                            app_version=APP_VERSION,
+                           release_channel=RELEASE_CHANNEL,
                            github_repo=GITHUB_REPO,
                            registration_enabled=registration_enabled)
 
@@ -310,6 +319,19 @@ def dvla_settings():
 
     flash('DVLA settings updated', 'success')
     return redirect(url_for('auth.settings') + '#services-dvla')
+
+
+@bp.route('/tessie-settings', methods=['POST'])
+@login_required
+@admin_required
+def tessie_settings():
+    """Update Tessie API settings (admin only)"""
+
+    api_token = request.form.get('tessie_api_token', '').strip()
+    AppSettings.set('tessie_api_token', api_token)
+
+    flash('Tessie settings updated', 'success')
+    return redirect(url_for('auth.settings') + '#services-tessie')
 
 
 @bp.route('/registration-settings', methods=['POST'])

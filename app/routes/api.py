@@ -1,9 +1,11 @@
 import csv
+import hashlib
 import io
 import json
 import os
 import sqlite3
 import tempfile
+import zipfile
 from functools import wraps
 from datetime import datetime
 from flask import Blueprint, jsonify, request, send_from_directory, current_app, url_for, render_template, Response, flash, redirect
@@ -14,6 +16,7 @@ from app.models import (
     Reminder, MaintenanceSchedule, RecurringExpense, FuelStation,
     Document, Trip, ChargingSession, VehiclePart, FuelPriceHistory, Attachment
 )
+from app.services.tessie import TessieService
 from config import APP_VERSION
 
 bp = Blueprint('api', __name__, url_prefix='/api')
@@ -886,6 +889,170 @@ def refresh_vehicle_dvla(vehicle_id):
 
 
 # =============================================================================
+# Tessie Integration (Tesla vehicles via Tessie API)
+# =============================================================================
+
+@bp.route('/tessie/test', methods=['POST'])
+@login_required
+def tessie_test_token():
+    """Test Tessie API token (admin only)"""
+    if not current_user.is_admin:
+        return jsonify({'success': False, 'error': 'Access denied'}), 403
+
+    from app.services.tessie import TessieService
+
+    api_token = request.form.get('tessie_api_token')
+    if not api_token:
+        return jsonify({'success': False, 'error': 'API token required'}), 400
+
+    success, message = TessieService.test_api_token(api_token)
+    return jsonify({'success': success, 'message': message})
+
+
+@bp.route('/tessie/status')
+@login_required
+def tessie_status():
+    """Check if Tessie integration is available"""
+    from app.services.tessie import TessieService
+    return jsonify({'configured': TessieService.is_configured()})
+
+
+@bp.route('/tessie/vehicles')
+@login_required
+def tessie_vehicles():
+    """Get list of vehicles from Tessie account (for linking)"""
+    from app.services.tessie import TessieService
+
+    if not TessieService.is_configured():
+        return jsonify({'success': False, 'error': 'Tessie not configured'}), 400
+
+    success, result = TessieService.get_vehicles()
+    if success:
+        return jsonify({'success': True, 'vehicles': result})
+    else:
+        return jsonify({'success': False, 'error': result}), 400
+
+
+@bp.route('/vehicles/<int:vehicle_id>/tessie-refresh', methods=['POST'])
+@login_required
+def refresh_vehicle_tessie(vehicle_id):
+    """
+    Refresh vehicle data from Tessie
+
+    Updates the vehicle's odometer, battery level, and range from Tessie
+    """
+    from app.services.tessie import TessieService
+
+    vehicle = Vehicle.query.get_or_404(vehicle_id)
+
+    if vehicle not in current_user.get_all_vehicles():
+        return jsonify({'success': False, 'error': 'Access denied'}), 403
+
+    if not vehicle.tessie_vin:
+        return jsonify({'success': False, 'error': 'Vehicle not linked to Tessie'}), 400
+
+    if not vehicle.tessie_enabled:
+        return jsonify({'success': False, 'error': 'Tessie not enabled for this vehicle'}), 400
+
+    if not TessieService.is_configured():
+        return jsonify({'success': False, 'error': 'Tessie integration not configured'}), 400
+
+    success, result = TessieService.get_vehicle_state(vehicle.tessie_vin)
+
+    if success:
+        vehicle.tessie_last_odometer = result['odometer_km']
+        vehicle.tessie_battery_level = result.get('battery_level')
+        vehicle.tessie_battery_range = result.get('battery_range_km')
+        vehicle.tessie_last_updated = datetime.utcnow()
+
+        db.session.commit()
+
+        return jsonify({
+            'success': True,
+            'odometer': vehicle.tessie_last_odometer,
+            'battery_level': vehicle.tessie_battery_level,
+            'battery_range': vehicle.tessie_battery_range,
+            'updated': vehicle.tessie_last_updated.isoformat()
+        })
+    else:
+        return jsonify({'success': False, 'error': result}), 400
+
+
+@bp.route('/vehicles/<int:vehicle_id>/tessie-import-charges', methods=['POST'])
+@login_required
+def import_tessie_charges(vehicle_id):
+    """
+    Import charging history from Tessie for a vehicle
+
+    Creates ChargingSession records for charges not already imported.
+    """
+    from app.models import ChargingSession
+
+    vehicle = Vehicle.query.get_or_404(vehicle_id)
+
+    # Check access
+    if vehicle not in current_user.get_all_vehicles():
+        return jsonify({'success': False, 'error': 'Access denied'}), 403
+
+    # Check Tessie is configured for this vehicle
+    if not vehicle.tessie_vin:
+        return jsonify({'success': False, 'error': 'Vehicle not linked to Tessie'}), 400
+
+    if not TessieService.is_configured():
+        return jsonify({'success': False, 'error': 'Tessie integration not configured'}), 400
+
+    # Fetch charges from Tessie
+    success, result = TessieService.get_charges(vehicle.tessie_vin)
+
+    if not success:
+        return jsonify({'success': False, 'error': result}), 400
+
+    # Import charges that haven't been imported yet
+    imported_count = 0
+    skipped_count = 0
+
+    for charge in result:
+        tessie_id = str(charge.get('tessie_id'))
+
+        # Check if already imported
+        existing = ChargingSession.query.filter_by(tessie_charge_id=tessie_id).first()
+        if existing:
+            skipped_count += 1
+            continue
+
+        # Determine charger type
+        charger_type = 'tesla' if charge.get('is_supercharger') else 'level2'
+
+        # Create charging session
+        session = ChargingSession(
+            vehicle_id=vehicle.id,
+            user_id=current_user.id,
+            date=charge.get('date'),
+            start_time=charge.get('start_time'),
+            end_time=charge.get('end_time'),
+            odometer=charge.get('odometer_km'),  # Stored in km
+            kwh_added=charge.get('kwh_added'),
+            start_soc=charge.get('start_soc'),
+            end_soc=charge.get('end_soc'),
+            total_cost=charge.get('cost'),
+            charger_type=charger_type,
+            location=charge.get('location'),
+            tessie_charge_id=tessie_id
+        )
+        db.session.add(session)
+        imported_count += 1
+
+    db.session.commit()
+
+    return jsonify({
+        'success': True,
+        'imported': imported_count,
+        'skipped': skipped_count,
+        'message': f'Imported {imported_count} charging sessions ({skipped_count} already existed)'
+    })
+
+
+# =============================================================================
 # Data Export (Web UI routes, session-authenticated)
 # =============================================================================
 
@@ -1436,6 +1603,380 @@ def export_json():
     return Response(
         json.dumps(export_data, indent=2),
         mimetype='application/json',
+        headers={'Content-Disposition': f'attachment; filename={filename}'}
+    )
+
+
+@bp.route('/export/backup')
+@login_required
+def export_full_backup():
+    """
+    Export complete backup including all data and uploaded files.
+    Creates a ZIP archive containing:
+    - data.json: Full JSON backup with attachment references
+    - manifest.json: File integrity manifest with SHA256 hashes
+    - uploads/: All user's uploaded files
+    """
+    # Build export data (similar to export_json but with attachment info)
+    export_data = {
+        'export_info': {
+            'exported_at': datetime.utcnow().isoformat(),
+            'username': current_user.username,
+            'app_version': APP_VERSION,
+            'backup_type': 'full'
+        },
+        'user_preferences': {
+            'language': current_user.language,
+            'distance_unit': current_user.distance_unit,
+            'volume_unit': current_user.volume_unit,
+            'consumption_unit': current_user.consumption_unit,
+            'currency': current_user.currency
+        },
+        'vehicles': [],
+        'fuel_stations': [],
+        'fuel_price_history': []
+    }
+
+    # Track files to include
+    files_to_backup = []  # List of (filename, file_type, record_type, record_id)
+
+    for vehicle in current_user.get_all_vehicles():
+        vehicle_data = {
+            'id': vehicle.id,
+            'name': vehicle.name,
+            'vehicle_type': vehicle.vehicle_type,
+            'make': vehicle.make,
+            'model': vehicle.model,
+            'year': vehicle.year,
+            'registration': vehicle.registration,
+            'vin': vehicle.vin,
+            'fuel_type': vehicle.fuel_type,
+            'tank_capacity': vehicle.tank_capacity,
+            'battery_capacity': vehicle.battery_capacity,
+            'is_active': vehicle.is_active,
+            'notes': vehicle.notes,
+            'image_filename': vehicle.image_filename,
+            'mot_status': vehicle.mot_status,
+            'mot_expiry': vehicle.mot_expiry.isoformat() if vehicle.mot_expiry else None,
+            'tax_status': vehicle.tax_status,
+            'tax_due': vehicle.tax_due.isoformat() if vehicle.tax_due else None,
+            'created_at': vehicle.created_at.isoformat() if vehicle.created_at else None,
+            'specifications': [],
+            'fuel_logs': [],
+            'expenses': [],
+            'reminders': [],
+            'maintenance_schedules': [],
+            'recurring_expenses': [],
+            'documents': [],
+            'trips': [],
+            'charging_sessions': [],
+            'parts': [],
+            'attachments': []
+        }
+
+        # Track vehicle image
+        if vehicle.image_filename:
+            files_to_backup.append((vehicle.image_filename, 'image', 'vehicle', vehicle.id))
+
+        # Add vehicle attachments
+        for attachment in vehicle.attachments.all():
+            vehicle_data['attachments'].append({
+                'id': attachment.id,
+                'filename': attachment.filename,
+                'original_filename': attachment.original_filename,
+                'file_type': attachment.file_type,
+                'file_size': attachment.file_size,
+                'description': attachment.description,
+                'created_at': attachment.created_at.isoformat() if attachment.created_at else None
+            })
+            files_to_backup.append((attachment.filename, attachment.file_type, 'vehicle_attachment', attachment.id))
+
+        # Add specifications
+        for spec in vehicle.specs.all():
+            vehicle_data['specifications'].append({
+                'id': spec.id,
+                'spec_type': spec.spec_type,
+                'label': spec.label,
+                'value': spec.value,
+                'created_at': spec.created_at.isoformat() if spec.created_at else None
+            })
+
+        # Add fuel logs with attachments
+        for log in vehicle.fuel_logs.order_by(FuelLog.date.desc()).all():
+            log_data = {
+                'id': log.id,
+                'date': log.date.isoformat() if log.date else None,
+                'odometer': log.odometer,
+                'volume': log.volume,
+                'price_per_unit': log.price_per_unit,
+                'total_cost': log.total_cost,
+                'is_full_tank': log.is_full_tank,
+                'is_missed': log.is_missed,
+                'station': log.station,
+                'notes': log.notes,
+                'created_at': log.created_at.isoformat() if log.created_at else None,
+                'attachments': []
+            }
+            for attachment in log.attachments.all():
+                log_data['attachments'].append({
+                    'id': attachment.id,
+                    'filename': attachment.filename,
+                    'original_filename': attachment.original_filename,
+                    'file_type': attachment.file_type,
+                    'file_size': attachment.file_size,
+                    'description': attachment.description,
+                    'created_at': attachment.created_at.isoformat() if attachment.created_at else None
+                })
+                files_to_backup.append((attachment.filename, attachment.file_type, 'fuel_log_attachment', attachment.id))
+            vehicle_data['fuel_logs'].append(log_data)
+
+        # Add expenses with attachments
+        for expense in vehicle.expenses.order_by(Expense.date.desc()).all():
+            expense_data = {
+                'id': expense.id,
+                'date': expense.date.isoformat() if expense.date else None,
+                'category': expense.category,
+                'description': expense.description,
+                'cost': expense.cost,
+                'odometer': expense.odometer,
+                'vendor': expense.vendor,
+                'notes': expense.notes,
+                'created_at': expense.created_at.isoformat() if expense.created_at else None,
+                'attachments': []
+            }
+            for attachment in expense.attachments.all():
+                expense_data['attachments'].append({
+                    'id': attachment.id,
+                    'filename': attachment.filename,
+                    'original_filename': attachment.original_filename,
+                    'file_type': attachment.file_type,
+                    'file_size': attachment.file_size,
+                    'description': attachment.description,
+                    'created_at': attachment.created_at.isoformat() if attachment.created_at else None
+                })
+                files_to_backup.append((attachment.filename, attachment.file_type, 'expense_attachment', attachment.id))
+            vehicle_data['expenses'].append(expense_data)
+
+        # Add reminders
+        for reminder in vehicle.reminders.all():
+            vehicle_data['reminders'].append({
+                'id': reminder.id,
+                'title': reminder.title,
+                'description': reminder.description,
+                'reminder_type': reminder.reminder_type,
+                'due_date': reminder.due_date.isoformat() if reminder.due_date else None,
+                'recurrence': reminder.recurrence,
+                'recurrence_interval': reminder.recurrence_interval,
+                'notify_days_before': reminder.notify_days_before,
+                'notification_sent': reminder.notification_sent,
+                'is_completed': reminder.is_completed,
+                'completed_at': reminder.completed_at.isoformat() if reminder.completed_at else None,
+                'created_at': reminder.created_at.isoformat() if reminder.created_at else None
+            })
+
+        # Add maintenance schedules
+        for schedule in vehicle.maintenance_schedules.all():
+            vehicle_data['maintenance_schedules'].append({
+                'id': schedule.id,
+                'name': schedule.name,
+                'maintenance_type': schedule.maintenance_type,
+                'description': schedule.description,
+                'interval_miles': schedule.interval_miles,
+                'interval_km': schedule.interval_km,
+                'interval_months': schedule.interval_months,
+                'last_performed_date': schedule.last_performed_date.isoformat() if schedule.last_performed_date else None,
+                'last_performed_odometer': schedule.last_performed_odometer,
+                'next_due_date': schedule.next_due_date.isoformat() if schedule.next_due_date else None,
+                'next_due_odometer': schedule.next_due_odometer,
+                'estimated_cost': schedule.estimated_cost,
+                'auto_remind': schedule.auto_remind,
+                'remind_days_before': schedule.remind_days_before,
+                'remind_miles_before': schedule.remind_miles_before,
+                'is_active': schedule.is_active,
+                'created_at': schedule.created_at.isoformat() if schedule.created_at else None
+            })
+
+        # Add recurring expenses
+        for recurring in vehicle.recurring_expenses.all():
+            vehicle_data['recurring_expenses'].append({
+                'id': recurring.id,
+                'name': recurring.name,
+                'category': recurring.category,
+                'description': recurring.description,
+                'amount': recurring.amount,
+                'vendor': recurring.vendor,
+                'frequency': recurring.frequency,
+                'start_date': recurring.start_date.isoformat() if recurring.start_date else None,
+                'end_date': recurring.end_date.isoformat() if recurring.end_date else None,
+                'last_generated': recurring.last_generated.isoformat() if recurring.last_generated else None,
+                'next_due': recurring.next_due.isoformat() if recurring.next_due else None,
+                'auto_create': recurring.auto_create,
+                'notify_before_days': recurring.notify_before_days,
+                'is_active': recurring.is_active,
+                'created_at': recurring.created_at.isoformat() if recurring.created_at else None
+            })
+
+        # Add documents with filename for restore
+        for doc in vehicle.documents.all():
+            vehicle_data['documents'].append({
+                'id': doc.id,
+                'title': doc.title,
+                'document_type': doc.document_type,
+                'description': doc.description,
+                'filename': doc.filename,
+                'original_filename': doc.original_filename,
+                'file_type': doc.file_type,
+                'file_size': doc.file_size,
+                'issue_date': doc.issue_date.isoformat() if doc.issue_date else None,
+                'expiry_date': doc.expiry_date.isoformat() if doc.expiry_date else None,
+                'reference_number': doc.reference_number,
+                'remind_before_expiry': doc.remind_before_expiry,
+                'remind_days': doc.remind_days,
+                'created_at': doc.created_at.isoformat() if doc.created_at else None
+            })
+            files_to_backup.append((doc.filename, doc.file_type, 'document', doc.id))
+
+        # Add trips
+        for trip in vehicle.trips.order_by(Trip.date.desc()).all():
+            vehicle_data['trips'].append({
+                'id': trip.id,
+                'date': trip.date.isoformat() if trip.date else None,
+                'start_odometer': trip.start_odometer,
+                'end_odometer': trip.end_odometer,
+                'distance': trip.distance,
+                'purpose': trip.purpose,
+                'description': trip.description,
+                'start_location': trip.start_location,
+                'end_location': trip.end_location,
+                'notes': trip.notes,
+                'created_at': trip.created_at.isoformat() if trip.created_at else None
+            })
+
+        # Add charging sessions
+        for session in vehicle.charging_sessions.order_by(ChargingSession.date.desc()).all():
+            vehicle_data['charging_sessions'].append({
+                'id': session.id,
+                'date': session.date.isoformat() if session.date else None,
+                'start_time': session.start_time.isoformat() if session.start_time else None,
+                'end_time': session.end_time.isoformat() if session.end_time else None,
+                'odometer': session.odometer,
+                'kwh_added': session.kwh_added,
+                'start_soc': session.start_soc,
+                'end_soc': session.end_soc,
+                'cost_per_kwh': session.cost_per_kwh,
+                'total_cost': session.total_cost,
+                'charger_type': session.charger_type,
+                'location': session.location,
+                'network': session.network,
+                'notes': session.notes,
+                'created_at': session.created_at.isoformat() if session.created_at else None
+            })
+
+        # Add vehicle parts
+        for part in vehicle.parts.all():
+            vehicle_data['parts'].append({
+                'id': part.id,
+                'name': part.name,
+                'part_type': part.part_type,
+                'specification': part.specification,
+                'quantity': part.quantity,
+                'unit': part.unit,
+                'part_number': part.part_number,
+                'supplier_url': part.supplier_url,
+                'notes': part.notes,
+                'created_at': part.created_at.isoformat() if part.created_at else None,
+                'updated_at': part.updated_at.isoformat() if part.updated_at else None
+            })
+
+        export_data['vehicles'].append(vehicle_data)
+
+    # Add fuel stations (not vehicle-specific)
+    for station in current_user.fuel_stations.all():
+        export_data['fuel_stations'].append({
+            'id': station.id,
+            'name': station.name,
+            'brand': station.brand,
+            'address': station.address,
+            'city': station.city,
+            'postcode': station.postcode,
+            'latitude': station.latitude,
+            'longitude': station.longitude,
+            'notes': station.notes,
+            'is_favorite': station.is_favorite,
+            'times_used': station.times_used,
+            'last_used': station.last_used.isoformat() if station.last_used else None,
+            'created_at': station.created_at.isoformat() if station.created_at else None
+        })
+
+    # Add fuel price history
+    for station in current_user.fuel_stations.all():
+        for price in station.price_history.all():
+            export_data['fuel_price_history'].append({
+                'id': price.id,
+                'station_id': station.id,
+                'station_name': station.name,
+                'date': price.date.isoformat() if price.date else None,
+                'fuel_type': price.fuel_type,
+                'price_per_unit': price.price_per_unit,
+                'created_at': price.created_at.isoformat() if price.created_at else None
+            })
+
+    # Build manifest and create ZIP
+    upload_folder = current_app.config['UPLOAD_FOLDER']
+    manifest = {
+        'version': APP_VERSION,
+        'created_at': datetime.utcnow().isoformat(),
+        'username': current_user.username,
+        'files': []
+    }
+
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zf:
+        # Add files to ZIP
+        seen_files = set()
+        for filename, file_type, record_type, record_id in files_to_backup:
+            if not filename or filename in seen_files:
+                continue
+            seen_files.add(filename)
+
+            file_path = os.path.join(upload_folder, filename)
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, 'rb') as f:
+                        file_data = f.read()
+                    file_hash = hashlib.sha256(file_data).hexdigest()
+                    zf.writestr(f'uploads/{filename}', file_data)
+                    manifest['files'].append({
+                        'filename': filename,
+                        'type': record_type,
+                        'record_id': record_id,
+                        'file_type': file_type,
+                        'size': len(file_data),
+                        'sha256': file_hash
+                    })
+                except (IOError, OSError):
+                    # Skip files that can't be read
+                    pass
+
+        # Add manifest reference to export data
+        export_data['files_manifest'] = {
+            'total_files': len(manifest['files']),
+            'files': manifest['files']
+        }
+
+        # Write data.json and manifest.json to ZIP
+        zf.writestr('data.json', json.dumps(export_data, indent=2))
+        zf.writestr('manifest.json', json.dumps(manifest, indent=2))
+
+    zip_buffer.seek(0)
+
+    # Generate filename with timestamp
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f'may_full_backup_{timestamp}.zip'
+
+    return Response(
+        zip_buffer.getvalue(),
+        mimetype='application/zip',
         headers={'Content-Disposition': f'attachment; filename={filename}'}
     )
 
