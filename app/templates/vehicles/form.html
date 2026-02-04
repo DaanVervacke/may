@@ -178,8 +178,8 @@
         </div>
         {% endif %}
 
-        {% if tessie_configured and vehicle %}
-        <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+        {% if tessie_configured %}
+        <div id="tessie-section" class="bg-white dark:bg-gray-800 shadow rounded-lg p-6 {% if not vehicle or vehicle.fuel_type != 'electric' %}hidden{% endif %}">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center">
                     <svg class="h-5 w-5 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -196,7 +196,7 @@
                     <label for="tessie_vin" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tessie VIN</label>
                     <div class="mt-1 flex gap-2">
                         <input type="text" name="tessie_vin" id="tessie_vin"
-                               value="{{ vehicle.tessie_vin if vehicle.tessie_vin else '' }}"
+                               value="{{ vehicle.tessie_vin if vehicle and vehicle.tessie_vin else '' }}"
                                placeholder="Enter Tesla VIN or select from list"
                                maxlength="20"
                                class="flex-1 rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 font-mono">
@@ -213,14 +213,14 @@
 
                 <div class="flex items-center">
                     <input type="checkbox" name="tessie_enabled" id="tessie_enabled"
-                           {% if vehicle.tessie_enabled %}checked{% endif %}
+                           {% if vehicle and vehicle.tessie_enabled %}checked{% endif %}
                            class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500">
                     <label for="tessie_enabled" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                         Enable Tessie tracking (disables manual odometer entry)
                     </label>
                 </div>
 
-                {% if vehicle.tessie_enabled and vehicle.tessie_vin %}
+                {% if vehicle and vehicle.tessie_enabled and vehicle.tessie_vin %}
                 <div class="mt-2 p-3 bg-green-50 dark:bg-green-900/30 rounded-md">
                     <div class="flex items-center">
                         <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -343,5 +343,24 @@ function selectTessieVehicle(vin, name) {
     document.getElementById('tessie_vin').value = vin;
     document.getElementById('tessie-vehicles-list').classList.add('hidden');
 }
+
+// Show/hide Tessie section based on fuel type
+function updateTessieVisibility() {
+    const fuelType = document.getElementById('fuel_type').value;
+    const tessieSection = document.getElementById('tessie-section');
+    if (tessieSection) {
+        if (fuelType === 'electric') {
+            tessieSection.classList.remove('hidden');
+        } else {
+            tessieSection.classList.add('hidden');
+        }
+    }
+}
+
+// Listen for fuel type changes
+document.getElementById('fuel_type').addEventListener('change', updateTessieVisibility);
+
+// Run on page load in case fuel type is already set to electric
+document.addEventListener('DOMContentLoaded', updateTessieVisibility);
 </script>
 {% endblock %}
