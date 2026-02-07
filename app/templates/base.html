@@ -78,7 +78,7 @@
         }
         const baseColor = '{{ PRIMARY_COLOR }}';
         const [h, s, l] = hexToHSL(baseColor);
-        window.tailwind.config = {
+        tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -98,7 +98,8 @@
                     }
                 }
             }
-        }
+        };
+        window.tailwind.config = tailwind.config;
     </script>
     <script>
         window.__loadTailwindFallback = function() {
