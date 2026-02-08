@@ -1,5 +1,5 @@
 import secrets
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import db
@@ -98,10 +98,16 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def get_all_vehicles(self):
-        """Get all vehicles user has access to (owned + shared)"""
+        """Get all vehicles user has access to (owned + shared), sorted by make/model"""
         owned = list(self.owned_vehicles.all())
         shared = list(self.shared_vehicles)
-        return list(set(owned + shared))
+        seen = set()
+        unique = []
+        for v in owned + shared:
+            if v.id not in seen:
+                seen.add(v.id)
+                unique.append(v)
+        return sorted(unique, key=lambda v: (v.make or '', v.model or '', v.name or ''))
 
     def generate_api_key(self):
         """Generate a new API key for this user"""
@@ -831,6 +837,21 @@ class RecurringExpense(db.Model):
         # Check if past end date
         if self.end_date and self.next_due > self.end_date:
             self.is_active = False
+
+    def is_due(self):
+        """Check if recurring expense is overdue"""
+        if not self.next_due or not self.is_active:
+            return False
+        return self.next_due <= date.today()
+
+    def is_due_soon(self, days=None):
+        """Check if recurring expense is due within notification window"""
+        if not self.next_due or not self.is_active:
+            return False
+        if days is None:
+            days = self.notify_before_days or 3
+        today = date.today()
+        return today <= self.next_due <= today + timedelta(days=days)
 
 
 class FuelStation(db.Model):

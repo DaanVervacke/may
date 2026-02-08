@@ -52,6 +52,7 @@ def new():
 
         recurring = RecurringExpense(
             vehicle_id=vehicle_id,
+            user_id=current_user.id,
             name=request.form['name'],
             category=request.form['category'],
             frequency=request.form['frequency'],
@@ -60,7 +61,7 @@ def new():
             next_due=next_due,
             description=request.form.get('description'),
             auto_create=request.form.get('auto_create') == 'on',
-            remind_days_before=int(request.form.get('remind_days_before', 7))
+            notify_before_days=int(request.form.get('remind_days_before', 7))
         )
 
         db.session.add(recurring)
@@ -143,9 +144,10 @@ def generate(recurring_id):
     # Create expense entry
     expense = Expense(
         vehicle_id=recurring.vehicle_id,
+        user_id=recurring.user_id,
         date=date.today(),
         category=recurring.category,
-        amount=recurring.amount or 0,
+        cost=recurring.amount or 0,
         description=f"{recurring.name} (auto-generated)"
     )
 
