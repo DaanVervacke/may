@@ -8,13 +8,14 @@ import tempfile
 import zipfile
 from functools import wraps
 from datetime import datetime
-from flask import Blueprint, jsonify, request, send_from_directory, current_app, url_for, render_template, Response, flash, redirect
+from flask import Blueprint, jsonify, request, send_from_directory, current_app, url_for, render_template, Response, flash, redirect, session
 from flask_login import login_required, current_user
 from app import db
 from app.models import (
     User, Vehicle, VehicleSpec, FuelLog, Expense, EXPENSE_CATEGORIES,
     Reminder, MaintenanceSchedule, RecurringExpense, FuelStation,
-    Document, Trip, ChargingSession, VehiclePart, FuelPriceHistory, Attachment
+    Document, Trip, ChargingSession, VehiclePart, FuelPriceHistory, Attachment,
+    TRIP_PURPOSES, CHARGER_TYPES
 )
 from app.services.tessie import TessieService
 from config import APP_VERSION
@@ -2492,5 +2493,463 @@ def import_fuelly():
     except Exception as e:
         db.session.rollback()
         flash(f'Import failed: {str(e)}', 'error')
+
+    return redirect(url_for('auth.settings') + '#integrations')
+
+
+# =============================================================================
+# Generic CSV Import
+# =============================================================================
+
+def get_import_fields(data_type):
+    """Return field definitions for a given data type."""
+    fields = {
+        'fuel_logs': [
+            {'name': 'date', 'label': 'Date', 'required': True, 'type': 'date'},
+            {'name': 'odometer', 'label': 'Odometer', 'required': True, 'type': 'float'},
+            {'name': 'volume', 'label': 'Volume', 'required': False, 'type': 'float'},
+            {'name': 'price_per_unit', 'label': 'Price per Unit', 'required': False, 'type': 'float'},
+            {'name': 'total_cost', 'label': 'Total Cost', 'required': False, 'type': 'float'},
+            {'name': 'is_full_tank', 'label': 'Full Tank', 'required': False, 'type': 'bool'},
+            {'name': 'is_missed', 'label': 'Missed Fill-up', 'required': False, 'type': 'bool'},
+            {'name': 'station', 'label': 'Station', 'required': False, 'type': 'str'},
+            {'name': 'notes', 'label': 'Notes', 'required': False, 'type': 'str'},
+        ],
+        'expenses': [
+            {'name': 'date', 'label': 'Date', 'required': True, 'type': 'date'},
+            {'name': 'category', 'label': 'Category', 'required': True, 'type': 'str'},
+            {'name': 'description', 'label': 'Description', 'required': True, 'type': 'str'},
+            {'name': 'cost', 'label': 'Cost', 'required': True, 'type': 'float'},
+            {'name': 'odometer', 'label': 'Odometer', 'required': False, 'type': 'float'},
+            {'name': 'vendor', 'label': 'Vendor', 'required': False, 'type': 'str'},
+            {'name': 'notes', 'label': 'Notes', 'required': False, 'type': 'str'},
+        ],
+        'trips': [
+            {'name': 'date', 'label': 'Date', 'required': True, 'type': 'date'},
+            {'name': 'start_odometer', 'label': 'Start Odometer', 'required': True, 'type': 'float'},
+            {'name': 'end_odometer', 'label': 'End Odometer', 'required': True, 'type': 'float'},
+            {'name': 'purpose', 'label': 'Purpose', 'required': True, 'type': 'str'},
+            {'name': 'description', 'label': 'Description', 'required': False, 'type': 'str'},
+            {'name': 'start_location', 'label': 'Start Location', 'required': False, 'type': 'str'},
+            {'name': 'end_location', 'label': 'End Location', 'required': False, 'type': 'str'},
+            {'name': 'notes', 'label': 'Notes', 'required': False, 'type': 'str'},
+        ],
+        'charging_sessions': [
+            {'name': 'date', 'label': 'Date', 'required': True, 'type': 'date'},
+            {'name': 'start_time', 'label': 'Start Time', 'required': False, 'type': 'time'},
+            {'name': 'end_time', 'label': 'End Time', 'required': False, 'type': 'time'},
+            {'name': 'odometer', 'label': 'Odometer', 'required': False, 'type': 'float'},
+            {'name': 'kwh_added', 'label': 'kWh Added', 'required': False, 'type': 'float'},
+            {'name': 'start_soc', 'label': 'Start SOC %', 'required': False, 'type': 'int'},
+            {'name': 'end_soc', 'label': 'End SOC %', 'required': False, 'type': 'int'},
+            {'name': 'cost_per_kwh', 'label': 'Cost per kWh', 'required': False, 'type': 'float'},
+            {'name': 'total_cost', 'label': 'Total Cost', 'required': False, 'type': 'float'},
+            {'name': 'charger_type', 'label': 'Charger Type', 'required': False, 'type': 'str'},
+            {'name': 'location', 'label': 'Location', 'required': False, 'type': 'str'},
+            {'name': 'network', 'label': 'Network', 'required': False, 'type': 'str'},
+            {'name': 'notes', 'label': 'Notes', 'required': False, 'type': 'str'},
+        ],
+    }
+    return fields.get(data_type, [])
+
+
+# Common aliases for auto-suggesting column mappings
+_COLUMN_ALIASES = {
+    'date': ['date', 'fuelup date', 'fill date', 'trip date', 'charge date', 'session date', 'expense date'],
+    'odometer': ['odometer', 'odo', 'mileage', 'miles', 'km', 'kilometers', 'distance'],
+    'volume': ['volume', 'litres', 'liters', 'gallons', 'gal', 'fuel', 'qty', 'quantity'],
+    'price_per_unit': ['price per unit', 'unit price', 'price/l', 'price/gal', 'price', 'rate'],
+    'total_cost': ['total cost', 'total', 'cost', 'price paid', 'total price'],
+    'is_full_tank': ['full tank', 'full', 'complete', 'full fill'],
+    'is_missed': ['missed', 'missed fill', 'skipped'],
+    'station': ['station', 'gas station', 'fuel station'],
+    'notes': ['notes', 'note', 'comments', 'comment', 'remarks', 'memo'],
+    'category': ['category', 'type', 'expense type', 'expense category'],
+    'description': ['description', 'desc', 'title', 'name', 'item', 'service'],
+    'cost': ['cost', 'amount', 'total', 'price', 'expense'],
+    'vendor': ['vendor', 'shop', 'store', 'supplier', 'merchant', 'provider'],
+    'start_odometer': ['start odometer', 'start odo', 'start miles', 'start km', 'odometer start'],
+    'end_odometer': ['end odometer', 'end odo', 'end miles', 'end km', 'odometer end'],
+    'purpose': ['purpose', 'trip purpose', 'reason', 'trip type'],
+    'start_location': ['start location', 'from', 'origin', 'departure'],
+    'end_location': ['end location', 'to', 'destination', 'arrival'],
+    'start_time': ['start time', 'time start', 'begin time'],
+    'end_time': ['end time', 'time end', 'finish time'],
+    'kwh_added': ['kwh added', 'kwh', 'energy', 'energy added', 'kilowatt hours'],
+    'start_soc': ['start soc', 'soc start', 'start battery', 'battery start', 'start %'],
+    'end_soc': ['end soc', 'soc end', 'end battery', 'battery end', 'end %'],
+    'cost_per_kwh': ['cost per kwh', 'price per kwh', 'kwh price', 'kwh cost'],
+    'charger_type': ['charger type', 'charger', 'connector', 'plug type'],
+    'location': ['location', 'place', 'charging station', 'site'],
+    'network': ['network', 'provider', 'operator', 'charging network'],
+}
+
+
+def auto_suggest_mappings(csv_columns, target_fields):
+    """Match CSV column names to target fields using normalized name comparison."""
+    field_names = {f['name'] for f in target_fields}
+    suggestions = {}
+    used_fields = set()
+
+    for col in csv_columns:
+        normalized = col.strip().lower().replace('_', ' ').replace('-', ' ')
+        best_match = None
+
+        for field_name, aliases in _COLUMN_ALIASES.items():
+            if field_name not in field_names or field_name in used_fields:
+                continue
+            if normalized in aliases or normalized == field_name.replace('_', ' '):
+                best_match = field_name
+                break
+
+        if best_match:
+            suggestions[col] = best_match
+            used_fields.add(best_match)
+
+    return suggestions
+
+
+def parse_date_value(value, date_format='auto'):
+    """Parse a date string, optionally with a format hint."""
+    if not value or not value.strip():
+        return None
+    value = value.strip()
+
+    if date_format == 'DD/MM/YYYY':
+        formats = ['%d/%m/%Y', '%d-%m-%Y', '%d.%m.%Y', '%d/%m/%y']
+    elif date_format == 'MM/DD/YYYY':
+        formats = ['%m/%d/%Y', '%m-%d-%Y', '%m/%d/%y']
+    elif date_format == 'YYYY-MM-DD':
+        formats = ['%Y-%m-%d', '%Y/%m/%d']
+    else:
+        # Auto-detect: try unambiguous formats first
+        formats = ['%Y-%m-%d', '%Y/%m/%d', '%d/%m/%Y', '%m/%d/%Y', '%d-%m-%Y',
+                   '%m-%d-%Y', '%d.%m.%Y', '%d/%m/%y', '%m/%d/%y', '%Y-%m-%d %H:%M:%S']
+
+    for fmt in formats:
+        try:
+            return datetime.strptime(value, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def parse_time_value(value):
+    """Parse a time string."""
+    if not value or not value.strip():
+        return None
+    value = value.strip()
+    for fmt in ['%H:%M:%S', '%H:%M', '%I:%M %p', '%I:%M:%S %p']:
+        try:
+            return datetime.strptime(value, fmt).time()
+        except ValueError:
+            continue
+    return None
+
+
+def parse_bool_value(value):
+    """Parse a boolean-like value."""
+    if not value:
+        return False
+    return str(value).strip().lower() in ('1', 'yes', 'true', 'y', 'on', 'full')
+
+
+def parse_float_value(value):
+    """Parse a float, stripping currency symbols and commas."""
+    if not value or not str(value).strip():
+        return None
+    cleaned = str(value).strip()
+    for ch in ['$', '\u20ac', '\u00a3', '\u00a5', '\u20b9', ',']:
+        cleaned = cleaned.replace(ch, '')
+    cleaned = cleaned.strip()
+    if not cleaned:
+        return None
+    return float(cleaned)
+
+
+def parse_int_value(value):
+    """Parse an integer value."""
+    f = parse_float_value(value)
+    if f is None:
+        return None
+    return int(round(f))
+
+
+def _cleanup_temp_file(path):
+    """Remove a temp file safely."""
+    try:
+        if path and os.path.exists(path):
+            os.unlink(path)
+    except OSError:
+        pass
+
+
+def create_record(data_type, mapped_row, vehicle_id, user_id, date_format):
+    """Create a model instance from a mapped CSV row."""
+    date_val = parse_date_value(mapped_row.get('date', ''), date_format)
+
+    if data_type == 'fuel_logs':
+        if not date_val:
+            raise ValueError('Missing or invalid date')
+        odometer = parse_float_value(mapped_row.get('odometer'))
+        if odometer is None:
+            raise ValueError('Missing or invalid odometer')
+        return FuelLog(
+            vehicle_id=vehicle_id,
+            user_id=user_id,
+            date=date_val,
+            odometer=odometer,
+            volume=parse_float_value(mapped_row.get('volume')),
+            price_per_unit=parse_float_value(mapped_row.get('price_per_unit')),
+            total_cost=parse_float_value(mapped_row.get('total_cost')),
+            is_full_tank=parse_bool_value(mapped_row.get('is_full_tank')) if mapped_row.get('is_full_tank') else True,
+            is_missed=parse_bool_value(mapped_row.get('is_missed')),
+            station=mapped_row.get('station', '').strip() or None,
+            notes=mapped_row.get('notes', '').strip() or None,
+        )
+
+    elif data_type == 'expenses':
+        if not date_val:
+            raise ValueError('Missing or invalid date')
+        cost = parse_float_value(mapped_row.get('cost'))
+        if cost is None:
+            raise ValueError('Missing or invalid cost')
+        description = mapped_row.get('description', '').strip()
+        if not description:
+            raise ValueError('Missing description')
+        category = mapped_row.get('category', '').strip().lower()
+        valid_categories = [c[0] for c in EXPENSE_CATEGORIES]
+        if category not in valid_categories:
+            category = 'other'
+        return Expense(
+            vehicle_id=vehicle_id,
+            user_id=user_id,
+            date=date_val,
+            category=category,
+            description=description,
+            cost=cost,
+            odometer=parse_float_value(mapped_row.get('odometer')),
+            vendor=mapped_row.get('vendor', '').strip() or None,
+            notes=mapped_row.get('notes', '').strip() or None,
+        )
+
+    elif data_type == 'trips':
+        if not date_val:
+            raise ValueError('Missing or invalid date')
+        start_odo = parse_float_value(mapped_row.get('start_odometer'))
+        end_odo = parse_float_value(mapped_row.get('end_odometer'))
+        if start_odo is None:
+            raise ValueError('Missing or invalid start odometer')
+        if end_odo is None:
+            raise ValueError('Missing or invalid end odometer')
+        purpose = mapped_row.get('purpose', '').strip().lower()
+        valid_purposes = [p[0] for p in TRIP_PURPOSES]
+        if purpose not in valid_purposes:
+            purpose = 'other'
+        return Trip(
+            vehicle_id=vehicle_id,
+            user_id=user_id,
+            date=date_val,
+            start_odometer=start_odo,
+            end_odometer=end_odo,
+            purpose=purpose,
+            description=mapped_row.get('description', '').strip() or None,
+            start_location=mapped_row.get('start_location', '').strip() or None,
+            end_location=mapped_row.get('end_location', '').strip() or None,
+            notes=mapped_row.get('notes', '').strip() or None,
+        )
+
+    elif data_type == 'charging_sessions':
+        if not date_val:
+            raise ValueError('Missing or invalid date')
+        charger_type = mapped_row.get('charger_type', '').strip().lower()
+        valid_charger_types = [c[0] for c in CHARGER_TYPES]
+        if charger_type and charger_type not in valid_charger_types:
+            charger_type = 'other'
+        return ChargingSession(
+            vehicle_id=vehicle_id,
+            user_id=user_id,
+            date=date_val,
+            start_time=parse_time_value(mapped_row.get('start_time')),
+            end_time=parse_time_value(mapped_row.get('end_time')),
+            odometer=parse_float_value(mapped_row.get('odometer')),
+            kwh_added=parse_float_value(mapped_row.get('kwh_added')),
+            start_soc=parse_int_value(mapped_row.get('start_soc')),
+            end_soc=parse_int_value(mapped_row.get('end_soc')),
+            cost_per_kwh=parse_float_value(mapped_row.get('cost_per_kwh')),
+            total_cost=parse_float_value(mapped_row.get('total_cost')),
+            charger_type=charger_type or None,
+            location=mapped_row.get('location', '').strip() or None,
+            network=mapped_row.get('network', '').strip() or None,
+            notes=mapped_row.get('notes', '').strip() or None,
+        )
+
+    raise ValueError(f'Unknown data type: {data_type}')
+
+
+DATA_TYPE_LABELS = {
+    'fuel_logs': 'Fuel Logs',
+    'expenses': 'Expenses',
+    'trips': 'Trips',
+    'charging_sessions': 'Charging Sessions',
+}
+
+
+@bp.route('/import/csv')
+@login_required
+def csv_import_upload():
+    """CSV import - step 1: upload form."""
+    vehicles = current_user.get_all_vehicles()
+    if not vehicles:
+        flash('Please add a vehicle before importing data.', 'warning')
+        return redirect(url_for('auth.settings') + '#integrations')
+    return render_template('import/csv_upload.html', vehicles=vehicles)
+
+
+@bp.route('/import/csv/preview', methods=['POST'])
+@login_required
+def csv_import_preview():
+    """CSV import - step 2: parse CSV and show mapping page."""
+    data_type = request.form.get('data_type')
+    vehicle_id = request.form.get('vehicle_id', type=int)
+
+    if data_type not in DATA_TYPE_LABELS:
+        flash('Invalid data type selected.', 'error')
+        return redirect(url_for('api.csv_import_upload'))
+
+    vehicle = Vehicle.query.get(vehicle_id)
+    if not vehicle:
+        flash('Vehicle not found.', 'error')
+        return redirect(url_for('api.csv_import_upload'))
+
+    if 'file' not in request.files or not request.files['file'].filename:
+        flash('No CSV file uploaded.', 'error')
+        return redirect(url_for('api.csv_import_upload'))
+
+    file = request.files['file']
+
+    try:
+        content = file.read().decode('utf-8-sig', errors='ignore')
+        reader = csv.DictReader(io.StringIO(content))
+        csv_columns = reader.fieldnames
+
+        if not csv_columns:
+            flash('CSV file has no column headers.', 'error')
+            return redirect(url_for('api.csv_import_upload'))
+
+        # Read all rows for counting, keep first 5 for preview
+        all_rows = list(reader)
+        preview_rows = all_rows[:5]
+
+        # Build sample data (first non-empty value per column)
+        sample_data = {}
+        for col in csv_columns:
+            for row in preview_rows:
+                val = row.get(col, '').strip()
+                if val:
+                    sample_data[col] = val
+                    break
+
+        # Save CSV to temp file
+        tmp = tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False,
+                                          dir=current_app.instance_path if os.path.isdir(current_app.instance_path) else None)
+        tmp.write(content)
+        tmp.close()
+        session['csv_import_temp_file'] = tmp.name
+
+        target_fields = get_import_fields(data_type)
+        suggestions = auto_suggest_mappings(csv_columns, target_fields)
+        required_fields = [f for f in target_fields if f['required']]
+
+        return render_template('import/csv_mapping.html',
+                               data_type=data_type,
+                               data_type_label=DATA_TYPE_LABELS[data_type],
+                               vehicle_id=vehicle_id,
+                               vehicle_name=vehicle.name,
+                               csv_columns=csv_columns,
+                               sample_data=sample_data,
+                               preview_rows=preview_rows,
+                               total_rows=len(all_rows),
+                               target_fields=target_fields,
+                               suggestions=suggestions,
+                               required_fields=required_fields)
+
+    except Exception as e:
+        flash(f'Failed to parse CSV file: {str(e)}', 'error')
+        return redirect(url_for('api.csv_import_upload'))
+
+
+@bp.route('/import/csv/execute', methods=['POST'])
+@login_required
+def csv_import_execute():
+    """CSV import - step 3: apply mapping and create records."""
+    data_type = request.form.get('data_type')
+    vehicle_id = request.form.get('vehicle_id', type=int)
+    date_format = request.form.get('date_format', 'auto')
+    temp_file = session.pop('csv_import_temp_file', None)
+
+    if data_type not in DATA_TYPE_LABELS:
+        flash('Invalid data type.', 'error')
+        return redirect(url_for('auth.settings') + '#integrations')
+
+    vehicle = Vehicle.query.get(vehicle_id)
+    if not vehicle:
+        flash('Vehicle not found.', 'error')
+        return redirect(url_for('auth.settings') + '#integrations')
+
+    if not temp_file or not os.path.exists(temp_file):
+        flash('CSV file expired. Please upload again.', 'error')
+        return redirect(url_for('api.csv_import_upload'))
+
+    try:
+        # Read temp CSV
+        with open(temp_file, 'r', encoding='utf-8-sig', errors='ignore') as f:
+            reader = csv.DictReader(f)
+            csv_columns = reader.fieldnames or []
+
+            # Build column mapping from form: mapping_0, mapping_1, etc.
+            col_mapping = {}
+            for i, col in enumerate(csv_columns):
+                field_name = request.form.get(f'mapping_{i}', '')
+                if field_name:
+                    col_mapping[col] = field_name
+
+            rows = list(reader)
+
+        imported = 0
+        errors = []
+        max_errors = 50
+
+        for row_num, row in enumerate(rows, start=2):  # start=2 because row 1 is header
+            try:
+                mapped_row = {}
+                for csv_col, field_name in col_mapping.items():
+                    mapped_row[field_name] = row.get(csv_col, '')
+
+                record = create_record(data_type, mapped_row, vehicle_id, current_user.id, date_format)
+                db.session.add(record)
+                imported += 1
+            except (ValueError, KeyError) as e:
+                if len(errors) < max_errors:
+                    errors.append(f'Row {row_num}: {str(e)}')
+
+        db.session.commit()
+
+        label = DATA_TYPE_LABELS.get(data_type, data_type)
+        flash(f'CSV import complete: {imported} {label.lower()} imported.', 'success')
+
+        if errors:
+            error_summary = f'{len(errors)} row(s) skipped due to errors.'
+            if len(errors) <= 10:
+                error_summary += ' ' + '; '.join(errors)
+            else:
+                error_summary += ' First 10: ' + '; '.join(errors[:10])
+            flash(error_summary, 'warning')
+
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Import failed: {str(e)}', 'error')
+    finally:
+        _cleanup_temp_file(temp_file)
 
     return redirect(url_for('auth.settings') + '#integrations')

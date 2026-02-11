@@ -530,6 +530,17 @@
 
                             <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
                                 <div>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">CSV Import</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Import fuel logs, expenses, trips, or charging sessions from any CSV file</p>
+                                </div>
+                                <a href="{{ url_for('api.csv_import_upload') }}"
+                                   class="w-24 text-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 dark:bg-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600">
+                                    Import
+                                </a>
+                            </div>
+
+                            <div class="flex items-center justify-between py-3 border-t border-gray-200 dark:border-gray-700">
+                                <div>
                                     <h3 class="text-sm font-medium text-gray-900 dark:text-white">Drivvo</h3>
                                     <p class="text-sm text-gray-500 dark:text-gray-400">Import from Drivvo backup files</p>
                                 </div>
