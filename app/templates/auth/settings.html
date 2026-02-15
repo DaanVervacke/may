@@ -1629,23 +1629,30 @@
                             </div>
 
                             <!-- Update Available Banner (hidden by default) -->
-                            <div id="update-available" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div id="update-available" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
                                 <div class="flex items-start gap-3">
-                                    <svg class="w-5 h-5 text-green-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                     <div class="flex-1">
-                                        <h4 class="text-sm font-medium text-green-800">{{ _('Update Available') }}</h4>
-                                        <p class="text-sm text-green-700 mt-1">
+                                        <h4 class="text-sm font-medium text-green-800 dark:text-green-300">{{ _('Update Available') }}</h4>
+                                        <p class="text-sm text-green-700 dark:text-green-400 mt-1">
                                             {{ _('Version') }} <span id="latest-version" class="font-semibold"></span> {{ _('is available') }}
                                         </p>
                                         <a id="release-link" href="#" target="_blank" rel="noopener"
-                                           class="inline-flex items-center gap-1 mt-2 text-sm font-medium text-green-700 hover:text-green-800">
+                                           class="inline-flex items-center gap-1 mt-2 text-sm font-medium text-green-700 dark:text-green-300 hover:text-green-800 dark:hover:text-green-200">
                                             {{ _('View Release Notes') }}
                                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                             </svg>
                                         </a>
+                                        <!-- Docker update instructions -->
+                                        <div class="mt-3 p-3 bg-white dark:bg-gray-800 rounded border border-green-200 dark:border-green-800">
+                                            <h5 class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">{{ _('To update (Docker):') }}</h5>
+                                            <code class="block text-xs text-gray-600 dark:text-gray-400 font-mono whitespace-pre-wrap">docker compose pull
+docker compose up -d</code>
+                                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">{{ _('Or use Watchtower for automatic updates.') }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

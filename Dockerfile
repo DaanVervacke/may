@@ -31,6 +31,9 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ARG GIT_SHA=""
 ARG BUILD_DATE=""
 
+# Labels for auto-update tools (Watchtower, etc.)
+LABEL com.centurylinklabs.watchtower.enable="true"
+
 # Set environment variables
 ENV FLASK_APP=run.py
 ENV PYTHONUNBUFFERED=1
