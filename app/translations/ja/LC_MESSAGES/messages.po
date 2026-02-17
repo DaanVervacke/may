@@ -1,17 +1,18 @@
-# Italian Translations for May Vehicle Management
-# Copyright (C) 2024
-# This file is distributed under the same license as the May project.
+# Japanese translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: May 1.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-17 20:55+0000\n"
-"PO-Revision-Date: 2025-02-06 15:49+0100\n"
-"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
-"Language: it\n"
-"Language-Team: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2026-02-17 20:56+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,24 +20,24 @@ msgstr ""
 
 #: app/routes/api.py:2141 app/routes/api.py:2354 app/routes/api.py:2527
 msgid "No file uploaded"
-msgstr "Nessun file caricato"
+msgstr "ファイルがアップロードされていません"
 
 #: app/routes/api.py:2146 app/routes/api.py:2359 app/routes/api.py:2532
 #: app/routes/documents.py:67 app/routes/documents.py:72
 msgid "No file selected"
-msgstr "Nessun file selezionato"
+msgstr "ファイルが選択されていません"
 
 #: app/routes/api.py:2168
 msgid "The uploaded file is not a valid SQLite database."
-msgstr "Il file caricato non è un database SQLite valido."
+msgstr "アップロードされたファイルは有効なSQLiteデータベースではありません。"
 
 #: app/routes/api.py:2173
 msgid ""
 "This does not appear to be a Hammond database — no vehicles, fillups, or "
 "expenses tables found."
 msgstr ""
-"Questo non sembra essere un database Hammond — nessuna tabella veicoli, "
-"rifornimenti o spese trovata."
+"これはHammondデータベースではないようです — 車両、給油、経費のテーブルが"
+"見つかりません。"
 
 #: app/routes/api.py:2322
 #, python-format
@@ -44,8 +45,8 @@ msgid ""
 "Hammond import complete: %(vehicles)s vehicles, %(fuel_logs)s fuel logs, "
 "%(expenses)s expenses imported."
 msgstr ""
-"Importazione Hammond completata: %(vehicles)s veicoli, %(fuel_logs)s registri "
-"carburante, %(expenses)s spese importate."
+"Hammondインポート完了: %(vehicles)s台の車両、%(fuel_logs)s件の給油記録、"
+"%(expenses)s件の経費をインポートしました。"
 
 #: app/routes/api.py:2324
 #, python-format
@@ -53,8 +54,8 @@ msgid ""
 "(%(total_skipped)s records skipped due to errors — check server logs for "
 "details.)"
 msgstr ""
-"(%(total_skipped)s record ignorati a causa di errori — controlla i log del "
-"server per i dettagli.)"
+"(エラーにより%(total_skipped)s件のレコードがスキップされました — 詳細は"
+"サーバーログを確認してください。)"
 
 #: app/routes/api.py:2331
 #, python-format
@@ -62,184 +63,184 @@ msgid ""
 "Import failed due to a database error. Check that the file is a valid "
 "Hammond database. Error: %(error)s"
 msgstr ""
-"Importazione fallita a causa di un errore del database. Verifica che il file "
-"sia un database Hammond valido. Errore: %(error)s"
+"データベースエラーによりインポートに失敗しました。ファイルが有効なHammond"
+"データベースであることを確認してください。エラー: %(error)s"
 
 #: app/routes/api.py:2336 app/routes/api.py:2478 app/routes/api.py:2650
 #: app/routes/api.py:3106
 #, python-format
 msgid "Import failed: %(error)s"
-msgstr "Importazione fallita: %(error)s"
+msgstr "インポートに失敗しました: %(error)s"
 
 #: app/routes/api.py:2474
 #, python-format
 msgid "Clarkson import complete: %(vehicles)s vehicles, %(fuel_logs)s fuel logs"
-msgstr "Importazione Clarkson completata: %(vehicles)s veicoli, %(fuel_logs)s registri carburante"
+msgstr "Clarksonインポート完了: %(vehicles)s台の車両、%(fuel_logs)s件の給油記録"
 
 #: app/routes/api.py:2646
 #, python-format
 msgid "Fuelly import complete: %(vehicles)s new vehicles, %(fuel_logs)s fuel logs"
-msgstr "Importazione Fuelly completata: %(vehicles)s nuovi veicoli, %(fuel_logs)s registri carburante"
+msgstr "Fuellyインポート完了: %(vehicles)s台の新規車両、%(fuel_logs)s件の給油記録"
 
 #: app/routes/api.py:2959
 msgid "Please add a vehicle before importing data."
-msgstr "Aggiungi un veicolo prima di importare i dati."
+msgstr "データをインポートする前に車両を追加してください。"
 
 #: app/routes/api.py:2972
 msgid "Invalid data type selected."
-msgstr "Tipo di dati selezionato non valido."
+msgstr "無効なデータタイプが選択されました。"
 
 #: app/routes/api.py:2977 app/routes/api.py:3052
 msgid "Vehicle not found."
-msgstr "Veicolo non trovato."
+msgstr "車両が見つかりません。"
 
 #: app/routes/api.py:2981
 msgid "No CSV file uploaded."
-msgstr "Nessun file CSV caricato."
+msgstr "CSVファイルがアップロードされていません。"
 
 #: app/routes/api.py:2992
 msgid "CSV file has no column headers."
-msgstr "Il file CSV non ha intestazioni di colonna."
+msgstr "CSVファイルに列ヘッダーがありません。"
 
 #: app/routes/api.py:3033
 #, python-format
 msgid "Failed to parse CSV file: %(error)s"
-msgstr "Impossibile analizzare il file CSV: %(error)s"
+msgstr "CSVファイルの解析に失敗しました: %(error)s"
 
 #: app/routes/api.py:3047
 msgid "Invalid data type."
-msgstr "Tipo di dati non valido."
+msgstr "無効なデータタイプです。"
 
 #: app/routes/api.py:3056
 msgid "CSV file expired. Please upload again."
-msgstr "File CSV scaduto. Caricalo di nuovo."
+msgstr "CSVファイルの有効期限が切れました。再度アップロードしてください。"
 
 #: app/routes/api.py:3094
 #, python-format
 msgid "CSV import complete: %(count)s %(label)s imported."
-msgstr "Importazione CSV completata: %(count)s %(label)s importati."
+msgstr "CSVインポート完了: %(count)s件の%(label)sをインポートしました。"
 
 #: app/routes/auth.py:39
 msgid "Invalid username or password"
-msgstr "Nome utente o password non validi"
+msgstr "ユーザー名またはパスワードが正しくありません"
 
 #: app/routes/auth.py:62
 msgid "Password reset by email is not available. Please contact an administrator."
-msgstr "Il ripristino della password via email non è disponibile. Contatta un amministratore."
+msgstr "メールによるパスワードリセットは利用できません。管理者にお問い合わせください。"
 
 #: app/routes/auth.py:91
 msgid "If an account with that email exists, a password reset link has been sent."
-msgstr "Se esiste un account con quell'email, è stato inviato un link per il ripristino della password."
+msgstr "そのメールアドレスのアカウントが存在する場合、パスワードリセットリンクが送信されました。"
 
 #: app/routes/auth.py:104
 msgid "Invalid or expired reset link. Please request a new one."
-msgstr "Link di ripristino non valido o scaduto. Richiedine uno nuovo."
+msgstr "無効または期限切れのリセットリンクです。新しいリンクをリクエストしてください。"
 
 #: app/routes/auth.py:112 app/routes/auth.py:168 app/routes/auth.py:234
 #: app/routes/auth.py:522 app/routes/auth.py:558
 msgid "Passwords do not match"
-msgstr "Le password non corrispondono"
+msgstr "パスワードが一致しません"
 
 #: app/routes/auth.py:124
 msgid "Your password has been reset. Please log in."
-msgstr "La tua password è stata ripristinata. Effettua l'accesso."
+msgstr "パスワードがリセットされました。ログインしてください。"
 
 #: app/routes/auth.py:158
 msgid "New account registration is currently disabled."
-msgstr "La registrazione di nuovi account è attualmente disabilitata."
+msgstr "新規アカウント登録は現在無効になっています。"
 
 #: app/routes/auth.py:178 app/routes/auth.py:567
 msgid "Username already exists"
-msgstr "Il nome utente esiste già"
+msgstr "ユーザー名はすでに存在します"
 
 #: app/routes/auth.py:182
 msgid "Email already registered"
-msgstr "Email già registrata"
+msgstr "メールアドレスはすでに登録されています"
 
 #: app/routes/auth.py:190
 msgid "Registration successful! Please log in."
-msgstr "Registrazione avvenuta con successo! Effettua l'accesso."
+msgstr "登録が完了しました。ログインしてください。"
 
 #: app/routes/auth.py:200
 msgid "You have been logged out."
-msgstr "Sei stato disconnesso."
+msgstr "ログアウトしました。"
 
 #: app/routes/auth.py:224 app/routes/auth.py:514
 msgid "Email already in use by another account"
-msgstr "Email già in uso da un altro account"
+msgstr "このメールアドレスは別のアカウントで使用されています"
 
 #: app/routes/auth.py:246
 msgid "Settings updated successfully"
-msgstr "Impostazioni aggiornate correttamente"
+msgstr "設定が正常に更新されました"
 
 #: app/routes/auth.py:324
 #, python-format
 msgid "Invalid webhook URL: %(error)s"
-msgstr "URL webhook non valido: %(error)s"
+msgstr "無効なWebhook URL: %(error)s"
 
 #: app/routes/auth.py:334
 msgid "Notification preferences updated"
-msgstr "Preferenze di notifica aggiornate"
+msgstr "通知設定が更新されました"
 
 #: app/routes/auth.py:355
 msgid "Menu preferences updated"
-msgstr "Preferenze del menu aggiornate"
+msgstr "メニュー設定が更新されました"
 
 #: app/routes/auth.py:380
 msgid "Notification settings updated"
-msgstr "Impostazioni di notifica aggiornate"
+msgstr "通知設定が更新されました"
 
 #: app/routes/auth.py:409
 msgid "Branding settings updated successfully"
-msgstr "Impostazioni del marchio aggiornate correttamente"
+msgstr "ブランディング設定が正常に更新されました"
 
 #: app/routes/auth.py:425
 msgid "Logo removed successfully"
-msgstr "Logo rimosso correttamente"
+msgstr "ロゴが正常に削除されました"
 
 #: app/routes/auth.py:438
 msgid "DVLA settings updated"
-msgstr "Impostazioni DVLA aggiornate"
+msgstr "DVLA設定が更新されました"
 
 #: app/routes/auth.py:451
 msgid "Tessie settings updated"
-msgstr "Impostazioni Tessie aggiornate"
+msgstr "Tessie設定が更新されました"
 
 #: app/routes/auth.py:464
 msgid "Registration settings updated"
-msgstr "Impostazioni di registrazione aggiornate"
+msgstr "登録設定が更新されました"
 
 #: app/routes/auth.py:484
 #, python-format
 msgid "Admin status updated for %(username)s"
-msgstr "Stato amministratore aggiornato per %(username)s"
+msgstr "%(username)sの管理者ステータスが更新されました"
 
 #: app/routes/auth.py:497
 #, python-format
 msgid "User %(username)s deleted"
-msgstr "Utente %(username)s eliminato"
+msgstr "ユーザー%(username)sが削除されました"
 
 #: app/routes/auth.py:535
 #, python-format
 msgid "User %(username)s updated successfully"
-msgstr "Utente %(username)s aggiornato correttamente"
+msgstr "ユーザー%(username)sが正常に更新されました"
 
 #: app/routes/auth.py:554
 msgid "Username, email, and password are required"
-msgstr "Nome utente, email e password sono obbligatori"
+msgstr "ユーザー名、メールアドレス、パスワードは必須です"
 
 #: app/routes/auth.py:571
 msgid "Email already in use"
-msgstr "Email già in uso"
+msgstr "メールアドレスはすでに使用されています"
 
 #: app/routes/auth.py:579
 #, python-format
 msgid "User %(username)s created successfully"
-msgstr "Utente %(username)s creato correttamente"
+msgstr "ユーザー%(username)sが正常に作成されました"
 
 #: app/routes/charging.py:54
 msgid "No electric vehicles found. Add an EV or hybrid vehicle first."
-msgstr "Nessun veicolo elettrico trovato. Aggiungi prima un veicolo elettrico o ibrido."
+msgstr "電気自動車が見つかりません。まずEVまたはハイブリッド車を追加してください。"
 
 #: app/routes/charging.py:62 app/routes/charging.py:122
 #: app/routes/charging.py:172 app/routes/documents.py:130
@@ -259,428 +260,428 @@ msgstr "Nessun veicolo elettrico trovato. Aggiungi prima un veicolo elettrico o 
 #: app/routes/vehicles.py:409 app/routes/vehicles.py:438
 #: app/routes/vehicles.py:476 app/routes/vehicles.py:514
 msgid "Access denied"
-msgstr "Accesso negato"
+msgstr "アクセスが拒否されました"
 
 #: app/routes/charging.py:100
 msgid "Charging session logged successfully"
-msgstr "Sessione di ricarica registrata correttamente"
+msgstr "充電セッションが正常に記録されました"
 
 #: app/routes/charging.py:154
 msgid "Charging session updated successfully"
-msgstr "Sessione di ricarica aggiornata correttamente"
+msgstr "充電セッションが正常に更新されました"
 
 #: app/routes/charging.py:177
 msgid "Charging session deleted successfully"
-msgstr "Sessione di ricarica eliminata correttamente"
+msgstr "充電セッションが正常に削除されました"
 
 #: app/routes/documents.py:62 app/routes/maintenance.py:48
 msgid "Invalid vehicle"
-msgstr "Veicolo non valido"
+msgstr "無効な車両"
 
 #: app/routes/documents.py:108
 #, python-format
 msgid "Document \"%(title)s\" uploaded"
-msgstr "Documento \"%(title)s\" caricato"
+msgstr "ドキュメント「%(title)s」がアップロードされました"
 
 #: app/routes/documents.py:111
 msgid "Invalid file type"
-msgstr "Tipo di file non valido"
+msgstr "無効なファイル形式"
 
 #: app/routes/documents.py:187
 msgid "Document updated"
-msgstr "Documento aggiornato"
+msgstr "ドキュメントが更新されました"
 
 #: app/routes/documents.py:220
 #, python-format
 msgid "Document \"%(title)s\" deleted"
-msgstr "Documento \"%(title)s\" eliminato"
+msgstr "ドキュメント「%(title)s」が削除されました"
 
 #: app/routes/expenses.py:40 app/routes/fuel.py:43 app/routes/fuel.py:245
 #: app/routes/reminders.py:63 app/routes/trips.py:65
 msgid "Please add a vehicle first"
-msgstr "Aggiungi prima un veicolo"
+msgstr "まず車両を追加してください"
 
 #: app/routes/expenses.py:86
 msgid "Expense added successfully"
-msgstr "Spesa aggiunta correttamente"
+msgstr "経費が正常に追加されました"
 
 #: app/routes/expenses.py:136
 msgid "Expense updated successfully"
-msgstr "Spesa aggiornata correttamente"
+msgstr "経費が正常に更新されました"
 
 #: app/routes/expenses.py:167
 msgid "Expense deleted successfully"
-msgstr "Spesa eliminata correttamente"
+msgstr "経費が正常に削除されました"
 
 #: app/routes/fuel.py:133
 msgid "Fuel log added successfully"
-msgstr "Registro carburante aggiunto correttamente"
+msgstr "給油記録が正常に追加されました"
 
 #: app/routes/fuel.py:195
 msgid "Fuel log updated successfully"
-msgstr "Registro carburante aggiornato correttamente"
+msgstr "給油記録が正常に更新されました"
 
 #: app/routes/fuel.py:232
 msgid "Fuel log deleted successfully"
-msgstr "Registro carburante eliminato correttamente"
+msgstr "給油記録が正常に削除されました"
 
 #: app/routes/fuel.py:290
 msgid "Fuel log added!"
-msgstr "Registro carburante aggiunto!"
+msgstr "給油記録を追加しました！"
 
 #: app/routes/maintenance.py:84
 #, python-format
 msgid "Maintenance schedule \"%(name)s\" created"
-msgstr "Programma di manutenzione \"%(name)s\" creato"
+msgstr "メンテナンススケジュール「%(name)s」が作成されました"
 
 #: app/routes/maintenance.py:129
 msgid "Maintenance schedule updated"
-msgstr "Programma di manutenzione aggiornato"
+msgstr "メンテナンススケジュールが更新されました"
 
 #: app/routes/maintenance.py:178
 #, python-format
 msgid "Maintenance \"%(name)s\" marked as completed"
-msgstr "Manutenzione \"%(name)s\" contrassegnata come completata"
+msgstr "メンテナンス「%(name)s」が完了としてマークされました"
 
 #: app/routes/maintenance.py:197
 #, python-format
 msgid "Maintenance schedule \"%(name)s\" deleted"
-msgstr "Programma di manutenzione \"%(name)s\" eliminato"
+msgstr "メンテナンススケジュール「%(name)s」が削除されました"
 
 #: app/routes/recurring.py:36
 msgid "Please add a vehicle first."
-msgstr "Aggiungi prima un veicolo."
+msgstr "まず車両を追加してください。"
 
 #: app/routes/recurring.py:45
 msgid "Invalid vehicle."
-msgstr "Veicolo non valido."
+msgstr "無効な車両です。"
 
 #: app/routes/recurring.py:72
 msgid "Recurring expense created."
-msgstr "Spesa ricorrente creata."
+msgstr "定期経費が作成されました。"
 
 #: app/routes/recurring.py:114
 msgid "Recurring expense updated."
-msgstr "Spesa ricorrente aggiornata."
+msgstr "定期経費が更新されました。"
 
 #: app/routes/recurring.py:137
 msgid "Recurring expense deleted."
-msgstr "Spesa ricorrente eliminata."
+msgstr "定期経費が削除されました。"
 
 #: app/routes/recurring.py:177
 #, python-format
 msgid "Expense created for %(name)s."
-msgstr "Spesa creata per %(name)s."
+msgstr "%(name)sの経費が作成されました。"
 
 #: app/routes/recurring.py:196
 #, python-format
 msgid "Recurring expense %(status)s."
-msgstr "Spesa ricorrente %(status)s."
+msgstr "定期経費が%(status)sになりました。"
 
 #: app/routes/reminders.py:77 app/routes/reminders.py:132
 msgid "Invalid date format"
-msgstr "Formato data non valido"
+msgstr "無効な日付形式"
 
 #: app/routes/reminders.py:94
 #, python-format
 msgid "Reminder \"%(title)s\" created successfully"
-msgstr "Promemoria \"%(title)s\" creato correttamente"
+msgstr "リマインダー「%(title)s」が正常に作成されました"
 
 #: app/routes/reminders.py:143
 msgid "Reminder updated successfully"
-msgstr "Promemoria aggiornato correttamente"
+msgstr "リマインダーが正常に更新されました"
 
 #: app/routes/reminders.py:184
 #, python-format
 msgid "Reminder completed. Next occurrence created for %(date)s"
-msgstr "Promemoria completato. Prossima occorrenza creata per il %(date)s"
+msgstr "リマインダーが完了しました。次回の予定が%(date)sに作成されました"
 
 #: app/routes/reminders.py:186
 msgid "Reminder marked as completed"
-msgstr "Promemoria contrassegnato come completato"
+msgstr "リマインダーが完了としてマークされました"
 
 #: app/routes/reminders.py:213
 msgid "Reminder marked as not completed"
-msgstr "Promemoria contrassegnato come non completato"
+msgstr "リマインダーが未完了としてマークされました"
 
 #: app/routes/reminders.py:232
 msgid "Reminder deleted"
-msgstr "Promemoria eliminato"
+msgstr "リマインダーが削除されました"
 
 #: app/routes/stations.py:49
 #, python-format
 msgid "Station \"%(name)s\" added"
-msgstr "Stazione \"%(name)s\" aggiunta"
+msgstr "ステーション「%(name)s」が追加されました"
 
 #: app/routes/stations.py:80
 msgid "Station updated"
-msgstr "Stazione aggiornata"
+msgstr "ステーションが更新されました"
 
 #: app/routes/stations.py:108
 #, python-format
 msgid "Station \"%(name)s\" deleted"
-msgstr "Stazione \"%(name)s\" eliminata"
+msgstr "ステーション「%(name)s」が削除されました"
 
 #: app/routes/trips.py:95
 msgid "Trip logged successfully"
-msgstr "Viaggio registrato correttamente"
+msgstr "走行記録が正常に登録されました"
 
 #: app/routes/trips.py:141
 msgid "Trip updated successfully"
-msgstr "Viaggio aggiornato correttamente"
+msgstr "走行記録が正常に更新されました"
 
 #: app/routes/trips.py:165
 msgid "Trip deleted successfully"
-msgstr "Viaggio eliminato correttamente"
+msgstr "走行記録が正常に削除されました"
 
 #: app/routes/vehicles.py:89
 #, python-format
 msgid "Vehicle \"%(name)s\" added successfully"
-msgstr "Veicolo \"%(name)s\" aggiunto correttamente"
+msgstr "車両「%(name)s」が正常に追加されました"
 
 #: app/routes/vehicles.py:217
 msgid "Vehicle updated successfully"
-msgstr "Veicolo aggiornato correttamente"
+msgstr "車両が正常に更新されました"
 
 #: app/routes/vehicles.py:250
 msgid "Vehicle deleted successfully"
-msgstr "Veicolo eliminato correttamente"
+msgstr "車両が正常に削除されました"
 
 #: app/routes/vehicles.py:269
 msgid "User not found"
-msgstr "Utente non trovato"
+msgstr "ユーザーが見つかりません"
 
 #: app/routes/vehicles.py:271
 msgid "You are already the owner"
-msgstr "Sei già il proprietario"
+msgstr "あなたはすでにオーナーです"
 
 #: app/routes/vehicles.py:273
 msgid "Vehicle already shared with this user"
-msgstr "Veicolo già condiviso con questo utente"
+msgstr "この車両はすでにこのユーザーと共有されています"
 
 #: app/routes/vehicles.py:277
 #, python-format
 msgid "Vehicle shared with %(username)s"
-msgstr "Veicolo condiviso con %(username)s"
+msgstr "車両が%(username)sと共有されました"
 
 #: app/routes/vehicles.py:299
 #, python-format
 msgid "Sharing removed for %(username)s"
-msgstr "Condivisione rimossa per %(username)s"
+msgstr "%(username)sとの共有が解除されました"
 
 #: app/routes/vehicles.py:316
 #, python-format
 msgid "Vehicle \"%(name)s\" has been archived"
-msgstr "Il veicolo \"%(name)s\" è stato archiviato"
+msgstr "車両「%(name)s」がアーカイブされました"
 
 #: app/routes/vehicles.py:332
 #, python-format
 msgid "Vehicle \"%(name)s\" has been restored"
-msgstr "Il veicolo \"%(name)s\" è stato ripristinato"
+msgstr "車両「%(name)s」が復元されました"
 
 #: app/routes/vehicles.py:350
 msgid "PDF generation is not available. Please install weasyprint."
-msgstr "La generazione PDF non è disponibile. Installa weasyprint."
+msgstr "PDF生成は利用できません。weasyprintをインストールしてください。"
 
 #: app/routes/vehicles.py:458
 #, python-format
 msgid "Part \"%(name)s\" added successfully"
-msgstr "Ricambio \"%(name)s\" aggiunto correttamente"
+msgstr "パーツ「%(name)s」が正常に追加されました"
 
 #: app/routes/vehicles.py:481 app/routes/vehicles.py:519
 msgid "Part not found"
-msgstr "Ricambio non trovato"
+msgstr "パーツが見つかりません"
 
 #: app/routes/vehicles.py:496
 msgid "Part updated successfully"
-msgstr "Ricambio aggiornato correttamente"
+msgstr "パーツが正常に更新されました"
 
 #: app/routes/vehicles.py:525
 msgid "Part deleted successfully"
-msgstr "Ricambio eliminato correttamente"
+msgstr "パーツが正常に削除されました"
 
 #: app/templates/auth/settings.html:402 app/templates/base.html:257
 #: app/templates/base.html:356
 msgid "Dashboard"
-msgstr "Cruscotto"
+msgstr "ダッシュボード"
 
 #: app/templates/auth/settings.html:403 app/templates/auth/settings.html:439
 #: app/templates/base.html:261 app/templates/base.html:358
 #: app/templates/dashboard.html:27
 msgid "Vehicles"
-msgstr "Veicoli"
+msgstr "車両"
 
 #: app/templates/auth/settings.html:404 app/templates/auth/settings.html:444
 #: app/templates/base.html:266 app/templates/base.html:361
 msgid "Fuel Logs"
-msgstr "Registri Carburante"
+msgstr "給油記録"
 
 #: app/templates/auth/settings.html:406 app/templates/auth/settings.html:449
 #: app/templates/base.html:271 app/templates/base.html:364
 #: app/templates/timeline/index.html:108
 msgid "Expenses"
-msgstr "Spese"
+msgstr "経費"
 
 #: app/templates/auth/settings.html:407 app/templates/auth/settings.html:454
 #: app/templates/base.html:276 app/templates/base.html:367
 msgid "Reminders"
-msgstr "Promemoria"
+msgstr "リマインダー"
 
 #: app/templates/auth/settings.html:412 app/templates/auth/settings.html:479
 #: app/templates/base.html:281 app/templates/base.html:370
 #: app/templates/trips/index.html:7
 msgid "Trips"
-msgstr "Viaggi"
+msgstr "走行記録"
 
 #: app/templates/base.html:293
 msgid "More"
-msgstr "Altro"
+msgstr "その他"
 
 #: app/templates/auth/settings.html:408 app/templates/auth/settings.html:459
 #: app/templates/base.html:301 app/templates/base.html:376
 msgid "Maintenance"
-msgstr "Manutenzione"
+msgstr "メンテナンス"
 
 #: app/templates/base.html:304 app/templates/base.html:379
 msgid "Recurring"
-msgstr "Ricorrenti"
+msgstr "定期"
 
 #: app/templates/auth/settings.html:410 app/templates/auth/settings.html:469
 #: app/templates/base.html:307 app/templates/base.html:382
 #: app/templates/documents/index.html:7
 msgid "Documents"
-msgstr "Documenti"
+msgstr "ドキュメント"
 
 #: app/templates/auth/settings.html:411 app/templates/auth/settings.html:474
 #: app/templates/base.html:310 app/templates/base.html:385
 #: app/templates/stations/index.html:7
 msgid "Fuel Stations"
-msgstr "Stazioni di Servizio"
+msgstr "ガソリンスタンド"
 
 #: app/templates/auth/settings.html:413 app/templates/auth/settings.html:484
 #: app/templates/base.html:313 app/templates/base.html:373
 msgid "EV Charging"
-msgstr "Ricarica EV"
+msgstr "EV充電"
 
 #: app/templates/auth/settings.html:405 app/templates/base.html:315
 #: app/templates/base.html:325 app/templates/base.html:387
 #: app/templates/fuel/quick.html:7
 msgid "Quick Fuel Entry"
-msgstr "Rifornimento Rapido"
+msgstr "クイック給油入力"
 
 #: app/templates/base.html:329 app/templates/timeline/index.html:102
 msgid "Fuel"
-msgstr "Carburante"
+msgstr "燃料"
 
 #: app/templates/auth/settings.html:2 app/templates/auth/settings.html:6
 #: app/templates/base.html:332 app/templates/base.html:388
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr "設定"
 
 #: app/templates/base.html:339 app/templates/base.html:393
 msgid "Logout"
-msgstr "Disconnetti"
+msgstr "ログアウト"
 
 #: app/templates/dashboard.html:45
 msgid "Total Fuel Cost"
-msgstr "Costo Totale Carburante"
+msgstr "燃料費合計"
 
 #: app/templates/dashboard.html:63
 msgid "Other Expenses"
-msgstr "Altre Spese"
+msgstr "その他の経費"
 
 #: app/templates/dashboard.html:81 app/templates/trips/index.html:31
 #: app/templates/trips/report.html:35
 msgid "Total Distance"
-msgstr "Distanza Totale"
+msgstr "総走行距離"
 
 #: app/templates/dashboard.html:99
 msgid "Cost per"
-msgstr "Costo per"
+msgstr "単価"
 
 #: app/templates/dashboard.html:113
 msgid "Monthly Spending"
-msgstr "Spesa Mensile"
+msgstr "月間支出"
 
 #: app/templates/dashboard.html:122 app/templates/stations/cheapest.html:7
 #: app/templates/stations/index.html:16
 msgid "Cheapest Fuel"
-msgstr "Carburante più Economico"
+msgstr "最安燃料"
 
 #: app/templates/dashboard.html:123
 msgid "View all"
-msgstr "Vedi tutto"
+msgstr "すべて表示"
 
 #: app/templates/dashboard.html:147
 msgid "No price data yet. Add fuel stations and log fuel to track prices."
-msgstr "Nessun dato sui prezzi ancora. Aggiungi stazioni di servizio e registra i rifornimenti per monitorare i prezzi."
+msgstr "価格データがまだありません。ガソリンスタンドを追加して給油を記録すると価格を追跡できます。"
 
 #: app/templates/dashboard.html:156
 msgid "Your Vehicles"
-msgstr "I Tuoi Veicoli"
+msgstr "あなたの車両"
 
 #: app/templates/dashboard.html:157
 msgid "Add"
-msgstr "Aggiungi"
+msgstr "追加"
 
 #: app/templates/auth/create_user.html:8 app/templates/auth/create_user.html:62
 #: app/templates/auth/users.html:9
 msgid "Create User"
-msgstr "Crea Utente"
+msgstr "ユーザー作成"
 
 #: app/templates/auth/create_user.html:9
 msgid "Add a new user account"
-msgstr "Aggiungi un nuovo account utente"
+msgstr "新しいユーザーアカウントを追加"
 
 #: app/templates/auth/create_user.html:13 app/templates/auth/edit_user.html:13
 msgid "Back to Users"
-msgstr "Torna agli Utenti"
+msgstr "ユーザー一覧に戻る"
 
 #: app/templates/auth/create_user.html:22 app/templates/auth/edit_user.html:23
 msgid "Account Details"
-msgstr "Dettagli Account"
+msgstr "アカウント詳細"
 
 #: app/templates/auth/create_user.html:27 app/templates/auth/edit_user.html:28
 #: app/templates/auth/settings.html:211
 msgid "Username"
-msgstr "Nome Utente"
+msgstr "ユーザー名"
 
 #: app/templates/auth/create_user.html:33 app/templates/auth/edit_user.html:33
 #: app/templates/auth/settings.html:215 app/templates/auth/settings.html:1202
 msgid "Email"
-msgstr "Email"
+msgstr "メール"
 
 #: app/templates/auth/create_user.html:40
 msgid "Password"
-msgstr "Password"
+msgstr "パスワード"
 
 #: app/templates/auth/create_user.html:45
 msgid "Confirm Password"
-msgstr "Conferma Password"
+msgstr "パスワード確認"
 
 #: app/templates/auth/create_user.html:54 app/templates/auth/edit_user.html:42
 msgid "Administrator"
-msgstr "Amministratore"
+msgstr "管理者"
 
 #: app/templates/auth/edit_user.html:9
 msgid "Update user details and credentials"
-msgstr "Aggiorna dettagli utente e credenziali"
+msgstr "ユーザー情報と認証情報を更新"
 
 #: app/templates/auth/edit_user.html:51
 msgid "Reset Password"
-msgstr "Reimposta Password"
+msgstr "パスワードリセット"
 
 #: app/templates/auth/edit_user.html:52
 msgid "Leave blank to keep the current password"
-msgstr "Lascia vuoto per mantenere la password attuale"
+msgstr "現在のパスワードを維持する場合は空欄のままにしてください"
 
 #: app/templates/auth/edit_user.html:58 app/templates/auth/settings.html:340
 msgid "New Password"
-msgstr "Nuova Password"
+msgstr "新しいパスワード"
 
 #: app/templates/auth/edit_user.html:63 app/templates/auth/settings.html:346
 msgid "Confirm New Password"
-msgstr "Conferma Nuova Password"
+msgstr "新しいパスワード確認"
 
 #: app/templates/auth/edit_user.html:74 app/templates/auth/settings.html:193
 #: app/templates/charging/form.html:158 app/templates/documents/form.html:126
@@ -688,27 +689,27 @@ msgstr "Conferma Nuova Password"
 #: app/templates/recurring/form.html:132 app/templates/stations/form.html:105
 #: app/templates/trips/form.html:114
 msgid "Save Changes"
-msgstr "Salva Modifiche"
+msgstr "変更を保存"
 
 #: app/templates/auth/settings.html:7
 msgid "Manage your preferences and account"
-msgstr "Gestisci le tue preferenze e il tuo account"
+msgstr "設定とアカウントの管理"
 
 #: app/templates/auth/settings.html:18 app/templates/auth/settings.html:98
 msgid "Units & Values"
-msgstr "Unità di Misura e Valori"
+msgstr "単位と値"
 
 #: app/templates/auth/settings.html:26
 msgid "Account & Security"
-msgstr "Account e Sicurezza"
+msgstr "アカウントとセキュリティ"
 
 #: app/templates/auth/settings.html:34 app/templates/auth/settings.html:391
 msgid "Menu & Navigation"
-msgstr "Menu e Navigazione"
+msgstr "メニューとナビゲーション"
 
 #: app/templates/auth/settings.html:42
 msgid "Import / Export"
-msgstr "Importa / Esporta"
+msgstr "インポート / エクスポート"
 
 #: app/templates/auth/settings.html:50
 msgid "API"
@@ -717,346 +718,344 @@ msgstr "API"
 #: app/templates/auth/settings.html:58 app/templates/auth/settings.html:324
 #: app/templates/auth/settings.html:723
 msgid "Integrations"
-msgstr "Integrazioni"
+msgstr "連携"
 
 #: app/templates/auth/settings.html:66
 msgid "Notifications"
-msgstr "Notifiche"
+msgstr "通知"
 
 #: app/templates/auth/settings.html:75
 msgid "Branding"
-msgstr "Marchio"
+msgstr "ブランディング"
 
 #: app/templates/auth/settings.html:84 app/templates/auth/settings.html:1588
 msgid "About"
-msgstr "Informazioni"
+msgstr "このアプリについて"
 
 #: app/templates/auth/settings.html:99
 msgid "Configure how measurements and currencies are displayed"
-msgstr "Configura come vengono visualizzate le misure e le valute"
+msgstr "計測単位と通貨の表示方法を設定"
 
 #: app/templates/auth/settings.html:105
 msgid "Language"
-msgstr "Lingua"
+msgstr "言語"
 
 #: app/templates/auth/settings.html:115
 msgid "Date Format"
-msgstr "Formato Data"
+msgstr "日付形式"
 
 #: app/templates/auth/settings.html:126 app/templates/trips/form.html:72
 #: app/templates/trips/report.html:102
 msgid "Distance"
-msgstr "Distanza"
+msgstr "距離"
 
 #: app/templates/auth/settings.html:135 app/templates/fuel/quick.html:55
 msgid "Volume"
-msgstr "Volume"
+msgstr "容量"
 
 #: app/templates/auth/settings.html:145
 msgid "Fuel Consumption"
-msgstr "Consumo di Carburante"
+msgstr "燃費"
 
 #: app/templates/auth/settings.html:157
 msgid "Currency"
-msgstr "Valuta"
+msgstr "通貨"
 
 #: app/templates/auth/settings.html:176
 msgid "Custom"
-msgstr "Personalizzata"
+msgstr "カスタム"
 
 #: app/templates/auth/settings.html:179
 msgid "Custom Currency"
-msgstr "Valuta Personalizzata"
+msgstr "カスタム通貨"
 
 #: app/templates/auth/settings.html:182
 msgid "e.g. ZAR, R, CHF"
-msgstr "es. ZAR, R, CHF"
+msgstr "例: ZAR, R, CHF"
 
 #: app/templates/auth/settings.html:184
 msgid "Enter a currency code or symbol to display"
-msgstr "Inserisci un codice o simbolo di valuta da visualizzare"
+msgstr "表示する通貨コードまたは記号を入力してください"
 
 #: app/templates/auth/settings.html:205
 msgid "Account Information"
-msgstr "Informazioni Account"
+msgstr "アカウント情報"
 
 #: app/templates/auth/settings.html:206
 msgid "Your account details"
-msgstr "I dettagli del tuo account"
+msgstr "あなたのアカウント詳細"
 
 #: app/templates/auth/settings.html:220
 msgid "Member Since"
-msgstr "Membro dal"
+msgstr "登録日"
 
 #: app/templates/auth/settings.html:227
 msgid "Save Email"
-msgstr "Salva Email"
+msgstr "メールを保存"
 
 #: app/templates/auth/settings.html:235
 msgid "Appearance"
-msgstr "Aspetto"
+msgstr "外観"
 
 #: app/templates/auth/settings.html:236
 msgid "Customize how the app looks"
-msgstr "Personalizza l'aspetto dell'app"
+msgstr "アプリの外観をカスタマイズ"
 
 #: app/templates/auth/settings.html:242
 msgid "Dark Mode"
-msgstr "Modalità Scura"
+msgstr "ダークモード"
 
 #: app/templates/auth/settings.html:243
 msgid "Use dark theme for the interface"
-msgstr "Usa il tema scuro per l'interfaccia"
+msgstr "インターフェースにダークテーマを使用"
 
 #: app/templates/auth/settings.html:258
 msgid "User Management"
-msgstr "Gestione Utenti"
+msgstr "ユーザー管理"
 
 #: app/templates/auth/settings.html:259
 msgid "Manage users and permissions"
-msgstr "Gestisci utenti e permessi"
+msgstr "ユーザーと権限の管理"
 
 #: app/templates/auth/settings.html:265
 msgid "Users"
-msgstr "Utenti"
+msgstr "ユーザー"
 
 #: app/templates/auth/settings.html:266
 msgid "View and manage all users"
-msgstr "Visualizza e gestisci tutti gli utenti"
+msgstr "すべてのユーザーを表示・管理"
 
 #: app/templates/auth/settings.html:270
 msgid "Manage Users"
-msgstr "Gestisci Utenti"
+msgstr "ユーザー管理"
 
 #: app/templates/auth/settings.html:276
 msgid "Allow Registration"
-msgstr "Consenti Registrazione"
+msgstr "登録を許可"
 
 #: app/templates/auth/settings.html:277
 msgid "Allow new users to create accounts"
-msgstr "Consenti ai nuovi utenti di creare account"
+msgstr "新規ユーザーのアカウント作成を許可"
 
 #: app/templates/auth/settings.html:311
 msgid "Admin Settings"
-msgstr "Impostazioni Amministratore"
+msgstr "管理者設定"
 
 #: app/templates/auth/settings.html:312
 msgid "Configure system-wide settings for all users:"
-msgstr "Configura le impostazioni di sistema per tutti gli utenti:"
+msgstr "全ユーザー向けのシステム全体設定:"
 
 #: app/templates/auth/settings.html:316
 msgid "SMTP / Notifications"
-msgstr "SMTP / Notifiche"
+msgstr "SMTP / 通知"
 
 #: app/templates/auth/settings.html:320
 msgid "Branding / Appearance"
-msgstr "Marchio / Aspetto"
+msgstr "ブランディング / 外観"
 
 #: app/templates/auth/settings.html:333
 msgid "Change Password"
-msgstr "Cambia Password"
+msgstr "パスワード変更"
 
 #: app/templates/auth/settings.html:334
 msgid "Update your password to keep your account secure"
-msgstr "Aggiorna la tua password per mantenere il tuo account sicuro"
+msgstr "アカウントの安全を保つためにパスワードを更新してください"
 
 #: app/templates/auth/settings.html:356
 msgid "Update Password"
-msgstr "Aggiorna Password"
+msgstr "パスワードを更新"
 
 #: app/templates/auth/settings.html:364
 msgid "Danger Zone"
-msgstr "Zona Pericolosa"
+msgstr "危険な操作"
 
 #: app/templates/auth/settings.html:365
 msgid "Irreversible actions"
-msgstr "Azioni irreversibili"
+msgstr "元に戻せない操作"
 
 #: app/templates/auth/settings.html:371 app/templates/auth/settings.html:376
 msgid "Delete Account"
-msgstr "Elimina Account"
+msgstr "アカウント削除"
 
 #: app/templates/auth/settings.html:372
 msgid "Permanently delete your account and all data"
-msgstr "Elimina definitivamente il tuo account e tutti i dati"
+msgstr "アカウントとすべてのデータを完全に削除"
 
 #: app/templates/auth/settings.html:392
 msgid "Customize which menu items to show and your start page"
-msgstr "Personalizza quali voci del menu mostrare e la tua pagina iniziale"
+msgstr "表示するメニュー項目とスタートページをカスタマイズ"
 
 #: app/templates/auth/settings.html:398
 msgid "Start Page"
-msgstr "Pagina Iniziale"
+msgstr "スタートページ"
 
 #: app/templates/auth/settings.html:399
 msgid "Which page to show when you log in"
-msgstr "Quale pagina mostrare quando accedi"
+msgstr "ログイン時に表示するページ"
 
 #: app/templates/auth/settings.html:409 app/templates/auth/settings.html:464
 #: app/templates/recurring/index.html:7
 msgid "Recurring Expenses"
-msgstr "Spese Ricorrenti"
+msgstr "定期経費"
 
 #: app/templates/auth/settings.html:420
 msgid "Quick Entry Button"
-msgstr "Pulsante Inserimento Rapido"
+msgstr "クイック入力ボタン"
 
 #: app/templates/auth/settings.html:421
 msgid "Show a quick fuel entry button in the navigation bar for rapid logging"
-msgstr "Mostra un pulsante di rifornimento rapido nella barra di navigazione"
+msgstr "ナビゲーションバーにクイック給油入力ボタンを表示"
 
 #: app/templates/auth/settings.html:432
 msgid "Show Menu Items"
-msgstr "Mostra Voci del Menu"
+msgstr "メニュー項目の表示"
 
 #: app/templates/auth/settings.html:433
 msgid "Choose which items appear in the navigation menu"
-msgstr "Scegli quali voci visualizzare nel menu di navigazione"
+msgstr "ナビゲーションメニューに表示する項目を選択"
 
 #: app/templates/auth/settings.html:493 app/templates/auth/settings.html:1293
 msgid "Save Preferences"
-msgstr "Salva Preferenze"
+msgstr "設定を保存"
 
 #: app/templates/auth/settings.html:506
 msgid "Import Data"
-msgstr "Importa Dati"
+msgstr "データインポート"
 
 #: app/templates/auth/settings.html:507
 msgid "Import your data from other fuel tracking applications"
-msgstr "Importa i tuoi dati da altre applicazioni di monitoraggio carburante"
+msgstr "他の燃料管理アプリからデータをインポート"
 
 #: app/templates/auth/settings.html:586
 msgid "Export Data"
-msgstr "Esporta Dati"
+msgstr "データエクスポート"
 
 #: app/templates/auth/settings.html:587
 msgid "Download your data for backup or migration"
-msgstr "Scarica i tuoi dati per backup o migrazione"
+msgstr "バックアップまたは移行のためにデータをダウンロード"
 
 #: app/templates/auth/settings.html:593
 msgid "Export as CSV"
-msgstr "Esporta come CSV"
+msgstr "CSVでエクスポート"
 
 #: app/templates/auth/settings.html:594
 msgid ""
 "Download all your vehicles, fuel logs, and expenses as CSV files (ZIP "
 "archive)"
 msgstr ""
-"Scarica tutti i tuoi veicoli, registri carburante e spese come file CSV "
-"(archivio ZIP)"
+"すべての車両、給油記録、経費をCSVファイル（ZIPアーカイブ）としてダウンロード"
 
 #: app/templates/auth/settings.html:598
 msgid "Download CSV"
-msgstr "Scarica CSV"
+msgstr "CSVをダウンロード"
 
 #: app/templates/auth/settings.html:604
 msgid "Export as JSON"
-msgstr "Esporta come JSON"
+msgstr "JSONでエクスポート"
 
 #: app/templates/auth/settings.html:605
 msgid "Download a complete backup of your data in JSON format"
-msgstr "Scarica un backup completo dei tuoi dati in formato JSON"
+msgstr "データの完全バックアップをJSON形式でダウンロード"
 
 #: app/templates/auth/settings.html:609
 msgid "Download JSON"
-msgstr "Scarica JSON"
+msgstr "JSONをダウンロード"
 
 #: app/templates/auth/settings.html:615
 msgid "Full Backup"
-msgstr "Backup Completo"
+msgstr "フルバックアップ"
 
 #: app/templates/auth/settings.html:616
 msgid ""
 "Download all data and files (images, documents, attachments) as a ZIP "
 "archive"
 msgstr ""
-"Scarica tutti i dati e i file (immagini, documenti, allegati) come archivio "
-"ZIP"
+"すべてのデータとファイル（画像、ドキュメント、添付ファイル）をZIPアーカイブとしてダウンロード"
 
 #: app/templates/auth/settings.html:620
 msgid "Download ZIP"
-msgstr "Scarica ZIP"
+msgstr "ZIPをダウンロード"
 
 #: app/templates/auth/settings.html:636
 msgid "API Access"
-msgstr "Accesso API"
+msgstr "APIアクセス"
 
 #: app/templates/auth/settings.html:637
 msgid "Generate API keys to connect external applications"
-msgstr "Genera chiavi API per collegare applicazioni esterne"
+msgstr "外部アプリケーションを接続するためのAPIキーを生成"
 
 #: app/templates/auth/settings.html:639
 msgid "View API Docs"
-msgstr "Visualizza Documentazione API"
+msgstr "APIドキュメントを表示"
 
 #: app/templates/auth/settings.html:648
 msgid "Your API Key"
-msgstr "La Tua Chiave API"
+msgstr "あなたのAPIキー"
 
 #: app/templates/auth/settings.html:667 app/templates/auth/settings.html:704
 #: app/templates/auth/settings.html:858 app/templates/auth/settings.html:872
 msgid "Copy"
-msgstr "Copia"
+msgstr "コピー"
 
 #: app/templates/auth/settings.html:670
 msgid "Created"
-msgstr "Creata"
+msgstr "作成日"
 
 #: app/templates/auth/settings.html:674
 msgid "Regenerate Key"
-msgstr "Rigenera Chiave"
+msgstr "キーを再生成"
 
 #: app/templates/auth/settings.html:678
 msgid "Revoke Key"
-msgstr "Revoca Chiave"
+msgstr "キーを取り消し"
 
 #: app/templates/auth/settings.html:685
 msgid "API Key"
-msgstr "Chiave API"
+msgstr "APIキー"
 
 #: app/templates/auth/settings.html:686
 msgid ""
 "Generate an API key to access May programmatically. You can use it to "
 "integrate with other applications or build your own tools."
 msgstr ""
-"Genera una chiave API per accedere a May in modo programmatico. Puoi usarla "
-"per integrare con altre applicazioni o creare i tuoi strumenti."
+"MayにプログラムからアクセスするためのAPIキーを生成します。他のアプリケーション"
+"との連携や独自ツールの構築に使用できます。"
 
 #: app/templates/auth/settings.html:689
 msgid "Generate API Key"
-msgstr "Genera Chiave API"
+msgstr "APIキーを生成"
 
 #: app/templates/auth/settings.html:698
 msgid "API Key Generated"
-msgstr "Chiave API Generata"
+msgstr "APIキーが生成されました"
 
 #: app/templates/auth/settings.html:699
 msgid "Copy your API key now. For security, it won't be shown in full again."
-msgstr "Copia la tua chiave API ora. Per sicurezza, non verrà mostrata di nuovo per intero."
+msgstr "今すぐAPIキーをコピーしてください。セキュリティのため、全文は再表示されません。"
 
 #: app/templates/auth/settings.html:710
 msgid "Done"
-msgstr "Fatto"
+msgstr "完了"
 
 #: app/templates/auth/settings.html:724
 msgid "Connect May with external services and applications"
-msgstr "Collega May con servizi e applicazioni esterne"
+msgstr "Mayを外部サービスやアプリケーションと接続"
 
 #: app/templates/auth/settings.html:738
 msgid "Calendar"
-msgstr "Calendario"
+msgstr "カレンダー"
 
 #: app/templates/auth/settings.html:741
 msgid "Subscribe to reminders in your calendar app"
-msgstr "Iscriviti ai promemoria nella tua app calendario"
+msgstr "カレンダーアプリでリマインダーを購読"
 
 #: app/templates/auth/settings.html:743 app/templates/auth/settings.html:764
 msgid "Ready"
-msgstr "Pronto"
+msgstr "準備完了"
 
 #: app/templates/auth/settings.html:745 app/templates/auth/settings.html:766
 msgid "Requires API key"
-msgstr "Richiede chiave API"
+msgstr "APIキーが必要です"
 
 #: app/templates/auth/settings.html:759 app/templates/auth/settings.html:924
 msgid "Home Assistant"
@@ -1064,7 +1063,7 @@ msgstr "Home Assistant"
 
 #: app/templates/auth/settings.html:762 app/templates/auth/settings.html:925
 msgid "Create sensors and automations for your vehicles"
-msgstr "Crea sensori e automazioni per i tuoi veicoli"
+msgstr "車両用のセンサーとオートメーションを作成"
 
 #: app/templates/auth/settings.html:781
 msgid "DVLA"
@@ -1073,19 +1072,19 @@ msgstr "DVLA"
 #: app/templates/auth/settings.html:782 app/templates/auth/settings.html:804
 #: app/templates/auth/settings.html:1309
 msgid "Admin"
-msgstr "Amministratore"
+msgstr "管理者"
 
 #: app/templates/auth/settings.html:785 app/templates/auth/settings.html:1020
 msgid "Look up UK vehicle MOT and tax status"
-msgstr "Cerca stato MOT e bollo dei veicoli UK"
+msgstr "英国車両のMOTおよび税金ステータスを検索"
 
 #: app/templates/auth/settings.html:787 app/templates/auth/settings.html:809
 msgid "Configured"
-msgstr "Configurato"
+msgstr "設定済み"
 
 #: app/templates/auth/settings.html:789 app/templates/auth/settings.html:811
 msgid "Not configured"
-msgstr "Non configurato"
+msgstr "未設定"
 
 #: app/templates/auth/settings.html:803
 msgid "Tessie"
@@ -1093,128 +1092,127 @@ msgstr "Tessie"
 
 #: app/templates/auth/settings.html:807
 msgid "Sync Tesla vehicle odometer and battery"
-msgstr "Sincronizza contachilometri e batteria del veicolo Tesla"
+msgstr "Tesla車両のオドメーターとバッテリーを同期"
 
 #: app/templates/auth/settings.html:825 app/templates/auth/settings.html:911
 #: app/templates/auth/settings.html:1006 app/templates/auth/settings.html:1077
 msgid "Back to Integrations"
-msgstr "Torna alle Integrazioni"
+msgstr "連携に戻る"
 
 #: app/templates/auth/settings.html:838
 msgid "Calendar Subscription"
-msgstr "Abbonamento Calendario"
+msgstr "カレンダー購読"
 
 #: app/templates/auth/settings.html:839
 msgid "Subscribe to your reminders in any calendar app"
-msgstr "Iscriviti ai tuoi promemoria in qualsiasi app calendario"
+msgstr "任意のカレンダーアプリでリマインダーを購読"
 
 #: app/templates/auth/settings.html:847
 msgid ""
 "Add this calendar to Apple Calendar, Google Calendar, Outlook, or any "
 "other calendar app that supports iCal subscriptions."
 msgstr ""
-"Aggiungi questo calendario ad Apple Calendar, Google Calendar, Outlook o "
-"qualsiasi altra app calendario che supporta gli abbonamenti iCal."
+"このカレンダーをAppleカレンダー、Googleカレンダー、Outlook、またはiCal購読を"
+"サポートする他のカレンダーアプリに追加できます。"
 
 #: app/templates/auth/settings.html:850
 msgid "Webcal URL"
-msgstr "URL Webcal"
+msgstr "Webcal URL"
 
 #: app/templates/auth/settings.html:851
 msgid "Use this URL for most calendar apps (Apple Calendar, Outlook, etc.)"
-msgstr "Usa questo URL per la maggior parte delle app calendario (Apple Calendar, Outlook, ecc.)"
+msgstr "ほとんどのカレンダーアプリ（Appleカレンダー、Outlookなど）にはこのURLを使用してください"
 
 #: app/templates/auth/settings.html:864
 msgid "HTTPS URL"
-msgstr "URL HTTPS"
+msgstr "HTTPS URL"
 
 #: app/templates/auth/settings.html:865
 msgid "Use this URL for Google Calendar"
-msgstr "Usa questo URL per Google Calendar"
+msgstr "GoogleカレンダーにはこのURLを使用してください"
 
 #: app/templates/auth/settings.html:878
 msgid "What's included in the calendar?"
-msgstr "Cosa è incluso nel calendario?"
+msgstr "カレンダーに含まれる内容"
 
 #: app/templates/auth/settings.html:880
 msgid "Maintenance schedules"
-msgstr "Programmi di manutenzione"
+msgstr "メンテナンススケジュール"
 
 #: app/templates/auth/settings.html:881
 msgid "Recurring expense due dates"
-msgstr "Scadenze delle spese ricorrenti"
+msgstr "定期経費の支払期日"
 
 #: app/templates/auth/settings.html:882
 msgid "Document expiry dates"
-msgstr "Date di scadenza dei documenti"
+msgstr "ドキュメントの有効期限"
 
 #: app/templates/auth/settings.html:883
 msgid "Custom reminders"
-msgstr "Promemoria personalizzati"
+msgstr "カスタムリマインダー"
 
 #: app/templates/auth/settings.html:892 app/templates/auth/settings.html:986
 msgid "API Key Required"
-msgstr "Chiave API Richiesta"
+msgstr "APIキーが必要です"
 
 #: app/templates/auth/settings.html:893
 msgid "Generate an API key in the API section to enable calendar integration."
-msgstr "Genera una chiave API nella sezione API per abilitare l'integrazione calendario."
+msgstr "カレンダー連携を有効にするには、APIセクションでAPIキーを生成してください。"
 
 #: app/templates/auth/settings.html:896 app/templates/auth/settings.html:990
 msgid "Go to API Settings"
-msgstr "Vai alle Impostazioni API"
+msgstr "API設定へ移動"
 
 #: app/templates/auth/settings.html:933
 msgid ""
 "Add the following configuration to your Home Assistant configuration.yaml"
 " to create vehicle sensors."
 msgstr ""
-"Aggiungi la seguente configurazione al tuo configuration.yaml di Home "
-"Assistant per creare i sensori del veicolo."
+"車両センサーを作成するには、以下の設定をHome Assistantのconfiguration.yamlに"
+"追加してください。"
 
 #: app/templates/auth/settings.html:936
 msgid "REST Sensor Configuration"
-msgstr "Configurazione Sensore REST"
+msgstr "RESTセンサー設定"
 
 #: app/templates/auth/settings.html:952
 msgid "Copy configuration"
-msgstr "Copia configurazione"
+msgstr "設定をコピー"
 
 #: app/templates/auth/settings.html:956
 msgid "Available API Endpoints"
-msgstr "Endpoint API Disponibili"
+msgstr "利用可能なAPIエンドポイント"
 
 #: app/templates/auth/settings.html:960
 msgid "API health check"
-msgstr "Controllo stato API"
+msgstr "APIヘルスチェック"
 
 #: app/templates/auth/settings.html:964
 msgid "List all vehicles"
-msgstr "Elenca tutti i veicoli"
+msgstr "全車両の一覧"
 
 #: app/templates/auth/settings.html:968
 msgid "Vehicle statistics"
-msgstr "Statistiche del veicolo"
+msgstr "車両統計"
 
 #: app/templates/auth/settings.html:972
 msgid "Upcoming reminders"
-msgstr "Promemoria in arrivo"
+msgstr "今後のリマインダー"
 
 #: app/templates/auth/settings.html:976
 msgid "Combined summary"
-msgstr "Riepilogo combinato"
+msgstr "統合サマリー"
 
 #: app/templates/auth/settings.html:987
 msgid ""
 "Generate an API key in the API section to enable Home Assistant "
 "integration."
 msgstr ""
-"Genera una chiave API nella sezione API per abilitare l'integrazione con "
-"Home Assistant."
+"Home Assistant連携を有効にするには、APIセクションでAPIキーを生成してください。"
 
 #: app/templates/auth/settings.html:1019
 msgid "DVLA Vehicle Lookup"
-msgstr "Ricerca Veicolo DVLA"
+msgstr "DVLA車両検索"
 
 #: app/templates/auth/settings.html:1028
 msgid ""
@@ -1222,55 +1220,53 @@ msgid ""
 "status, and vehicle details for UK registered vehicles. This enables "
 "automatic population of vehicle information when adding new vehicles."
 msgstr ""
-"Il servizio di interrogazione veicoli DVLA ti consente di verificare lo "
-"stato MOT, lo stato del bollo e i dettagli del veicolo per i veicoli "
-"immatricolati nel Regno Unito. Questo consente la compilazione automatica "
-"delle informazioni del veicolo quando ne aggiungi uno nuovo."
+"DVLA車両照会サービスを使用すると、英国登録車両のMOTステータス、税金ステータス、"
+"車両詳細を検索できます。新規車両追加時に車両情報を自動入力できるようになります。"
 
 #: app/templates/auth/settings.html:1032
 msgid "How to get an API key"
-msgstr "Come ottenere una chiave API"
+msgstr "APIキーの取得方法"
 
 #: app/templates/auth/settings.html:1034
 msgid "Visit the"
-msgstr "Visita il"
+msgstr "アクセス:"
 
 #: app/templates/auth/settings.html:1034
 msgid "DVLA Developer Portal"
-msgstr "Portale Sviluppatori DVLA"
+msgstr "DVLA開発者ポータル"
 
 #: app/templates/auth/settings.html:1035
 msgid "Register for a free account"
-msgstr "Registrati per un account gratuito"
+msgstr "無料アカウントを登録"
 
 #: app/templates/auth/settings.html:1036
 msgid "Subscribe to the Vehicle Enquiry Service API"
-msgstr "Iscriviti all'API del Servizio di Interrogazione Veicoli"
+msgstr "Vehicle Enquiry Service APIに登録"
 
 #: app/templates/auth/settings.html:1037
 msgid "Copy your API key and paste it below"
-msgstr "Copia la tua chiave API e incollala qui sotto"
+msgstr "APIキーをコピーして以下に貼り付けてください"
 
 #: app/templates/auth/settings.html:1044
 msgid "DVLA API Key"
-msgstr "Chiave API DVLA"
+msgstr "DVLA APIキー"
 
 #: app/templates/auth/settings.html:1052 app/templates/auth/settings.html:1132
 #: app/templates/auth/settings.html:1394
 msgid "Test"
-msgstr "Test"
+msgstr "テスト"
 
 #: app/templates/auth/settings.html:1061
 msgid "Save DVLA Settings"
-msgstr "Salva Impostazioni DVLA"
+msgstr "DVLA設定を保存"
 
 #: app/templates/auth/settings.html:1090
 msgid "Tessie Integration"
-msgstr "Integrazione Tessie"
+msgstr "Tessie連携"
 
 #: app/templates/auth/settings.html:1091
 msgid "Sync Tesla vehicle data via Tessie"
-msgstr "Sincronizza i dati del veicolo Tesla tramite Tessie"
+msgstr "Tessie経由でTesla車両データを同期"
 
 #: app/templates/auth/settings.html:1099
 msgid ""
@@ -1278,118 +1274,116 @@ msgid ""
 " and range from your Tesla vehicles. When enabled for a vehicle, odometer"
 " tracking becomes automatic."
 msgstr ""
-"Tessie ti consente di sincronizzare automaticamente le letture del "
-"contachilometri, il livello della batteria e l'autonomia dei tuoi veicoli "
-"Tesla. Quando abilitato per un veicolo, il monitoraggio del contachilometri "
-"diventa automatico."
+"Tessieを使用すると、Tesla車両のオドメーター、バッテリー残量、航続距離を自動的に"
+"同期できます。車両でTessieを有効にすると、オドメーターの追跡が自動になります。"
 
 #: app/templates/auth/settings.html:1103
 msgid "Important"
-msgstr "Importante"
+msgstr "重要"
 
 #: app/templates/auth/settings.html:1105
 msgid "Tessie subscription required ($6.99/month per vehicle)"
-msgstr "Abbonamento Tessie richiesto ($6,99/mese per veicolo)"
+msgstr "Tessieのサブスクリプションが必要です（車両1台あたり月額$6.99）"
 
 #: app/templates/auth/settings.html:1106
 msgid "Your Tesla must be connected to Tessie"
-msgstr "La tua Tesla deve essere collegata a Tessie"
+msgstr "TeslaがTessieに接続されている必要があります"
 
 #: app/templates/auth/settings.html:1107
 msgid "When enabled, manual odometer entry is disabled"
-msgstr "Quando abilitato, l'inserimento manuale del contachilometri è disabilitato"
+msgstr "有効にすると、手動のオドメーター入力は無効になります"
 
 #: app/templates/auth/settings.html:1112
 msgid "How to get an API token"
-msgstr "Come ottenere un token API"
+msgstr "APIトークンの取得方法"
 
 #: app/templates/auth/settings.html:1114
 msgid "Sign up at"
-msgstr "Registrati su"
+msgstr "登録先:"
 
 #: app/templates/auth/settings.html:1115
 msgid "Connect your Tesla account"
-msgstr "Collega il tuo account Tesla"
+msgstr "Teslaアカウントを接続"
 
 #: app/templates/auth/settings.html:1116
 msgid "Go to Settings and create an API token"
-msgstr "Vai nelle Impostazioni e crea un token API"
+msgstr "設定に移動してAPIトークンを作成"
 
 #: app/templates/auth/settings.html:1117
 msgid "Paste the token below"
-msgstr "Incolla il token qui sotto"
+msgstr "以下にトークンを貼り付けてください"
 
 #: app/templates/auth/settings.html:1124
 msgid "Tessie API Token"
-msgstr "Token API Tessie"
+msgstr "Tessie APIトークン"
 
 #: app/templates/auth/settings.html:1141
 msgid "Save Tessie Settings"
-msgstr "Salva Impostazioni Tessie"
+msgstr "Tessie設定を保存"
 
 #: app/templates/auth/settings.html:1160
 msgid "Notification Preferences"
-msgstr "Preferenze di Notifica"
+msgstr "通知設定"
 
 #: app/templates/auth/settings.html:1161
 msgid "Configure how you receive reminders about your vehicles"
-msgstr "Configura come ricevere i promemoria sui tuoi veicoli"
+msgstr "車両に関するリマインダーの受信方法を設定"
 
 #: app/templates/auth/settings.html:1168
 msgid "Enable Reminders"
-msgstr "Abilita Promemoria"
+msgstr "リマインダーを有効にする"
 
 #: app/templates/auth/settings.html:1169
 msgid "Receive notifications for upcoming reminders"
-msgstr "Ricevi notifiche per i promemoria in arrivo"
+msgstr "今後のリマインダーの通知を受け取る"
 
 #: app/templates/auth/settings.html:1181
 msgid "Default Reminder Lead Time"
-msgstr "Anticipo Predefinito Promemoria"
+msgstr "デフォルトのリマインダー事前通知期間"
 
 #: app/templates/auth/settings.html:1182
 msgid "How many days before the due date should you be notified?"
-msgstr "Quanti giorni prima della scadenza vuoi essere avvisato?"
+msgstr "期日の何日前に通知を受け取りますか？"
 
 #: app/templates/auth/settings.html:1185
 msgid "On the due date"
-msgstr "Il giorno della scadenza"
+msgstr "期日当日"
 
 #: app/templates/auth/settings.html:1186
 msgid "1 day before"
-msgstr "1 giorno prima"
+msgstr "1日前"
 
 #: app/templates/auth/settings.html:1187
 msgid "3 days before"
-msgstr "3 giorni prima"
+msgstr "3日前"
 
 #: app/templates/auth/settings.html:1188
 msgid "1 week before"
-msgstr "1 settimana prima"
+msgstr "1週間前"
 
 #: app/templates/auth/settings.html:1189
 msgid "2 weeks before"
-msgstr "2 settimane prima"
+msgstr "2週間前"
 
 #: app/templates/auth/settings.html:1190
 msgid "1 month before"
-msgstr "1 mese prima"
+msgstr "1ヶ月前"
 
 #: app/templates/auth/settings.html:1196
 msgid "Notification Method"
-msgstr "Metodo di Notifica"
+msgstr "通知方法"
 
 #: app/templates/auth/settings.html:1197
 msgid "Choose how you want to receive notifications"
-msgstr "Scegli come vuoi ricevere le notifiche"
+msgstr "通知の受信方法を選択してください"
 
 #: app/templates/auth/settings.html:1202 app/templates/auth/settings.html:1206
 msgid "not configured"
-msgstr "non configurato"
+msgstr "未設定"
 
 #: app/templates/auth/settings.html:1204
 msgid "ntfy (Push Notifications)"
-msgstr "ntfy (Notifiche Push)"
+msgstr "ntfy（プッシュ通知）"
 
 #: app/templates/auth/settings.html:1206 app/templates/auth/settings.html:1407
 msgid "Pushover"
@@ -1401,112 +1395,112 @@ msgstr "Webhook (HTTP POST)"
 
 #: app/templates/auth/settings.html:1218
 msgid "Notifications will be sent to"
-msgstr "Le notifiche saranno inviate a"
+msgstr "通知の送信先:"
 
 #: app/templates/auth/settings.html:1225
 msgid "Email not configured. Ask an administrator to configure SMTP settings."
-msgstr "Email non configurata. Chiedi a un amministratore di configurare le impostazioni SMTP."
+msgstr "メールが設定されていません。管理者にSMTP設定を依頼してください。"
 
 #: app/templates/auth/settings.html:1234
 msgid "is a simple pub-sub notification service. Enter your topic below."
-msgstr "è un semplice servizio di notifiche pub-sub. Inserisci il tuo topic qui sotto."
+msgstr "はシンプルなpub-sub通知サービスです。以下にトピックを入力してください。"
 
 #: app/templates/auth/settings.html:1237
 msgid "ntfy Topic or Server URL"
-msgstr "Topic ntfy o URL del Server"
+msgstr "ntfyトピックまたはサーバーURL"
 
 #: app/templates/auth/settings.html:1242
 msgid ""
 "For ntfy.sh, just enter your topic name. For self-hosted, enter the full "
 "URL."
 msgstr ""
-"Per ntfy.sh, inserisci solo il nome del topic. Per il self-hosted, inserisci "
-"l'URL completo."
+"ntfy.shの場合はトピック名のみを入力してください。セルフホストの場合は完全なURLを"
+"入力してください。"
 
 #: app/templates/auth/settings.html:1250
 msgid "sends notifications to your devices. Enter your User Key below."
-msgstr "invia notifiche ai tuoi dispositivi. Inserisci la tua User Key qui sotto."
+msgstr "はデバイスに通知を送信します。以下にUser Keyを入力してください。"
 
 #: app/templates/auth/settings.html:1253
 msgid "Pushover User Key"
-msgstr "User Key Pushover"
+msgstr "Pushover User Key"
 
 #: app/templates/auth/settings.html:1258
 msgid "Find your User Key on your Pushover dashboard."
-msgstr "Trova la tua User Key nella dashboard di Pushover."
+msgstr "Pushoverダッシュボードでお使いのUser Keyを確認してください。"
 
 #: app/templates/auth/settings.html:1265
 msgid "Notifications will be sent as JSON POST requests to your webhook URL."
-msgstr "Le notifiche saranno inviate come richieste JSON POST al tuo URL webhook."
+msgstr "通知はJSON POSTリクエストとしてWebhook URLに送信されます。"
 
 #: app/templates/auth/settings.html:1268
 msgid "Webhook URL"
-msgstr "URL Webhook"
+msgstr "Webhook URL"
 
 #: app/templates/auth/settings.html:1273
 #, python-brace-format
 msgid "JSON payload: {title, message, reminder_id, vehicle_name, due_date}"
-msgstr "Payload JSON: {title, message, reminder_id, vehicle_name, due_date}"
+msgstr "JSONペイロード: {title, message, reminder_id, vehicle_name, due_date}"
 
 #: app/templates/auth/settings.html:1284
 msgid "Send Test Notification"
-msgstr "Invia Notifica di Test"
+msgstr "テスト通知を送信"
 
 #: app/templates/auth/settings.html:1308
 msgid "Notification Services"
-msgstr "Servizi di Notifica"
+msgstr "通知サービス"
 
 #: app/templates/auth/settings.html:1311
 msgid "Configure notification services available to all users"
-msgstr "Configura i servizi di notifica disponibili per tutti gli utenti"
+msgstr "全ユーザーが利用可能な通知サービスを設定"
 
 #: app/templates/auth/settings.html:1324
 msgid "Email (SMTP)"
-msgstr "Email (SMTP)"
+msgstr "メール (SMTP)"
 
 #: app/templates/auth/settings.html:1336
 msgid "SMTP Host"
-msgstr "Host SMTP"
+msgstr "SMTPホスト"
 
 #: app/templates/auth/settings.html:1343
 msgid "SMTP Port"
-msgstr "Porta SMTP"
+msgstr "SMTPポート"
 
 #: app/templates/auth/settings.html:1350
 msgid "SMTP Username"
-msgstr "Nome Utente SMTP"
+msgstr "SMTPユーザー名"
 
 #: app/templates/auth/settings.html:1357
 msgid "SMTP Password"
-msgstr "Password SMTP"
+msgstr "SMTPパスワード"
 
 #: app/templates/auth/settings.html:1364
 msgid "Sender Email"
-msgstr "Email Mittente"
+msgstr "送信元メール"
 
 #: app/templates/auth/settings.html:1371
 msgid "Sender Name"
-msgstr "Nome Mittente"
+msgstr "送信者名"
 
 #: app/templates/auth/settings.html:1384
 msgid "Use TLS"
-msgstr "Usa TLS"
+msgstr "TLSを使用"
 
 #: app/templates/auth/settings.html:1390
 msgid "Use SSL"
-msgstr "Usa SSL"
+msgstr "SSLを使用"
 
 #: app/templates/auth/settings.html:1418
 msgid "sends push notifications to iOS and Android devices."
-msgstr "invia notifiche push ai dispositivi iOS e Android."
+msgstr "はiOSおよびAndroidデバイスにプッシュ通知を送信します。"
 
 #: app/templates/auth/settings.html:1421
 msgid "Application Token"
-msgstr "Token Applicazione"
+msgstr "アプリケーショントークン"
 
 #: app/templates/auth/settings.html:1426
 msgid "Create an application at pushover.net to get your token"
-msgstr "Crea un'applicazione su pushover.net per ottenere il tuo token"
+msgstr "pushover.netでアプリケーションを作成してトークンを取得してください"
 
 #: app/templates/auth/settings.html:1436
 msgid "ntfy"
@@ -1514,16 +1508,15 @@ msgstr "ntfy"
 
 #: app/templates/auth/settings.html:1437 app/templates/auth/settings.html:1452
 msgid "Always available"
-msgstr "Sempre disponibile"
+msgstr "常に利用可能"
 
 #: app/templates/auth/settings.html:1441
 msgid ""
 "is a free, open-source notification service that requires no admin "
 "configuration. Users can set their own topic."
 msgstr ""
-"è un servizio di notifiche gratuito e open-source che non richiede "
-"configurazione da parte dell'amministratore. Gli utenti possono impostare il "
-"proprio topic."
+"は無料のオープンソース通知サービスで、管理者の設定は不要です。ユーザーが独自の"
+"トピックを設定できます。"
 
 #: app/templates/auth/settings.html:1451
 msgid "Webhook"
@@ -1534,164 +1527,164 @@ msgid ""
 "Webhooks allow users to integrate with any service that accepts HTTP POST"
 " requests (Home Assistant, Discord, Slack, etc.)"
 msgstr ""
-"I webhook consentono agli utenti di integrarsi con qualsiasi servizio che "
-"accetta richieste HTTP POST (Home Assistant, Discord, Slack, ecc.)"
+"Webhookを使用すると、HTTP POSTリクエストを受け付けるサービス（Home Assistant、"
+"Discord、Slackなど）と連携できます"
 
 #: app/templates/auth/settings.html:1462
 msgid "Save Notification Settings"
-msgstr "Salva Impostazioni di Notifica"
+msgstr "通知設定を保存"
 
 #: app/templates/auth/settings.html:1473
 msgid "Manage Reminders"
-msgstr "Gestisci Promemoria"
+msgstr "リマインダー管理"
 
 #: app/templates/auth/settings.html:1474
 msgid "View and manage your upcoming reminders"
-msgstr "Visualizza e gestisci i tuoi promemoria in arrivo"
+msgstr "今後のリマインダーを表示・管理"
 
 #: app/templates/auth/settings.html:1479
 msgid "View all reminders"
-msgstr "Visualizza tutti i promemoria"
+msgstr "すべてのリマインダーを表示"
 
 #: app/templates/auth/settings.html:1496
 msgid "Application Branding"
-msgstr "Marchio dell'Applicazione"
+msgstr "アプリケーションブランディング"
 
 #: app/templates/auth/settings.html:1497
 msgid "Customize how May appears to all users"
-msgstr "Personalizza come May appare a tutti gli utenti"
+msgstr "全ユーザーへのMayの表示をカスタマイズ"
 
 #: app/templates/auth/settings.html:1503
 msgid "Application Name"
-msgstr "Nome dell'Applicazione"
+msgstr "アプリケーション名"
 
 #: app/templates/auth/settings.html:1511
 msgid "Tagline"
-msgstr "Slogan"
+msgstr "タグライン"
 
 #: app/templates/auth/settings.html:1519
 msgid "Primary Color"
-msgstr "Colore Primario"
+msgstr "メインカラー"
 
 #: app/templates/auth/settings.html:1531
 msgid "Logo"
-msgstr "Logo"
+msgstr "ロゴ"
 
 #: app/templates/auth/settings.html:1535 app/templates/auth/settings.html:1536
 msgid "Current logo"
-msgstr "Logo attuale"
+msgstr "現在のロゴ"
 
 #: app/templates/auth/settings.html:1548
 msgid "Remove Logo"
-msgstr "Rimuovi Logo"
+msgstr "ロゴを削除"
 
 #: app/templates/auth/settings.html:1553
 msgid "Are you sure you want to remove the logo?"
-msgstr "Sei sicuro di voler rimuovere il logo?"
+msgstr "ロゴを削除してもよろしいですか？"
 
 #: app/templates/auth/settings.html:1576
 msgid "Save Branding"
-msgstr "Salva Marchio"
+msgstr "ブランディングを保存"
 
 #: app/templates/auth/settings.html:1589
 msgid "Version information and updates"
-msgstr "Informazioni sulla versione e aggiornamenti"
+msgstr "バージョン情報とアップデート"
 
 #: app/templates/auth/settings.html:1596
 msgid "Current Version"
-msgstr "Versione Attuale"
+msgstr "現在のバージョン"
 
 #: app/templates/auth/settings.html:1619
 msgid "Check for Updates"
-msgstr "Controlla Aggiornamenti"
+msgstr "アップデートを確認"
 
 #: app/templates/auth/settings.html:1620
 msgid "Click to check for newer versions"
-msgstr "Clicca per verificare la disponibilità di nuove versioni"
+msgstr "クリックして新しいバージョンを確認"
 
 #: app/templates/auth/settings.html:1627
 msgid "Check Now"
-msgstr "Controlla Ora"
+msgstr "今すぐ確認"
 
 #: app/templates/auth/settings.html:1638
 msgid "Update Available"
-msgstr "Aggiornamento Disponibile"
+msgstr "アップデートあり"
 
 #: app/templates/auth/settings.html:1640
 msgid "Version"
-msgstr "Versione"
+msgstr "バージョン"
 
 #: app/templates/auth/settings.html:1640
 msgid "is available"
-msgstr "è disponibile"
+msgstr "が利用可能です"
 
 #: app/templates/auth/settings.html:1644
 msgid "View Release Notes"
-msgstr "Visualizza Note di Rilascio"
+msgstr "リリースノートを表示"
 
 #: app/templates/auth/settings.html:1651
 msgid "To update (Docker):"
-msgstr "Per aggiornare (Docker):"
+msgstr "更新方法（Docker）："
 
 #: app/templates/auth/settings.html:1654
 msgid "Or use Watchtower for automatic updates."
-msgstr "Oppure usa Watchtower per aggiornamenti automatici."
+msgstr "または Watchtower を使用して自動更新できます。"
 
 #: app/templates/auth/settings.html:1666
 msgid "You are running the latest version"
-msgstr "Stai utilizzando l'ultima versione"
+msgstr "最新バージョンを使用しています"
 
 #: app/templates/auth/settings.html:1673
 msgid "Resources"
-msgstr "Risorse"
+msgstr "リソース"
 
 #: app/templates/auth/settings.html:1680
 msgid "Source Code"
-msgstr "Codice Sorgente"
+msgstr "ソースコード"
 
 #: app/templates/auth/settings.html:1687
 msgid "Report an Issue"
-msgstr "Segnala un Problema"
+msgstr "問題を報告"
 
 #: app/templates/auth/settings.html:1694
 msgid "All Releases"
-msgstr "Tutte le Versioni"
+msgstr "全リリース"
 
 #: app/templates/auth/settings.html:1701
 msgid "Documentation"
-msgstr "Documentazione"
+msgstr "ドキュメント"
 
 #: app/templates/auth/settings.html:2106
 msgid "Checking..."
-msgstr "Verifica in corso..."
+msgstr "確認中..."
 
 #: app/templates/auth/settings.html:2118
 msgid "A newer version is available"
-msgstr "È disponibile una versione più recente"
+msgstr "新しいバージョンが利用可能です"
 
 #: app/templates/auth/settings.html:2123
 msgid "Last checked just now"
-msgstr "Ultimo controllo appena effettuato"
+msgstr "たった今確認しました"
 
 #: app/templates/auth/settings.html:2127
 msgid "Could not check for updates"
-msgstr "Impossibile verificare gli aggiornamenti"
+msgstr "アップデートを確認できませんでした"
 
 #: app/templates/auth/settings.html:2132
 msgid "Error checking for updates"
-msgstr "Errore durante la verifica degli aggiornamenti"
+msgstr "アップデート確認中にエラーが発生しました"
 
 #: app/templates/charging/form.html:7
 msgid "Back to charging sessions"
-msgstr "Torna alle sessioni di ricarica"
+msgstr "充電セッション一覧に戻る"
 
 #: app/templates/charging/form.html:8
 msgid "Edit Charging Session"
-msgstr "Modifica Sessione di Ricarica"
+msgstr "充電セッションを編集"
 
 #: app/templates/charging/form.html:8 app/templates/charging/form.html:158
 msgid "Log Charging Session"
-msgstr "Registra Sessione di Ricarica"
+msgstr "充電セッションを記録"
 
 #: app/templates/charging/form.html:16 app/templates/charging/index.html:36
 #: app/templates/documents/form.html:21 app/templates/fuel/quick.html:15
@@ -1699,83 +1692,83 @@ msgstr "Registra Sessione di Ricarica"
 #: app/templates/trips/form.html:16 app/templates/trips/index.html:44
 #: app/templates/trips/report.html:99
 msgid "Vehicle"
-msgstr "Veicolo"
+msgstr "車両"
 
 #: app/templates/charging/form.html:32 app/templates/maintenance/form.html:100
 #: app/templates/trips/form.html:42 app/templates/trips/report.html:98
 msgid "Date"
-msgstr "Data"
+msgstr "日付"
 
 #: app/templates/charging/form.html:39
 msgid "Charger Type"
-msgstr "Tipo di Caricatore"
+msgstr "充電器タイプ"
 
 #: app/templates/charging/form.html:42
 msgid "Select type..."
-msgstr "Seleziona tipo..."
+msgstr "タイプを選択..."
 
 #: app/templates/charging/form.html:50
 msgid "Start Time"
-msgstr "Ora di Inizio"
+msgstr "開始時間"
 
 #: app/templates/charging/form.html:57
 msgid "End Time"
-msgstr "Ora di Fine"
+msgstr "終了時間"
 
 #: app/templates/charging/form.html:64
 msgid "Location"
-msgstr "Posizione"
+msgstr "場所"
 
 #: app/templates/charging/form.html:67
 msgid "e.g., Home, Walmart, ChargePoint Station"
-msgstr "es., Casa, Centro Commerciale, Stazione ChargePoint"
+msgstr "例: 自宅、イオン、ChargePointステーション"
 
 #: app/templates/charging/form.html:72
 msgid "Network"
-msgstr "Rete"
+msgstr "ネットワーク"
 
 #: app/templates/charging/form.html:75
 msgid "e.g., ChargePoint, Electrify America"
-msgstr "es., ChargePoint, Electrify America"
+msgstr "例: ChargePoint, Electrify America"
 
 #: app/templates/charging/form.html:81 app/templates/fuel/quick.html:33
 #: app/templates/maintenance/form.html:106 app/templates/vehicles/view.html:284
 msgid "Odometer"
-msgstr "Contachilometri"
+msgstr "走行距離計"
 
 #: app/templates/charging/form.html:99
 msgid "Energy & State of Charge"
-msgstr "Energia e Stato di Carica"
+msgstr "電力量と充電状態"
 
 #: app/templates/charging/form.html:102
 msgid "Energy Added"
-msgstr "Energia Aggiunta"
+msgstr "充電電力量"
 
 #: app/templates/charging/form.html:109
 msgid "Start SOC"
-msgstr "SOC Iniziale"
+msgstr "開始SOC"
 
 #: app/templates/charging/form.html:115
 msgid "End SOC"
-msgstr "SOC Finale"
+msgstr "終了SOC"
 
 #: app/templates/charging/form.html:125
 msgid "Cost"
-msgstr "Costo"
+msgstr "費用"
 
 #: app/templates/charging/form.html:128
 msgid "Cost per kWh"
-msgstr "Costo per kWh"
+msgstr "kWhあたりの費用"
 
 #: app/templates/charging/form.html:135 app/templates/charging/index.html:26
 #: app/templates/fuel/quick.html:63
 msgid "Total Cost"
-msgstr "Costo Totale"
+msgstr "合計費用"
 
 #: app/templates/charging/form.html:144 app/templates/stations/form.html:74
 #: app/templates/trips/form.html:100
 msgid "Notes"
-msgstr "Note"
+msgstr "メモ"
 
 #: app/templates/charging/form.html:154 app/templates/documents/form.html:122
 #: app/templates/maintenance/form.html:156
@@ -1783,827 +1776,826 @@ msgstr "Note"
 #: app/templates/recurring/form.html:128 app/templates/stations/form.html:101
 #: app/templates/trips/form.html:110
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "キャンセル"
 
 #: app/templates/charging/index.html:7
 msgid "Charging Sessions"
-msgstr "Sessioni di Ricarica"
+msgstr "充電セッション"
 
 #: app/templates/charging/index.html:8
 msgid "Track your EV charging sessions"
-msgstr "Monitora le tue sessioni di ricarica EV"
+msgstr "EV充電セッションを追跡"
 
 #: app/templates/charging/index.html:15
 msgid "Log Charge"
-msgstr "Registra Ricarica"
+msgstr "充電を記録"
 
 #: app/templates/charging/index.html:22
 msgid "Total Energy"
-msgstr "Energia Totale"
+msgstr "総電力量"
 
 #: app/templates/charging/index.html:38 app/templates/documents/index.html:23
 #: app/templates/trips/index.html:46
 msgid "All Vehicles"
-msgstr "Tutti i Veicoli"
+msgstr "全車両"
 
 #: app/templates/charging/index.html:45 app/templates/trips/index.html:71
 msgid "Filter"
-msgstr "Filtra"
+msgstr "フィルター"
 
 #: app/templates/charging/index.html:49 app/templates/trips/index.html:75
 msgid "Clear"
-msgstr "Cancella"
+msgstr "クリア"
 
 #: app/templates/charging/index.html:139
 msgid "No charging sessions"
-msgstr "Nessuna sessione di ricarica"
+msgstr "充電セッションがありません"
 
 #: app/templates/charging/index.html:140
 msgid "Start tracking your EV charging to monitor energy usage and costs."
-msgstr "Inizia a monitorare le ricariche EV per controllare il consumo di energia e i costi."
+msgstr "EV充電の追跡を開始して、エネルギー使用量とコストを管理しましょう。"
 
 #: app/templates/charging/index.html:147
 msgid "Log Your First Charge"
-msgstr "Registra la Tua Prima Ricarica"
+msgstr "最初の充電を記録"
 
 #: app/templates/documents/form.html:6 app/templates/documents/view.html:6
 msgid "Back to Documents"
-msgstr "Torna ai Documenti"
+msgstr "ドキュメント一覧に戻る"
 
 #: app/templates/documents/form.html:13
 msgid "Edit Document"
-msgstr "Modifica Documento"
+msgstr "ドキュメントを編集"
 
 #: app/templates/documents/form.html:13 app/templates/documents/index.html:15
 #: app/templates/documents/index.html:108
 msgid "Upload Document"
-msgstr "Carica Documento"
+msgstr "ドキュメントをアップロード"
 
 #: app/templates/documents/form.html:33 app/templates/documents/view.html:70
 msgid "File"
-msgstr "File"
+msgstr "ファイル"
 
 #: app/templates/documents/form.html:48
 msgid "Title"
-msgstr "Titolo"
+msgstr "タイトル"
 
 #: app/templates/documents/form.html:51
 msgid "e.g., Insurance Policy 2024"
-msgstr "es., Polizza Assicurativa 2024"
+msgstr "例: 自動車保険証券 2024"
 
 #: app/templates/documents/form.html:56 app/templates/maintenance/form.html:43
 msgid "Type"
-msgstr "Tipo"
+msgstr "種類"
 
 #: app/templates/documents/form.html:68 app/templates/documents/view.html:64
 msgid "Reference Number"
-msgstr "Numero di Riferimento"
+msgstr "参照番号"
 
 #: app/templates/documents/form.html:71
 msgid "e.g., Policy number, certificate ID"
-msgstr "es., Numero polizza, ID certificato"
+msgstr "例: 保険証券番号、証明書ID"
 
 #: app/templates/documents/form.html:77 app/templates/documents/view.html:79
 msgid "Issue Date"
-msgstr "Data di Emissione"
+msgstr "発行日"
 
 #: app/templates/documents/form.html:83 app/templates/documents/view.html:86
 msgid "Expiry Date"
-msgstr "Data di Scadenza"
+msgstr "有効期限"
 
 #: app/templates/documents/form.html:91 app/templates/documents/view.html:96
 #: app/templates/maintenance/form.html:57 app/templates/recurring/form.html:96
 #: app/templates/trips/form.html:92 app/templates/trips/report.html:101
 msgid "Description"
-msgstr "Descrizione"
+msgstr "説明"
 
 #: app/templates/documents/form.html:94 app/templates/recurring/form.html:99
 msgid "Optional notes"
-msgstr "Note opzionali"
+msgstr "任意のメモ"
 
 #: app/templates/documents/form.html:101
 msgid "Remind me before expiry"
-msgstr "Ricordami prima della scadenza"
+msgstr "有効期限前にリマインドする"
 
 #: app/templates/documents/form.html:105
 msgid "Days before to remind"
-msgstr "Giorni di anticipo per il promemoria"
+msgstr "何日前にリマインドするか"
 
 #: app/templates/documents/form.html:114 app/templates/recurring/form.html:120
 #: app/templates/stations/form.html:93
 msgid "Delete"
-msgstr "Elimina"
+msgstr "削除"
 
 #: app/templates/documents/form.html:126
 msgid "Upload"
-msgstr "Carica"
+msgstr "アップロード"
 
 #: app/templates/documents/form.html:138
 msgid "Delete this document?"
-msgstr "Eliminare questo documento?"
+msgstr "このドキュメントを削除しますか？"
 
 #: app/templates/documents/index.html:8
 msgid "Vehicle documents, insurance, MOT certificates"
-msgstr "Documenti del veicolo, assicurazione, certificati MOT"
+msgstr "車両ドキュメント、保険、MOT証明書"
 
 #: app/templates/documents/index.html:74
 msgid "Expires"
-msgstr "Scade"
+msgstr "有効期限"
 
 #: app/templates/documents/index.html:82 app/templates/documents/view.html:26
 msgid "Download"
-msgstr "Scarica"
+msgstr "ダウンロード"
 
 #: app/templates/documents/index.html:100
 msgid "No documents"
-msgstr "Nessun documento"
+msgstr "ドキュメントがありません"
 
 #: app/templates/documents/index.html:101
 msgid "Store your vehicle documents, insurance policies, and MOT certificates."
-msgstr "Archivia i documenti del veicolo, le polizze assicurative e i certificati MOT."
+msgstr "車両ドキュメント、保険証券、MOT証明書を保管しましょう。"
 
 #: app/templates/documents/view.html:30 app/templates/maintenance/index.html:83
 #: app/templates/stations/index.html:65
 msgid "Edit"
-msgstr "Modifica"
+msgstr "編集"
 
 #: app/templates/documents/view.html:44
 msgid "This document has expired!"
-msgstr "Questo documento è scaduto!"
+msgstr "このドキュメントは有効期限が切れています！"
 
 #: app/templates/documents/view.html:55
 msgid "This document is expiring soon."
-msgstr "Questo documento sta per scadere."
+msgstr "このドキュメントはまもなく期限切れになります。"
 
 #: app/templates/documents/view.html:104
 msgid "Preview"
-msgstr "Anteprima"
+msgstr "プレビュー"
 
 #: app/templates/fuel/form.html:82 app/templates/fuel/quick.html:81
 msgid "Station"
-msgstr "Stazione di Servizio"
+msgstr "ステーション"
 
 #: app/templates/fuel/form.html:86
 msgid "Select station or enter manually..."
-msgstr "Seleziona stazione o inserisci manualmente..."
+msgstr "ステーションを選択または手動入力..."
 
 #: app/templates/fuel/form.html:97
 msgid "e.g., Shell, BP"
-msgstr "es., Shell, BP"
+msgstr "例: 出光、ENEOS"
 
 #: app/templates/fuel/form.html:101
 msgid "Add saved stations"
-msgstr "Aggiungi stazioni salvate"
+msgstr "保存済みステーションを追加"
 
 #: app/templates/fuel/form.html:101
 msgid "for quick selection and price tracking"
-msgstr "per selezione rapida e monitoraggio prezzi"
+msgstr "クイック選択と価格追跡用"
 
 #: app/templates/fuel/quick.html:8
 msgid "Fast fuel logging for mobile"
-msgstr "Registrazione rapida carburante per dispositivi mobili"
+msgstr "モバイル向けクイック給油記録"
 
 #: app/templates/fuel/quick.html:48
 msgid "Last"
-msgstr "Ultimo"
+msgstr "前回"
 
 #: app/templates/fuel/quick.html:76
 msgid "Full tank"
-msgstr "Serbatoio pieno"
+msgstr "満タン"
 
 #: app/templates/fuel/quick.html:83 app/templates/maintenance/index.html:125
 #: app/templates/maintenance/index.html:144
 msgid "Optional"
-msgstr "Opzionale"
+msgstr "任意"
 
 #: app/templates/fuel/quick.html:99
 msgid "Save"
-msgstr "Salva"
+msgstr "保存"
 
 #: app/templates/fuel/quick.html:106
 msgid "Save & Add Another"
-msgstr "Salva e Aggiungi Un Altro"
+msgstr "保存して次を追加"
 
 #: app/templates/fuel/quick.html:113
 msgid "Need more options? Use full form"
-msgstr "Servono più opzioni? Usa il modulo completo"
+msgstr "詳細な入力が必要ですか？フルフォームを使用"
 
 #: app/templates/maintenance/form.html:6
 msgid "Back to Maintenance"
-msgstr "Torna alla Manutenzione"
+msgstr "メンテナンスに戻る"
 
 #: app/templates/maintenance/form.html:12
 msgid "Edit Maintenance Schedule"
-msgstr "Modifica Programma di Manutenzione"
+msgstr "メンテナンススケジュールを編集"
 
 #: app/templates/maintenance/form.html:12
 msgid "New Maintenance Schedule"
-msgstr "Nuovo Programma di Manutenzione"
+msgstr "新規メンテナンススケジュール"
 
 #: app/templates/maintenance/form.html:34 app/templates/recurring/form.html:34
 #: app/templates/stations/form.html:20
 msgid "Name"
-msgstr "Nome"
+msgstr "名前"
 
 #: app/templates/maintenance/form.html:37
 msgid "e.g., Oil Change"
-msgstr "es., Cambio Olio"
+msgstr "例: オイル交換"
 
 #: app/templates/maintenance/form.html:60
 msgid "Optional notes or instructions"
-msgstr "Note o istruzioni opzionali"
+msgstr "任意のメモまたは手順"
 
 #: app/templates/maintenance/form.html:65
 msgid "Service Interval"
-msgstr "Intervallo di Servizio"
+msgstr "サービス間隔"
 
 #: app/templates/maintenance/form.html:66
 msgid ""
 "Set how often this maintenance should be performed. You can set distance,"
 " time, or both."
 msgstr ""
-"Imposta con quale frequenza eseguire questa manutenzione. Puoi impostare "
-"distanza, tempo o entrambi."
+"メンテナンスの頻度を設定します。距離、期間、または両方で設定できます。"
 
 #: app/templates/maintenance/form.html:70
 msgid "Every (km)"
-msgstr "Ogni (km)"
+msgstr "毎 (km)"
 
 #: app/templates/maintenance/form.html:73
 msgid "e.g., 10000"
-msgstr "es., 10000"
+msgstr "例: 10000"
 
 #: app/templates/maintenance/form.html:77
 msgid "Every (miles)"
-msgstr "Ogni (miglia)"
+msgstr "毎 (マイル)"
 
 #: app/templates/maintenance/form.html:80
 msgid "e.g., 6000"
-msgstr "es., 6000"
+msgstr "例: 6000"
 
 #: app/templates/maintenance/form.html:84
 msgid "Every (months)"
-msgstr "Ogni (mesi)"
+msgstr "毎 (ヶ月)"
 
 #: app/templates/maintenance/form.html:87
 msgid "e.g., 12"
-msgstr "es., 12"
+msgstr "例: 12"
 
 #: app/templates/maintenance/form.html:95
 msgid "Last Performed"
-msgstr "Ultima Esecuzione"
+msgstr "前回実施日"
 
 #: app/templates/maintenance/form.html:96
 msgid "When was this maintenance last done? Leave blank if never."
-msgstr "Quando è stata eseguita l'ultima manutenzione? Lascia vuoto se mai."
+msgstr "前回このメンテナンスを行ったのはいつですか？未実施の場合は空欄にしてください。"
 
 #: app/templates/maintenance/form.html:109
 msgid "e.g., 50000"
-msgstr "es., 50000"
+msgstr "例: 50000"
 
 #: app/templates/maintenance/form.html:117
 msgid "Additional Settings"
-msgstr "Impostazioni Aggiuntive"
+msgstr "追加設定"
 
 #: app/templates/maintenance/form.html:121
 msgid "Estimated Cost"
-msgstr "Costo Stimato"
+msgstr "見積もり費用"
 
 #: app/templates/maintenance/form.html:128
 msgid "Remind Days Before"
-msgstr "Giorni di Anticipo Promemoria"
+msgstr "何日前にリマインド"
 
 #: app/templates/maintenance/form.html:139
 msgid "Automatically create reminder when due"
-msgstr "Crea automaticamente un promemoria alla scadenza"
+msgstr "期限が来たら自動的にリマインダーを作成"
 
 #: app/templates/maintenance/form.html:148
 msgid "Delete Schedule"
-msgstr "Elimina Programma"
+msgstr "スケジュールを削除"
 
 #: app/templates/maintenance/form.html:160
 msgid "Create Schedule"
-msgstr "Crea Programma"
+msgstr "スケジュールを作成"
 
 #: app/templates/maintenance/form.html:172
 msgid "Delete this maintenance schedule?"
-msgstr "Eliminare questo programma di manutenzione?"
+msgstr "このメンテナンススケジュールを削除しますか？"
 
 #: app/templates/maintenance/index.html:7
 msgid "Maintenance Schedules"
-msgstr "Programmi di Manutenzione"
+msgstr "メンテナンススケジュール"
 
 #: app/templates/maintenance/index.html:8
 msgid "Set up recurring maintenance with automatic reminders"
-msgstr "Imposta la manutenzione ricorrente con promemoria automatici"
+msgstr "自動リマインダー付きの定期メンテナンスを設定"
 
 #: app/templates/maintenance/index.html:15
 msgid "Add Schedule"
-msgstr "Aggiungi Programma"
+msgstr "スケジュールを追加"
 
 #: app/templates/maintenance/index.html:33
 msgid "Due Now"
-msgstr "In Scadenza"
+msgstr "期限到来"
 
 #: app/templates/maintenance/index.html:37
 msgid "Due Soon"
-msgstr "In Scadenza a Breve"
+msgstr "まもなく期限"
 
 #: app/templates/maintenance/index.html:76
 msgid "Mark Complete"
-msgstr "Segna come Completato"
+msgstr "完了にする"
 
 #: app/templates/maintenance/index.html:99
 msgid "No maintenance schedules"
-msgstr "Nessun programma di manutenzione"
+msgstr "メンテナンススケジュールがありません"
 
 #: app/templates/maintenance/index.html:100
 msgid "Set up recurring maintenance reminders for your vehicles."
-msgstr "Imposta promemoria di manutenzione ricorrente per i tuoi veicoli."
+msgstr "車両の定期メンテナンスリマインダーを設定しましょう。"
 
 #: app/templates/maintenance/index.html:107
 msgid "Add Maintenance Schedule"
-msgstr "Aggiungi Programma di Manutenzione"
+msgstr "メンテナンススケジュールを追加"
 
 #: app/templates/maintenance/index.html:119
 msgid "Mark as Completed"
-msgstr "Segna come Completato"
+msgstr "完了としてマーク"
 
 #: app/templates/maintenance/index.html:122
 msgid "Current Odometer"
-msgstr "Contachilometri Attuale"
+msgstr "現在の走行距離"
 
 #: app/templates/maintenance/index.html:131
 msgid "Create expense entry"
-msgstr "Crea voce di spesa"
+msgstr "経費エントリーを作成"
 
 #: app/templates/maintenance/index.html:136
 msgid "Actual Cost"
-msgstr "Costo Effettivo"
+msgstr "実際の費用"
 
 #: app/templates/maintenance/index.html:141
 msgid "Vendor"
-msgstr "Fornitore"
+msgstr "業者"
 
 #: app/templates/maintenance/index.html:156
 msgid "Complete"
-msgstr "Completa"
+msgstr "完了"
 
 #: app/templates/recurring/form.html:6
 msgid "Back to Recurring Expenses"
-msgstr "Torna alle Spese Ricorrenti"
+msgstr "定期経費に戻る"
 
 #: app/templates/recurring/form.html:13
 msgid "Edit Recurring Expense"
-msgstr "Modifica Spesa Ricorrente"
+msgstr "定期経費を編集"
 
 #: app/templates/recurring/form.html:13 app/templates/recurring/index.html:126
 msgid "Add Recurring Expense"
-msgstr "Aggiungi Spesa Ricorrente"
+msgstr "定期経費を追加"
 
 #: app/templates/recurring/form.html:37
 msgid "e.g., Car Insurance, Road Tax"
-msgstr "es., Assicurazione Auto, Bollo"
+msgstr "例: 自動車保険、自動車税"
 
 #: app/templates/recurring/form.html:42
 msgid "Category"
-msgstr "Categoria"
+msgstr "カテゴリー"
 
 #: app/templates/recurring/form.html:54
 msgid "Frequency"
-msgstr "Frequenza"
+msgstr "頻度"
 
 #: app/templates/recurring/form.html:57
 msgid "Monthly"
-msgstr "Mensile"
+msgstr "毎月"
 
 #: app/templates/recurring/form.html:58
 msgid "Quarterly (every 3 months)"
-msgstr "Trimestrale (ogni 3 mesi)"
+msgstr "四半期ごと（3ヶ月ごと）"
 
 #: app/templates/recurring/form.html:59
 msgid "Biannual (every 6 months)"
-msgstr "Semestrale (ogni 6 mesi)"
+msgstr "半年ごと（6ヶ月ごと）"
 
 #: app/templates/recurring/form.html:60
 msgid "Yearly"
-msgstr "Annuale"
+msgstr "毎年"
 
 #: app/templates/recurring/form.html:65
 msgid "Amount"
-msgstr "Importo"
+msgstr "金額"
 
 #: app/templates/recurring/form.html:75
 msgid "Leave blank if amount varies"
-msgstr "Lascia vuoto se l'importo varia"
+msgstr "金額が変動する場合は空欄にしてください"
 
 #: app/templates/recurring/form.html:80
 msgid "Start Date"
-msgstr "Data di Inizio"
+msgstr "開始日"
 
 #: app/templates/recurring/form.html:87
 msgid "Next Due"
-msgstr "Prossima Scadenza"
+msgstr "次回期日"
 
 #: app/templates/recurring/form.html:106
 msgid "Auto-create expense when due"
-msgstr "Crea automaticamente la spesa alla scadenza"
+msgstr "期日に経費を自動作成"
 
 #: app/templates/recurring/form.html:110
 msgid "Remind days before"
-msgstr "Giorni di anticipo promemoria"
+msgstr "何日前にリマインド"
 
 #: app/templates/recurring/form.html:132 app/templates/recurring/index.html:15
 msgid "Add Recurring"
-msgstr "Aggiungi Ricorrente"
+msgstr "定期を追加"
 
 #: app/templates/recurring/form.html:144
 msgid "Delete this recurring expense?"
-msgstr "Eliminare questa spesa ricorrente?"
+msgstr "この定期経費を削除しますか？"
 
 #: app/templates/recurring/index.html:8
 msgid "Auto-generate regular expenses"
-msgstr "Genera automaticamente le spese regolari"
+msgstr "定期経費を自動生成"
 
 #: app/templates/recurring/index.html:64
 msgid "Next due"
-msgstr "Prossima scadenza"
+msgstr "次回期日"
 
 #: app/templates/recurring/index.html:76
 msgid "Generate Expense"
-msgstr "Genera Spesa"
+msgstr "経費を生成"
 
 #: app/templates/recurring/index.html:87
 msgid "Pause"
-msgstr "Pausa"
+msgstr "一時停止"
 
 #: app/templates/recurring/index.html:87
 msgid "Activate"
-msgstr "Attiva"
+msgstr "有効化"
 
 #: app/templates/recurring/index.html:118
 msgid "No recurring expenses"
-msgstr "Nessuna spesa ricorrente"
+msgstr "定期経費がありません"
 
 #: app/templates/recurring/index.html:119
 msgid "Set up recurring expenses like insurance, road tax, or parking permits."
-msgstr "Imposta spese ricorrenti come assicurazione, bollo o permessi di parcheggio."
+msgstr "保険、自動車税、駐車許可証などの定期経費を設定しましょう。"
 
 #: app/templates/stations/cheapest.html:6 app/templates/stations/prices.html:11
 msgid "Back to stations"
-msgstr "Torna alle stazioni"
+msgstr "ステーション一覧に戻る"
 
 #: app/templates/stations/cheapest.html:8
 msgid "Stations ranked by most recent reported prices"
-msgstr "Stazioni classificate in base ai prezzi più recenti"
+msgstr "最新の報告価格によるステーションランキング"
 
 #: app/templates/stations/cheapest.html:36
 #: app/templates/stations/prices.html:15
 msgid "No address"
-msgstr "Nessun indirizzo"
+msgstr "住所なし"
 
 #: app/templates/stations/cheapest.html:51
 msgid "View history"
-msgstr "Visualizza storico"
+msgstr "履歴を表示"
 
 #: app/templates/stations/cheapest.html:68
 msgid "No price data available"
-msgstr "Nessun dato sui prezzi disponibile"
+msgstr "価格データがありません"
 
 #: app/templates/stations/cheapest.html:69
 msgid "Prices are automatically tracked when you log fuel at saved stations."
-msgstr "I prezzi vengono monitorati automaticamente quando registri il carburante nelle stazioni salvate."
+msgstr "保存済みステーションで給油を記録すると、価格が自動的に追跡されます。"
 
 #: app/templates/stations/cheapest.html:76
 msgid "Add a Station"
-msgstr "Aggiungi una Stazione"
+msgstr "ステーションを追加"
 
 #: app/templates/stations/form.html:6
 msgid "Back to Stations"
-msgstr "Torna alle Stazioni"
+msgstr "ステーション一覧に戻る"
 
 #: app/templates/stations/form.html:13
 msgid "Edit Fuel Station"
-msgstr "Modifica Stazione di Servizio"
+msgstr "ガソリンスタンドを編集"
 
 #: app/templates/stations/form.html:13
 msgid "Add Fuel Station"
-msgstr "Aggiungi Stazione di Servizio"
+msgstr "ガソリンスタンドを追加"
 
 #: app/templates/stations/form.html:23
 msgid "e.g., Shell Main Street"
-msgstr "es., Shell Via Principale"
+msgstr "例: ENEOS 本町店"
 
 #: app/templates/stations/form.html:28
 msgid "Brand"
-msgstr "Marca"
+msgstr "ブランド"
 
 #: app/templates/stations/form.html:31
 msgid "e.g., Shell, BP, Esso"
-msgstr "es., Shell, BP, Esso"
+msgstr "例: ENEOS、出光、コスモ石油"
 
 #: app/templates/stations/form.html:51
 msgid "Address"
-msgstr "Indirizzo"
+msgstr "住所"
 
 #: app/templates/stations/form.html:54
 msgid "Street address"
-msgstr "Indirizzo stradale"
+msgstr "番地"
 
 #: app/templates/stations/form.html:60
 msgid "City"
-msgstr "Città"
+msgstr "市区町村"
 
 #: app/templates/stations/form.html:66
 msgid "Postcode"
-msgstr "CAP"
+msgstr "郵便番号"
 
 #: app/templates/stations/form.html:77
 msgid "e.g., Good prices, open 24h"
-msgstr "es., Buoni prezzi, aperto 24h"
+msgstr "例: 安い、24時間営業"
 
 #: app/templates/stations/form.html:83
 msgid "Mark as favorite"
-msgstr "Segna come preferita"
+msgstr "お気に入りに追加"
 
 #: app/templates/stations/form.html:105 app/templates/stations/index.html:23
 #: app/templates/stations/index.html:90
 msgid "Add Station"
-msgstr "Aggiungi Stazione"
+msgstr "ステーションを追加"
 
 #: app/templates/stations/form.html:117
 msgid "Delete this station?"
-msgstr "Eliminare questa stazione?"
+msgstr "このステーションを削除しますか？"
 
 #: app/templates/stations/index.html:8
 msgid "Your favorite fuel stations"
-msgstr "Le tue stazioni di servizio preferite"
+msgstr "お気に入りのガソリンスタンド"
 
 #: app/templates/stations/index.html:56
 msgid "Used"
-msgstr "Utilizzata"
+msgstr "利用回数"
 
 #: app/templates/stations/index.html:59 app/templates/stations/prices.html:21
 msgid "Price History"
-msgstr "Storico Prezzi"
+msgstr "価格履歴"
 
 #: app/templates/stations/index.html:82
 msgid "No fuel stations"
-msgstr "Nessuna stazione di servizio"
+msgstr "ガソリンスタンドがありません"
 
 #: app/templates/stations/index.html:83
 msgid "Save your favorite stations for quick access when logging fuel."
-msgstr "Salva le tue stazioni preferite per un accesso rapido durante la registrazione del carburante."
+msgstr "よく利用するステーションを保存して、給油記録時にすばやくアクセスしましょう。"
 
 #: app/templates/stations/prices.html:46
 msgid "No price history available for this station."
-msgstr "Nessuno storico prezzi disponibile per questa stazione."
+msgstr "このステーションの価格履歴はありません。"
 
 #: app/templates/stations/prices.html:47
 msgid "Prices are automatically recorded when you log fuel at this station."
-msgstr "I prezzi vengono registrati automaticamente quando fai rifornimento in questa stazione."
+msgstr "このステーションで給油を記録すると、価格が自動的に記録されます。"
 
 #: app/templates/stations/prices.html:69
 msgid "Price per"
-msgstr "Prezzo per"
+msgstr "単価"
 
 #: app/templates/timeline/index.html:11
 msgid "Back to"
-msgstr "Torna a"
+msgstr "戻る:"
 
 #: app/templates/timeline/index.html:12
 msgid "Service Timeline"
-msgstr "Cronologia Servizi"
+msgstr "サービスタイムライン"
 
 #: app/templates/timeline/index.html:13
 msgid "Complete history of fuel, expenses, and charging"
-msgstr "Cronologia completa di carburante, spese e ricariche"
+msgstr "給油、経費、充電の完全な履歴"
 
 #: app/templates/timeline/index.html:18
 msgid "Monthly Costs"
-msgstr "Costi Mensili"
+msgstr "月間コスト"
 
 #: app/templates/timeline/index.html:27
 msgid "Activity Timeline"
-msgstr "Cronologia Attività"
+msgstr "アクティビティタイムライン"
 
 #: app/templates/timeline/index.html:86
 msgid "No activity recorded for this vehicle yet."
-msgstr "Nessuna attività registrata per questo veicolo."
+msgstr "この車両にはまだ記録がありません。"
 
 #: app/templates/timeline/index.html:114
 msgid "Charging"
-msgstr "Ricarica"
+msgstr "充電"
 
 #: app/templates/trips/form.html:7 app/templates/trips/report.html:12
 msgid "Back to trips"
-msgstr "Torna ai viaggi"
+msgstr "走行記録に戻る"
 
 #: app/templates/trips/form.html:8
 msgid "Edit Trip"
-msgstr "Modifica Viaggio"
+msgstr "走行記録を編集"
 
 #: app/templates/trips/form.html:8 app/templates/trips/form.html:114
 #: app/templates/trips/index.html:23 app/templates/vehicles/view.html:120
 msgid "Log Trip"
-msgstr "Registra Viaggio"
+msgstr "走行を記録"
 
 #: app/templates/trips/form.html:31
 msgid "Last odometer"
-msgstr "Ultimo contachilometri"
+msgstr "前回の走行距離計"
 
 #: app/templates/trips/form.html:49 app/templates/trips/index.html:53
 #: app/templates/trips/report.html:100
 msgid "Purpose"
-msgstr "Scopo"
+msgstr "目的"
 
 #: app/templates/trips/form.html:59
 msgid "Start Odometer"
-msgstr "Contachilometri Iniziale"
+msgstr "出発時走行距離"
 
 #: app/templates/trips/form.html:67
 msgid "End Odometer"
-msgstr "Contachilometri Finale"
+msgstr "到着時走行距離"
 
 #: app/templates/trips/form.html:76
 msgid "Start Location"
-msgstr "Luogo di Partenza"
+msgstr "出発地"
 
 #: app/templates/trips/form.html:79
 msgid "e.g., Home, Office"
-msgstr "es., Casa, Ufficio"
+msgstr "例: 自宅、オフィス"
 
 #: app/templates/trips/form.html:84
 msgid "End Location"
-msgstr "Luogo di Arrivo"
+msgstr "到着地"
 
 #: app/templates/trips/form.html:87
 msgid "e.g., Client Site, Airport"
-msgstr "es., Sede Cliente, Aeroporto"
+msgstr "例: クライアント先、空港"
 
 #: app/templates/trips/form.html:95
 msgid "e.g., Client meeting, Site visit"
-msgstr "es., Incontro con cliente, Visita in cantiere"
+msgstr "例: クライアントミーティング、現場視察"
 
 #: app/templates/trips/index.html:8
 msgid "Track your trips for mileage and tax deductions"
-msgstr "Monitora i tuoi viaggi per il chilometraggio e le detrazioni fiscali"
+msgstr "走行距離と税控除のために走行記録を管理"
 
 #: app/templates/trips/index.html:16
 msgid "Report"
-msgstr "Report"
+msgstr "レポート"
 
 #: app/templates/trips/index.html:35 app/templates/trips/report.html:39
 msgid "Business Distance"
-msgstr "Distanza Lavorativa"
+msgstr "業務走行距離"
 
 #: app/templates/trips/index.html:55
 msgid "All Purposes"
-msgstr "Tutti gli Scopi"
+msgstr "全目的"
 
 #: app/templates/trips/index.html:62
 msgid "Year"
-msgstr "Anno"
+msgstr "年"
 
 #: app/templates/trips/index.html:64
 msgid "All Years"
-msgstr "Tutti gli Anni"
+msgstr "全年"
 
 #: app/templates/trips/index.html:144
 msgid "No trips logged"
-msgstr "Nessun viaggio registrato"
+msgstr "走行記録がありません"
 
 #: app/templates/trips/index.html:145
 msgid "Start logging your trips for mileage tracking and tax deductions."
-msgstr "Inizia a registrare i tuoi viaggi per il monitoraggio del chilometraggio e le detrazioni fiscali."
+msgstr "走行距離の追跡と税控除のために走行記録を開始しましょう。"
 
 #: app/templates/trips/index.html:152
 msgid "Log Your First Trip"
-msgstr "Registra il Tuo Primo Viaggio"
+msgstr "最初の走行を記録"
 
 #: app/templates/trips/report.html:13
 msgid "Trip Report"
-msgstr "Report Viaggi"
+msgstr "走行レポート"
 
 #: app/templates/trips/report.html:14
 msgid "Summary of trips by purpose for tax deductions"
-msgstr "Riepilogo dei viaggi per scopo per le detrazioni fiscali"
+msgstr "税控除のための目的別走行サマリー"
 
 #: app/templates/trips/report.html:31
 msgid "Total Trips"
-msgstr "Viaggi Totali"
+msgstr "総走行回数"
 
 #: app/templates/trips/report.html:41
 msgid "Tax deductible"
-msgstr "Deducibile fiscalmente"
+msgstr "税控除対象"
 
 #: app/templates/trips/report.html:48
 msgid "Breakdown by Purpose"
-msgstr "Suddivisione per Scopo"
+msgstr "目的別内訳"
 
 #: app/templates/trips/report.html:65
 msgid "trips"
-msgstr "viaggi"
+msgstr "回"
 
 #: app/templates/trips/report.html:70
 msgid "of total"
-msgstr "del totale"
+msgstr "全体の"
 
 #: app/templates/trips/report.html:82
 msgid "Distance by Purpose"
-msgstr "Distanza per Scopo"
+msgstr "目的別距離"
 
 #: app/templates/trips/report.html:91
 msgid "All Trips"
-msgstr "Tutti i Viaggi"
+msgstr "全走行記録"
 
 #: app/templates/trips/report.html:126
 msgid "Total"
-msgstr "Totale"
+msgstr "合計"
 
 #: app/templates/trips/report.html:134
 msgid "No trips logged for"
-msgstr "Nessun viaggio registrato per"
+msgstr "走行記録がありません:"
 
 #: app/templates/vehicles/view.html:103
 msgid "Add Fuel Log"
-msgstr "Aggiungi Registro Carburante"
+msgstr "給油記録を追加"
 
 #: app/templates/vehicles/view.html:112
 msgid "Add Charging"
-msgstr "Aggiungi Ricarica"
+msgstr "充電を追加"
 
 #: app/templates/vehicles/view.html:127
 msgid "Add Expense"
-msgstr "Aggiungi Spesa"
+msgstr "経費を追加"
 
 #: app/templates/vehicles/view.html:134
 msgid "Add Reminder"
-msgstr "Aggiungi Promemoria"
+msgstr "リマインダーを追加"
 
 #: app/templates/vehicles/view.html:141
 msgid "Parts"
-msgstr "Ricambi"
+msgstr "パーツ"
 
 #: app/templates/vehicles/view.html:148
 msgid "Timeline"
-msgstr "Cronologia"
+msgstr "タイムライン"
 
 #: app/templates/vehicles/view.html:160
 msgid "DVLA Status"
-msgstr "Stato DVLA"
+msgstr "DVLAステータス"
 
 #: app/templates/vehicles/view.html:167 app/templates/vehicles/view.html:276
 msgid "Refresh"
-msgstr "Aggiorna"
+msgstr "更新"
 
 #: app/templates/vehicles/view.html:174
 msgid "MOT Status"
-msgstr "Stato MOT"
+msgstr "MOTステータス"
 
 #: app/templates/vehicles/view.html:192
 msgid "MOT Expiry"
-msgstr "Scadenza MOT"
+msgstr "MOT有効期限"
 
 #: app/templates/vehicles/view.html:202
 msgid "Tax Status"
-msgstr "Stato Bollo"
+msgstr "税金ステータス"
 
 #: app/templates/vehicles/view.html:220
 msgid "Tax Due"
-msgstr "Scadenza Bollo"
+msgstr "税金支払期日"
 
 #: app/templates/vehicles/view.html:231 app/templates/vehicles/view.html:333
 msgid "Last updated"
-msgstr "Ultimo aggiornamento"
+msgstr "最終更新"
 
 #: app/templates/vehicles/view.html:235
 msgid "No DVLA data available for this vehicle."
-msgstr "Nessun dato DVLA disponibile per questo veicolo."
+msgstr "この車両のDVLAデータはありません。"
 
 #: app/templates/vehicles/view.html:241
 msgid "Fetch from DVLA"
-msgstr "Recupera da DVLA"
+msgstr "DVLAから取得"
 
 #: app/templates/vehicles/view.html:258
 msgid "Tessie Status"
-msgstr "Stato Tessie"
+msgstr "Tessieステータス"
 
 #: app/templates/vehicles/view.html:260
 msgid "Live"
-msgstr "In tempo reale"
+msgstr "ライブ"
 
 #: app/templates/vehicles/view.html:269
 msgid "Import Charges"
-msgstr "Importa Ricariche"
+msgstr "充電記録をインポート"
 
 #: app/templates/vehicles/view.html:298
 msgid "Battery Level"
-msgstr "Livello Batteria"
+msgstr "バッテリー残量"
 
 #: app/templates/vehicles/view.html:314
 msgid "Est. Range"
-msgstr "Autonomia Stimata"
+msgstr "推定航続距離"
 
 #: app/templates/vehicles/view.html:328
 msgid "VIN"
@@ -2611,11 +2603,8 @@ msgstr "VIN"
 
 #: app/templates/vehicles/view.html:337
 msgid "No Tessie data available for this vehicle yet."
-msgstr "Nessun dato Tessie disponibile per questo veicolo."
+msgstr "この車両のTessieデータはまだありません。"
 
 #: app/templates/vehicles/view.html:343
 msgid "Fetch from Tessie"
-msgstr "Recupera da Tessie"
-
-#~ msgid "Make"
-#~ msgstr "Marca"
+msgstr "Tessieから取得"

@@ -4,6 +4,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
+from flask_babel import gettext as _
 from app import db
 from app.models import Vehicle, Expense, Attachment, EXPENSE_CATEGORIES
 
@@ -36,7 +37,7 @@ def new():
     vehicles = current_user.get_all_vehicles()
 
     if not vehicles:
-        flash('Please add a vehicle first', 'info')
+        flash(_('Please add a vehicle first'), 'info')
         return redirect(url_for('vehicles.new'))
 
     if request.method == 'POST':
@@ -45,7 +46,7 @@ def new():
 
         # Check access
         if vehicle not in vehicles:
-            flash('Access denied', 'error')
+            flash(_('Access denied'), 'error')
             return redirect(url_for('expenses.index'))
 
         date_str = request.form.get('date')
@@ -82,7 +83,7 @@ def new():
                 db.session.add(attachment)
                 db.session.commit()
 
-        flash('Expense added successfully', 'success')
+        flash(_('Expense added successfully'), 'success')
         return redirect(url_for('vehicles.view', vehicle_id=vehicle_id))
 
     # Pre-select vehicle if provided
@@ -103,7 +104,7 @@ def edit(expense_id):
 
     # Check access
     if expense.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('expenses.index'))
 
     if request.method == 'POST':
@@ -132,7 +133,7 @@ def edit(expense_id):
                 db.session.add(attachment)
 
         db.session.commit()
-        flash('Expense updated successfully', 'success')
+        flash(_('Expense updated successfully'), 'success')
         return redirect(url_for('vehicles.view', vehicle_id=expense.vehicle_id))
 
     return render_template('expenses/form.html',
@@ -150,7 +151,7 @@ def delete(expense_id):
 
     # Check access
     if expense.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('expenses.index'))
 
     vehicle_id = expense.vehicle_id
@@ -163,5 +164,5 @@ def delete(expense_id):
 
     db.session.delete(expense)
     db.session.commit()
-    flash('Expense deleted successfully', 'success')
+    flash(_('Expense deleted successfully'), 'success')
     return redirect(url_for('vehicles.view', vehicle_id=vehicle_id))

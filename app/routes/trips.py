@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from app import db
 from app.models import Vehicle, Trip, TRIP_PURPOSES
 
@@ -61,7 +62,7 @@ def new():
     vehicles = current_user.get_all_vehicles()
 
     if not vehicles:
-        flash('Please add a vehicle first', 'info')
+        flash(_('Please add a vehicle first'), 'info')
         return redirect(url_for('vehicles.new'))
 
     if request.method == 'POST':
@@ -69,7 +70,7 @@ def new():
         vehicle = Vehicle.query.get_or_404(vehicle_id)
 
         if vehicle not in vehicles:
-            flash('Access denied', 'error')
+            flash(_('Access denied'), 'error')
             return redirect(url_for('trips.index'))
 
         date_str = request.form.get('date')
@@ -91,7 +92,7 @@ def new():
         db.session.add(trip)
         db.session.commit()
 
-        flash('Trip logged successfully', 'success')
+        flash(_('Trip logged successfully'), 'success')
         return redirect(url_for('trips.index'))
 
     # Pre-select vehicle if provided
@@ -122,7 +123,7 @@ def edit(trip_id):
     vehicles = current_user.get_all_vehicles()
 
     if trip.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('trips.index'))
 
     if request.method == 'POST':
@@ -137,7 +138,7 @@ def edit(trip_id):
         trip.notes = request.form.get('notes')
 
         db.session.commit()
-        flash('Trip updated successfully', 'success')
+        flash(_('Trip updated successfully'), 'success')
         return redirect(url_for('trips.index'))
 
     return render_template('trips/form.html',
@@ -156,12 +157,12 @@ def delete(trip_id):
     vehicles = current_user.get_all_vehicles()
 
     if trip.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('trips.index'))
 
     db.session.delete(trip)
     db.session.commit()
-    flash('Trip deleted successfully', 'success')
+    flash(_('Trip deleted successfully'), 'success')
     return redirect(url_for('trips.index'))
 
 

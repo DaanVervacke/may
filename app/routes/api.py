@@ -20,6 +20,7 @@ from app.models import (
     TRIP_PURPOSES, CHARGER_TYPES
 )
 from app.services.tessie import TessieService
+from flask_babel import gettext as _
 from config import APP_VERSION
 
 logger = logging.getLogger(__name__)
@@ -2137,12 +2138,12 @@ def import_hammond():
     Some fields may be NULL depending on user input.
     """
     if 'file' not in request.files:
-        flash('No file uploaded', 'error')
+        flash(_('No file uploaded'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     file = request.files['file']
     if not file.filename:
-        flash('No file selected', 'error')
+        flash(_('No file selected'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     # Save uploaded file temporarily
@@ -2164,12 +2165,12 @@ def import_hammond():
             logger.info("Hammond DB tables found: %s", tables)
         except sqlite3.DatabaseError as e:
             logger.error("Hammond import: uploaded file is not a valid SQLite database: %s", e)
-            flash('The uploaded file is not a valid SQLite database.', 'error')
+            flash(_('The uploaded file is not a valid SQLite database.'), 'error')
             return redirect(url_for('auth.settings') + '#integrations')
 
         if not tables.intersection({'vehicles', 'fillups', 'expenses'}):
             logger.warning("Hammond import: no recognised tables found. Tables in DB: %s", tables)
-            flash('This does not appear to be a Hammond database — no vehicles, fillups, or expenses tables found.', 'error')
+            flash(_('This does not appear to be a Hammond database — no vehicles, fillups, or expenses tables found.'), 'error')
             conn.close()
             return redirect(url_for('auth.settings') + '#integrations')
 
@@ -2318,22 +2319,21 @@ def import_hammond():
         conn.close()
 
         total_skipped = sum(skipped.values())
-        msg = (f"Hammond import complete: {stats['vehicles']} vehicles, "
-               f"{stats['fuel_logs']} fuel logs, {stats['expenses']} expenses imported.")
+        msg = _('Hammond import complete: %(vehicles)s vehicles, %(fuel_logs)s fuel logs, %(expenses)s expenses imported.') % {'vehicles': stats['vehicles'], 'fuel_logs': stats['fuel_logs'], 'expenses': stats['expenses']}
         if total_skipped:
-            msg += f" ({total_skipped} records skipped due to errors — check server logs for details.)"
+            msg += ' ' + _('(%(total_skipped)s records skipped due to errors — check server logs for details.)') % {'total_skipped': total_skipped}
         logger.info("Hammond import finished: imported=%s, skipped=%s", stats, skipped)
         flash(msg, 'success')
 
     except sqlite3.Error as e:
         db.session.rollback()
         logger.error("Hammond import failed (SQLite error): %s\n%s", e, traceback.format_exc())
-        flash(f'Import failed due to a database error. Check that the file is a valid Hammond database. Error: {e}', 'error')
+        flash(_('Import failed due to a database error. Check that the file is a valid Hammond database. Error: %(error)s') % {'error': e}, 'error')
 
     except Exception as e:
         db.session.rollback()
         logger.error("Hammond import failed (unexpected error): %s\n%s", e, traceback.format_exc())
-        flash(f'Import failed: {e}', 'error')
+        flash(_('Import failed: %(error)s') % {'error': e}, 'error')
 
     finally:
         # Clean up temp file
@@ -2351,12 +2351,12 @@ def import_clarkson():
     Expects a .sql dump file upload.
     """
     if 'file' not in request.files:
-        flash('No file uploaded', 'error')
+        flash(_('No file uploaded'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     file = request.files['file']
     if not file.filename:
-        flash('No file selected', 'error')
+        flash(_('No file selected'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     try:
@@ -2471,11 +2471,11 @@ def import_clarkson():
                 continue
 
         db.session.commit()
-        flash(f"Clarkson import complete: {stats['vehicles']} vehicles, {stats['fuel_logs']} fuel logs", 'success')
+        flash(_('Clarkson import complete: %(vehicles)s vehicles, %(fuel_logs)s fuel logs') % {'vehicles': stats['vehicles'], 'fuel_logs': stats['fuel_logs']}, 'success')
 
     except Exception as e:
         db.session.rollback()
-        flash(f'Import failed: {str(e)}', 'error')
+        flash(_('Import failed: %(error)s') % {'error': str(e)}, 'error')
 
     return redirect(url_for('auth.settings') + '#integrations')
 
@@ -2524,12 +2524,12 @@ def import_fuelly():
     Expects a CSV file with columns: Name, Model, MPG, Odometer, Miles, Gallons, Price, Fuelup Date, Date Added, Tags, Notes
     """
     if 'file' not in request.files:
-        flash('No file uploaded', 'error')
+        flash(_('No file uploaded'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     file = request.files['file']
     if not file.filename:
-        flash('No file selected', 'error')
+        flash(_('No file selected'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     try:
@@ -2643,11 +2643,11 @@ def import_fuelly():
                 continue
 
         db.session.commit()
-        flash(f"Fuelly import complete: {stats['vehicles']} new vehicles, {stats['fuel_logs']} fuel logs", 'success')
+        flash(_('Fuelly import complete: %(vehicles)s new vehicles, %(fuel_logs)s fuel logs') % {'vehicles': stats['vehicles'], 'fuel_logs': stats['fuel_logs']}, 'success')
 
     except Exception as e:
         db.session.rollback()
-        flash(f'Import failed: {str(e)}', 'error')
+        flash(_('Import failed: %(error)s') % {'error': str(e)}, 'error')
 
     return redirect(url_for('auth.settings') + '#integrations')
 
@@ -2956,7 +2956,7 @@ def csv_import_upload():
     """CSV import - step 1: upload form."""
     vehicles = current_user.get_all_vehicles()
     if not vehicles:
-        flash('Please add a vehicle before importing data.', 'warning')
+        flash(_('Please add a vehicle before importing data.'), 'warning')
         return redirect(url_for('auth.settings') + '#integrations')
     return render_template('import/csv_upload.html', vehicles=vehicles)
 
@@ -2969,16 +2969,16 @@ def csv_import_preview():
     vehicle_id = request.form.get('vehicle_id', type=int)
 
     if data_type not in DATA_TYPE_LABELS:
-        flash('Invalid data type selected.', 'error')
+        flash(_('Invalid data type selected.'), 'error')
         return redirect(url_for('api.csv_import_upload'))
 
     vehicle = Vehicle.query.get(vehicle_id)
     if not vehicle:
-        flash('Vehicle not found.', 'error')
+        flash(_('Vehicle not found.'), 'error')
         return redirect(url_for('api.csv_import_upload'))
 
     if 'file' not in request.files or not request.files['file'].filename:
-        flash('No CSV file uploaded.', 'error')
+        flash(_('No CSV file uploaded.'), 'error')
         return redirect(url_for('api.csv_import_upload'))
 
     file = request.files['file']
@@ -2989,7 +2989,7 @@ def csv_import_preview():
         csv_columns = reader.fieldnames
 
         if not csv_columns:
-            flash('CSV file has no column headers.', 'error')
+            flash(_('CSV file has no column headers.'), 'error')
             return redirect(url_for('api.csv_import_upload'))
 
         # Read all rows for counting, keep first 5 for preview
@@ -3030,7 +3030,7 @@ def csv_import_preview():
                                required_fields=required_fields)
 
     except Exception as e:
-        flash(f'Failed to parse CSV file: {str(e)}', 'error')
+        flash(_('Failed to parse CSV file: %(error)s') % {'error': str(e)}, 'error')
         return redirect(url_for('api.csv_import_upload'))
 
 
@@ -3044,16 +3044,16 @@ def csv_import_execute():
     temp_file = session.pop('csv_import_temp_file', None)
 
     if data_type not in DATA_TYPE_LABELS:
-        flash('Invalid data type.', 'error')
+        flash(_('Invalid data type.'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     vehicle = Vehicle.query.get(vehicle_id)
     if not vehicle:
-        flash('Vehicle not found.', 'error')
+        flash(_('Vehicle not found.'), 'error')
         return redirect(url_for('auth.settings') + '#integrations')
 
     if not temp_file or not os.path.exists(temp_file):
-        flash('CSV file expired. Please upload again.', 'error')
+        flash(_('CSV file expired. Please upload again.'), 'error')
         return redirect(url_for('api.csv_import_upload'))
 
     try:
@@ -3091,7 +3091,7 @@ def csv_import_execute():
         db.session.commit()
 
         label = DATA_TYPE_LABELS.get(data_type, data_type)
-        flash(f'CSV import complete: {imported} {label.lower()} imported.', 'success')
+        flash(_('CSV import complete: %(count)s %(label)s imported.') % {'count': imported, 'label': label.lower()}, 'success')
 
         if errors:
             error_summary = f'{len(errors)} row(s) skipped due to errors.'
@@ -3103,7 +3103,7 @@ def csv_import_execute():
 
     except Exception as e:
         db.session.rollback()
-        flash(f'Import failed: {str(e)}', 'error')
+        flash(_('Import failed: %(error)s') % {'error': str(e)}, 'error')
     finally:
         _cleanup_temp_file(temp_file)
 

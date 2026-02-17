@@ -1,16 +1,17 @@
-# Italian Translations for May Vehicle Management
-# Copyright (C) 2024
-# This file is distributed under the same license as the May project.
+# Finnish translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: May 1.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-17 20:55+0000\n"
-"PO-Revision-Date: 2025-02-06 15:49+0100\n"
-"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
-"Language: it\n"
-"Language-Team: it\n"
+"PO-Revision-Date: 2026-02-17 20:56+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fi\n"
+"Language-Team: fi <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,24 +20,24 @@ msgstr ""
 
 #: app/routes/api.py:2141 app/routes/api.py:2354 app/routes/api.py:2527
 msgid "No file uploaded"
-msgstr "Nessun file caricato"
+msgstr "Tiedostoa ei ladattu"
 
 #: app/routes/api.py:2146 app/routes/api.py:2359 app/routes/api.py:2532
 #: app/routes/documents.py:67 app/routes/documents.py:72
 msgid "No file selected"
-msgstr "Nessun file selezionato"
+msgstr "Tiedostoa ei valittu"
 
 #: app/routes/api.py:2168
 msgid "The uploaded file is not a valid SQLite database."
-msgstr "Il file caricato non è un database SQLite valido."
+msgstr "Ladattu tiedosto ei ole kelvollinen SQLite-tietokanta."
 
 #: app/routes/api.py:2173
 msgid ""
 "This does not appear to be a Hammond database — no vehicles, fillups, or "
 "expenses tables found."
 msgstr ""
-"Questo non sembra essere un database Hammond — nessuna tabella veicoli, "
-"rifornimenti o spese trovata."
+"Tämä ei vaikuta olevan Hammond-tietokanta — ajoneuvoja, tankkaustietoja "
+"tai kulutaulukoita ei löytynyt."
 
 #: app/routes/api.py:2322
 #, python-format
@@ -44,8 +45,8 @@ msgid ""
 "Hammond import complete: %(vehicles)s vehicles, %(fuel_logs)s fuel logs, "
 "%(expenses)s expenses imported."
 msgstr ""
-"Importazione Hammond completata: %(vehicles)s veicoli, %(fuel_logs)s registri "
-"carburante, %(expenses)s spese importate."
+"Hammond-tuonti valmis: %(vehicles)s ajoneuvoa, %(fuel_logs)s polttoainekirjausta, "
+"%(expenses)s kulua tuotu."
 
 #: app/routes/api.py:2324
 #, python-format
@@ -53,8 +54,8 @@ msgid ""
 "(%(total_skipped)s records skipped due to errors — check server logs for "
 "details.)"
 msgstr ""
-"(%(total_skipped)s record ignorati a causa di errori — controlla i log del "
-"server per i dettagli.)"
+"(%(total_skipped)s tietuetta ohitettu virheiden vuoksi — tarkista "
+"palvelinlokit lisätietoja varten.)"
 
 #: app/routes/api.py:2331
 #, python-format
@@ -62,184 +63,184 @@ msgid ""
 "Import failed due to a database error. Check that the file is a valid "
 "Hammond database. Error: %(error)s"
 msgstr ""
-"Importazione fallita a causa di un errore del database. Verifica che il file "
-"sia un database Hammond valido. Errore: %(error)s"
+"Tuonti epäonnistui tietokantavirheen vuoksi. Tarkista, että tiedosto on "
+"kelvollinen Hammond-tietokanta. Virhe: %(error)s"
 
 #: app/routes/api.py:2336 app/routes/api.py:2478 app/routes/api.py:2650
 #: app/routes/api.py:3106
 #, python-format
 msgid "Import failed: %(error)s"
-msgstr "Importazione fallita: %(error)s"
+msgstr "Tuonti epäonnistui: %(error)s"
 
 #: app/routes/api.py:2474
 #, python-format
 msgid "Clarkson import complete: %(vehicles)s vehicles, %(fuel_logs)s fuel logs"
-msgstr "Importazione Clarkson completata: %(vehicles)s veicoli, %(fuel_logs)s registri carburante"
+msgstr "Clarkson-tuonti valmis: %(vehicles)s ajoneuvoa, %(fuel_logs)s polttoainekirjausta"
 
 #: app/routes/api.py:2646
 #, python-format
 msgid "Fuelly import complete: %(vehicles)s new vehicles, %(fuel_logs)s fuel logs"
-msgstr "Importazione Fuelly completata: %(vehicles)s nuovi veicoli, %(fuel_logs)s registri carburante"
+msgstr "Fuelly-tuonti valmis: %(vehicles)s uutta ajoneuvoa, %(fuel_logs)s polttoainekirjausta"
 
 #: app/routes/api.py:2959
 msgid "Please add a vehicle before importing data."
-msgstr "Aggiungi un veicolo prima di importare i dati."
+msgstr "Lisää ajoneuvo ennen tietojen tuontia."
 
 #: app/routes/api.py:2972
 msgid "Invalid data type selected."
-msgstr "Tipo di dati selezionato non valido."
+msgstr "Virheellinen tietotyyppi valittu."
 
 #: app/routes/api.py:2977 app/routes/api.py:3052
 msgid "Vehicle not found."
-msgstr "Veicolo non trovato."
+msgstr "Ajoneuvoa ei löytynyt."
 
 #: app/routes/api.py:2981
 msgid "No CSV file uploaded."
-msgstr "Nessun file CSV caricato."
+msgstr "CSV-tiedostoa ei ladattu."
 
 #: app/routes/api.py:2992
 msgid "CSV file has no column headers."
-msgstr "Il file CSV non ha intestazioni di colonna."
+msgstr "CSV-tiedostossa ei ole sarakeotsikoita."
 
 #: app/routes/api.py:3033
 #, python-format
 msgid "Failed to parse CSV file: %(error)s"
-msgstr "Impossibile analizzare il file CSV: %(error)s"
+msgstr "CSV-tiedoston jäsennys epäonnistui: %(error)s"
 
 #: app/routes/api.py:3047
 msgid "Invalid data type."
-msgstr "Tipo di dati non valido."
+msgstr "Virheellinen tietotyyppi."
 
 #: app/routes/api.py:3056
 msgid "CSV file expired. Please upload again."
-msgstr "File CSV scaduto. Caricalo di nuovo."
+msgstr "CSV-tiedosto on vanhentunut. Lataa uudelleen."
 
 #: app/routes/api.py:3094
 #, python-format
 msgid "CSV import complete: %(count)s %(label)s imported."
-msgstr "Importazione CSV completata: %(count)s %(label)s importati."
+msgstr "CSV-tuonti valmis: %(count)s %(label)s tuotu."
 
 #: app/routes/auth.py:39
 msgid "Invalid username or password"
-msgstr "Nome utente o password non validi"
+msgstr "Virheellinen käyttäjänimi tai salasana"
 
 #: app/routes/auth.py:62
 msgid "Password reset by email is not available. Please contact an administrator."
-msgstr "Il ripristino della password via email non è disponibile. Contatta un amministratore."
+msgstr "Salasanan nollaus sähköpostitse ei ole käytettävissä. Ota yhteyttä ylläpitäjään."
 
 #: app/routes/auth.py:91
 msgid "If an account with that email exists, a password reset link has been sent."
-msgstr "Se esiste un account con quell'email, è stato inviato un link per il ripristino della password."
+msgstr "Jos tili kyseisellä sähköpostiosoitteella on olemassa, salasanan nollauslinkki on lähetetty."
 
 #: app/routes/auth.py:104
 msgid "Invalid or expired reset link. Please request a new one."
-msgstr "Link di ripristino non valido o scaduto. Richiedine uno nuovo."
+msgstr "Virheellinen tai vanhentunut nollauslinkki. Pyydä uusi."
 
 #: app/routes/auth.py:112 app/routes/auth.py:168 app/routes/auth.py:234
 #: app/routes/auth.py:522 app/routes/auth.py:558
 msgid "Passwords do not match"
-msgstr "Le password non corrispondono"
+msgstr "Salasanat eivät täsmää"
 
 #: app/routes/auth.py:124
 msgid "Your password has been reset. Please log in."
-msgstr "La tua password è stata ripristinata. Effettua l'accesso."
+msgstr "Salasanasi on nollattu. Kirjaudu sisään."
 
 #: app/routes/auth.py:158
 msgid "New account registration is currently disabled."
-msgstr "La registrazione di nuovi account è attualmente disabilitata."
+msgstr "Uusien tilien rekisteröinti on tällä hetkellä poistettu käytöstä."
 
 #: app/routes/auth.py:178 app/routes/auth.py:567
 msgid "Username already exists"
-msgstr "Il nome utente esiste già"
+msgstr "Käyttäjänimi on jo olemassa"
 
 #: app/routes/auth.py:182
 msgid "Email already registered"
-msgstr "Email già registrata"
+msgstr "Sähköposti on jo rekisteröity"
 
 #: app/routes/auth.py:190
 msgid "Registration successful! Please log in."
-msgstr "Registrazione avvenuta con successo! Effettua l'accesso."
+msgstr "Rekisteröinti onnistui! Kirjaudu sisään."
 
 #: app/routes/auth.py:200
 msgid "You have been logged out."
-msgstr "Sei stato disconnesso."
+msgstr "Olet kirjautunut ulos."
 
 #: app/routes/auth.py:224 app/routes/auth.py:514
 msgid "Email already in use by another account"
-msgstr "Email già in uso da un altro account"
+msgstr "Sähköposti on jo käytössä toisella tilillä"
 
 #: app/routes/auth.py:246
 msgid "Settings updated successfully"
-msgstr "Impostazioni aggiornate correttamente"
+msgstr "Asetukset päivitetty"
 
 #: app/routes/auth.py:324
 #, python-format
 msgid "Invalid webhook URL: %(error)s"
-msgstr "URL webhook non valido: %(error)s"
+msgstr "Virheellinen webhook-URL: %(error)s"
 
 #: app/routes/auth.py:334
 msgid "Notification preferences updated"
-msgstr "Preferenze di notifica aggiornate"
+msgstr "Ilmoitusasetukset päivitetty"
 
 #: app/routes/auth.py:355
 msgid "Menu preferences updated"
-msgstr "Preferenze del menu aggiornate"
+msgstr "Valikkoasetukset päivitetty"
 
 #: app/routes/auth.py:380
 msgid "Notification settings updated"
-msgstr "Impostazioni di notifica aggiornate"
+msgstr "Ilmoitusasetukset päivitetty"
 
 #: app/routes/auth.py:409
 msgid "Branding settings updated successfully"
-msgstr "Impostazioni del marchio aggiornate correttamente"
+msgstr "Brändiasettelu päivitetty"
 
 #: app/routes/auth.py:425
 msgid "Logo removed successfully"
-msgstr "Logo rimosso correttamente"
+msgstr "Logo poistettu"
 
 #: app/routes/auth.py:438
 msgid "DVLA settings updated"
-msgstr "Impostazioni DVLA aggiornate"
+msgstr "DVLA-asetukset päivitetty"
 
 #: app/routes/auth.py:451
 msgid "Tessie settings updated"
-msgstr "Impostazioni Tessie aggiornate"
+msgstr "Tessie-asetukset päivitetty"
 
 #: app/routes/auth.py:464
 msgid "Registration settings updated"
-msgstr "Impostazioni di registrazione aggiornate"
+msgstr "Rekisteröintiasetukset päivitetty"
 
 #: app/routes/auth.py:484
 #, python-format
 msgid "Admin status updated for %(username)s"
-msgstr "Stato amministratore aggiornato per %(username)s"
+msgstr "Ylläpitäjän tila päivitetty käyttäjälle %(username)s"
 
 #: app/routes/auth.py:497
 #, python-format
 msgid "User %(username)s deleted"
-msgstr "Utente %(username)s eliminato"
+msgstr "Käyttäjä %(username)s poistettu"
 
 #: app/routes/auth.py:535
 #, python-format
 msgid "User %(username)s updated successfully"
-msgstr "Utente %(username)s aggiornato correttamente"
+msgstr "Käyttäjä %(username)s päivitetty"
 
 #: app/routes/auth.py:554
 msgid "Username, email, and password are required"
-msgstr "Nome utente, email e password sono obbligatori"
+msgstr "Käyttäjänimi, sähköposti ja salasana ovat pakollisia"
 
 #: app/routes/auth.py:571
 msgid "Email already in use"
-msgstr "Email già in uso"
+msgstr "Sähköposti on jo käytössä"
 
 #: app/routes/auth.py:579
 #, python-format
 msgid "User %(username)s created successfully"
-msgstr "Utente %(username)s creato correttamente"
+msgstr "Käyttäjä %(username)s luotu"
 
 #: app/routes/charging.py:54
 msgid "No electric vehicles found. Add an EV or hybrid vehicle first."
-msgstr "Nessun veicolo elettrico trovato. Aggiungi prima un veicolo elettrico o ibrido."
+msgstr "Sähköajoneuvoja ei löytynyt. Lisää ensin sähkö- tai hybridiajoneuvo."
 
 #: app/routes/charging.py:62 app/routes/charging.py:122
 #: app/routes/charging.py:172 app/routes/documents.py:130
@@ -259,428 +260,428 @@ msgstr "Nessun veicolo elettrico trovato. Aggiungi prima un veicolo elettrico o 
 #: app/routes/vehicles.py:409 app/routes/vehicles.py:438
 #: app/routes/vehicles.py:476 app/routes/vehicles.py:514
 msgid "Access denied"
-msgstr "Accesso negato"
+msgstr "Pääsy estetty"
 
 #: app/routes/charging.py:100
 msgid "Charging session logged successfully"
-msgstr "Sessione di ricarica registrata correttamente"
+msgstr "Latausistunto kirjattu"
 
 #: app/routes/charging.py:154
 msgid "Charging session updated successfully"
-msgstr "Sessione di ricarica aggiornata correttamente"
+msgstr "Latausistunto päivitetty"
 
 #: app/routes/charging.py:177
 msgid "Charging session deleted successfully"
-msgstr "Sessione di ricarica eliminata correttamente"
+msgstr "Latausistunto poistettu"
 
 #: app/routes/documents.py:62 app/routes/maintenance.py:48
 msgid "Invalid vehicle"
-msgstr "Veicolo non valido"
+msgstr "Virheellinen ajoneuvo"
 
 #: app/routes/documents.py:108
 #, python-format
 msgid "Document \"%(title)s\" uploaded"
-msgstr "Documento \"%(title)s\" caricato"
+msgstr "Asiakirja \"%(title)s\" ladattu"
 
 #: app/routes/documents.py:111
 msgid "Invalid file type"
-msgstr "Tipo di file non valido"
+msgstr "Virheellinen tiedostotyyppi"
 
 #: app/routes/documents.py:187
 msgid "Document updated"
-msgstr "Documento aggiornato"
+msgstr "Asiakirja päivitetty"
 
 #: app/routes/documents.py:220
 #, python-format
 msgid "Document \"%(title)s\" deleted"
-msgstr "Documento \"%(title)s\" eliminato"
+msgstr "Asiakirja \"%(title)s\" poistettu"
 
 #: app/routes/expenses.py:40 app/routes/fuel.py:43 app/routes/fuel.py:245
 #: app/routes/reminders.py:63 app/routes/trips.py:65
 msgid "Please add a vehicle first"
-msgstr "Aggiungi prima un veicolo"
+msgstr "Lisää ensin ajoneuvo"
 
 #: app/routes/expenses.py:86
 msgid "Expense added successfully"
-msgstr "Spesa aggiunta correttamente"
+msgstr "Kulu lisätty"
 
 #: app/routes/expenses.py:136
 msgid "Expense updated successfully"
-msgstr "Spesa aggiornata correttamente"
+msgstr "Kulu päivitetty"
 
 #: app/routes/expenses.py:167
 msgid "Expense deleted successfully"
-msgstr "Spesa eliminata correttamente"
+msgstr "Kulu poistettu"
 
 #: app/routes/fuel.py:133
 msgid "Fuel log added successfully"
-msgstr "Registro carburante aggiunto correttamente"
+msgstr "Polttoainekirjaus lisätty"
 
 #: app/routes/fuel.py:195
 msgid "Fuel log updated successfully"
-msgstr "Registro carburante aggiornato correttamente"
+msgstr "Polttoainekirjaus päivitetty"
 
 #: app/routes/fuel.py:232
 msgid "Fuel log deleted successfully"
-msgstr "Registro carburante eliminato correttamente"
+msgstr "Polttoainekirjaus poistettu"
 
 #: app/routes/fuel.py:290
 msgid "Fuel log added!"
-msgstr "Registro carburante aggiunto!"
+msgstr "Polttoainekirjaus lisätty!"
 
 #: app/routes/maintenance.py:84
 #, python-format
 msgid "Maintenance schedule \"%(name)s\" created"
-msgstr "Programma di manutenzione \"%(name)s\" creato"
+msgstr "Huoltoaikataulu \"%(name)s\" luotu"
 
 #: app/routes/maintenance.py:129
 msgid "Maintenance schedule updated"
-msgstr "Programma di manutenzione aggiornato"
+msgstr "Huoltoaikataulu päivitetty"
 
 #: app/routes/maintenance.py:178
 #, python-format
 msgid "Maintenance \"%(name)s\" marked as completed"
-msgstr "Manutenzione \"%(name)s\" contrassegnata come completata"
+msgstr "Huolto \"%(name)s\" merkitty suoritetuksi"
 
 #: app/routes/maintenance.py:197
 #, python-format
 msgid "Maintenance schedule \"%(name)s\" deleted"
-msgstr "Programma di manutenzione \"%(name)s\" eliminato"
+msgstr "Huoltoaikataulu \"%(name)s\" poistettu"
 
 #: app/routes/recurring.py:36
 msgid "Please add a vehicle first."
-msgstr "Aggiungi prima un veicolo."
+msgstr "Lisää ensin ajoneuvo."
 
 #: app/routes/recurring.py:45
 msgid "Invalid vehicle."
-msgstr "Veicolo non valido."
+msgstr "Virheellinen ajoneuvo."
 
 #: app/routes/recurring.py:72
 msgid "Recurring expense created."
-msgstr "Spesa ricorrente creata."
+msgstr "Toistuva kulu luotu."
 
 #: app/routes/recurring.py:114
 msgid "Recurring expense updated."
-msgstr "Spesa ricorrente aggiornata."
+msgstr "Toistuva kulu päivitetty."
 
 #: app/routes/recurring.py:137
 msgid "Recurring expense deleted."
-msgstr "Spesa ricorrente eliminata."
+msgstr "Toistuva kulu poistettu."
 
 #: app/routes/recurring.py:177
 #, python-format
 msgid "Expense created for %(name)s."
-msgstr "Spesa creata per %(name)s."
+msgstr "Kulu luotu kohteelle %(name)s."
 
 #: app/routes/recurring.py:196
 #, python-format
 msgid "Recurring expense %(status)s."
-msgstr "Spesa ricorrente %(status)s."
+msgstr "Toistuva kulu %(status)s."
 
 #: app/routes/reminders.py:77 app/routes/reminders.py:132
 msgid "Invalid date format"
-msgstr "Formato data non valido"
+msgstr "Virheellinen päivämäärämuoto"
 
 #: app/routes/reminders.py:94
 #, python-format
 msgid "Reminder \"%(title)s\" created successfully"
-msgstr "Promemoria \"%(title)s\" creato correttamente"
+msgstr "Muistutus \"%(title)s\" luotu"
 
 #: app/routes/reminders.py:143
 msgid "Reminder updated successfully"
-msgstr "Promemoria aggiornato correttamente"
+msgstr "Muistutus päivitetty"
 
 #: app/routes/reminders.py:184
 #, python-format
 msgid "Reminder completed. Next occurrence created for %(date)s"
-msgstr "Promemoria completato. Prossima occorrenza creata per il %(date)s"
+msgstr "Muistutus suoritettu. Seuraava esiintymä luotu päivälle %(date)s"
 
 #: app/routes/reminders.py:186
 msgid "Reminder marked as completed"
-msgstr "Promemoria contrassegnato come completato"
+msgstr "Muistutus merkitty suoritetuksi"
 
 #: app/routes/reminders.py:213
 msgid "Reminder marked as not completed"
-msgstr "Promemoria contrassegnato come non completato"
+msgstr "Muistutus merkitty keskeneräiseksi"
 
 #: app/routes/reminders.py:232
 msgid "Reminder deleted"
-msgstr "Promemoria eliminato"
+msgstr "Muistutus poistettu"
 
 #: app/routes/stations.py:49
 #, python-format
 msgid "Station \"%(name)s\" added"
-msgstr "Stazione \"%(name)s\" aggiunta"
+msgstr "Asema \"%(name)s\" lisätty"
 
 #: app/routes/stations.py:80
 msgid "Station updated"
-msgstr "Stazione aggiornata"
+msgstr "Asema päivitetty"
 
 #: app/routes/stations.py:108
 #, python-format
 msgid "Station \"%(name)s\" deleted"
-msgstr "Stazione \"%(name)s\" eliminata"
+msgstr "Asema \"%(name)s\" poistettu"
 
 #: app/routes/trips.py:95
 msgid "Trip logged successfully"
-msgstr "Viaggio registrato correttamente"
+msgstr "Matka kirjattu"
 
 #: app/routes/trips.py:141
 msgid "Trip updated successfully"
-msgstr "Viaggio aggiornato correttamente"
+msgstr "Matka päivitetty"
 
 #: app/routes/trips.py:165
 msgid "Trip deleted successfully"
-msgstr "Viaggio eliminato correttamente"
+msgstr "Matka poistettu"
 
 #: app/routes/vehicles.py:89
 #, python-format
 msgid "Vehicle \"%(name)s\" added successfully"
-msgstr "Veicolo \"%(name)s\" aggiunto correttamente"
+msgstr "Ajoneuvo \"%(name)s\" lisätty"
 
 #: app/routes/vehicles.py:217
 msgid "Vehicle updated successfully"
-msgstr "Veicolo aggiornato correttamente"
+msgstr "Ajoneuvo päivitetty"
 
 #: app/routes/vehicles.py:250
 msgid "Vehicle deleted successfully"
-msgstr "Veicolo eliminato correttamente"
+msgstr "Ajoneuvo poistettu"
 
 #: app/routes/vehicles.py:269
 msgid "User not found"
-msgstr "Utente non trovato"
+msgstr "Käyttäjää ei löytynyt"
 
 #: app/routes/vehicles.py:271
 msgid "You are already the owner"
-msgstr "Sei già il proprietario"
+msgstr "Olet jo omistaja"
 
 #: app/routes/vehicles.py:273
 msgid "Vehicle already shared with this user"
-msgstr "Veicolo già condiviso con questo utente"
+msgstr "Ajoneuvo on jo jaettu tämän käyttäjän kanssa"
 
 #: app/routes/vehicles.py:277
 #, python-format
 msgid "Vehicle shared with %(username)s"
-msgstr "Veicolo condiviso con %(username)s"
+msgstr "Ajoneuvo jaettu käyttäjän %(username)s kanssa"
 
 #: app/routes/vehicles.py:299
 #, python-format
 msgid "Sharing removed for %(username)s"
-msgstr "Condivisione rimossa per %(username)s"
+msgstr "Jakaminen poistettu käyttäjältä %(username)s"
 
 #: app/routes/vehicles.py:316
 #, python-format
 msgid "Vehicle \"%(name)s\" has been archived"
-msgstr "Il veicolo \"%(name)s\" è stato archiviato"
+msgstr "Ajoneuvo \"%(name)s\" on arkistoitu"
 
 #: app/routes/vehicles.py:332
 #, python-format
 msgid "Vehicle \"%(name)s\" has been restored"
-msgstr "Il veicolo \"%(name)s\" è stato ripristinato"
+msgstr "Ajoneuvo \"%(name)s\" on palautettu"
 
 #: app/routes/vehicles.py:350
 msgid "PDF generation is not available. Please install weasyprint."
-msgstr "La generazione PDF non è disponibile. Installa weasyprint."
+msgstr "PDF-luonti ei ole käytettävissä. Asenna weasyprint."
 
 #: app/routes/vehicles.py:458
 #, python-format
 msgid "Part \"%(name)s\" added successfully"
-msgstr "Ricambio \"%(name)s\" aggiunto correttamente"
+msgstr "Osa \"%(name)s\" lisätty"
 
 #: app/routes/vehicles.py:481 app/routes/vehicles.py:519
 msgid "Part not found"
-msgstr "Ricambio non trovato"
+msgstr "Osaa ei löytynyt"
 
 #: app/routes/vehicles.py:496
 msgid "Part updated successfully"
-msgstr "Ricambio aggiornato correttamente"
+msgstr "Osa päivitetty"
 
 #: app/routes/vehicles.py:525
 msgid "Part deleted successfully"
-msgstr "Ricambio eliminato correttamente"
+msgstr "Osa poistettu"
 
 #: app/templates/auth/settings.html:402 app/templates/base.html:257
 #: app/templates/base.html:356
 msgid "Dashboard"
-msgstr "Cruscotto"
+msgstr "Kojelauta"
 
 #: app/templates/auth/settings.html:403 app/templates/auth/settings.html:439
 #: app/templates/base.html:261 app/templates/base.html:358
 #: app/templates/dashboard.html:27
 msgid "Vehicles"
-msgstr "Veicoli"
+msgstr "Ajoneuvot"
 
 #: app/templates/auth/settings.html:404 app/templates/auth/settings.html:444
 #: app/templates/base.html:266 app/templates/base.html:361
 msgid "Fuel Logs"
-msgstr "Registri Carburante"
+msgstr "Polttoainekirjaukset"
 
 #: app/templates/auth/settings.html:406 app/templates/auth/settings.html:449
 #: app/templates/base.html:271 app/templates/base.html:364
 #: app/templates/timeline/index.html:108
 msgid "Expenses"
-msgstr "Spese"
+msgstr "Kulut"
 
 #: app/templates/auth/settings.html:407 app/templates/auth/settings.html:454
 #: app/templates/base.html:276 app/templates/base.html:367
 msgid "Reminders"
-msgstr "Promemoria"
+msgstr "Muistutukset"
 
 #: app/templates/auth/settings.html:412 app/templates/auth/settings.html:479
 #: app/templates/base.html:281 app/templates/base.html:370
 #: app/templates/trips/index.html:7
 msgid "Trips"
-msgstr "Viaggi"
+msgstr "Matkat"
 
 #: app/templates/base.html:293
 msgid "More"
-msgstr "Altro"
+msgstr "Lisää"
 
 #: app/templates/auth/settings.html:408 app/templates/auth/settings.html:459
 #: app/templates/base.html:301 app/templates/base.html:376
 msgid "Maintenance"
-msgstr "Manutenzione"
+msgstr "Huolto"
 
 #: app/templates/base.html:304 app/templates/base.html:379
 msgid "Recurring"
-msgstr "Ricorrenti"
+msgstr "Toistuvat"
 
 #: app/templates/auth/settings.html:410 app/templates/auth/settings.html:469
 #: app/templates/base.html:307 app/templates/base.html:382
 #: app/templates/documents/index.html:7
 msgid "Documents"
-msgstr "Documenti"
+msgstr "Asiakirjat"
 
 #: app/templates/auth/settings.html:411 app/templates/auth/settings.html:474
 #: app/templates/base.html:310 app/templates/base.html:385
 #: app/templates/stations/index.html:7
 msgid "Fuel Stations"
-msgstr "Stazioni di Servizio"
+msgstr "Huoltoasemat"
 
 #: app/templates/auth/settings.html:413 app/templates/auth/settings.html:484
 #: app/templates/base.html:313 app/templates/base.html:373
 msgid "EV Charging"
-msgstr "Ricarica EV"
+msgstr "Sähköauton lataus"
 
 #: app/templates/auth/settings.html:405 app/templates/base.html:315
 #: app/templates/base.html:325 app/templates/base.html:387
 #: app/templates/fuel/quick.html:7
 msgid "Quick Fuel Entry"
-msgstr "Rifornimento Rapido"
+msgstr "Pikakirjaus polttoaine"
 
 #: app/templates/base.html:329 app/templates/timeline/index.html:102
 msgid "Fuel"
-msgstr "Carburante"
+msgstr "Polttoaine"
 
 #: app/templates/auth/settings.html:2 app/templates/auth/settings.html:6
 #: app/templates/base.html:332 app/templates/base.html:388
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr "Asetukset"
 
 #: app/templates/base.html:339 app/templates/base.html:393
 msgid "Logout"
-msgstr "Disconnetti"
+msgstr "Kirjaudu ulos"
 
 #: app/templates/dashboard.html:45
 msgid "Total Fuel Cost"
-msgstr "Costo Totale Carburante"
+msgstr "Polttoainekustannukset yhteensä"
 
 #: app/templates/dashboard.html:63
 msgid "Other Expenses"
-msgstr "Altre Spese"
+msgstr "Muut kulut"
 
 #: app/templates/dashboard.html:81 app/templates/trips/index.html:31
 #: app/templates/trips/report.html:35
 msgid "Total Distance"
-msgstr "Distanza Totale"
+msgstr "Kokonaismatka"
 
 #: app/templates/dashboard.html:99
 msgid "Cost per"
-msgstr "Costo per"
+msgstr "Hinta per"
 
 #: app/templates/dashboard.html:113
 msgid "Monthly Spending"
-msgstr "Spesa Mensile"
+msgstr "Kuukausittaiset menot"
 
 #: app/templates/dashboard.html:122 app/templates/stations/cheapest.html:7
 #: app/templates/stations/index.html:16
 msgid "Cheapest Fuel"
-msgstr "Carburante più Economico"
+msgstr "Halvin polttoaine"
 
 #: app/templates/dashboard.html:123
 msgid "View all"
-msgstr "Vedi tutto"
+msgstr "Näytä kaikki"
 
 #: app/templates/dashboard.html:147
 msgid "No price data yet. Add fuel stations and log fuel to track prices."
-msgstr "Nessun dato sui prezzi ancora. Aggiungi stazioni di servizio e registra i rifornimenti per monitorare i prezzi."
+msgstr "Ei hintatietoja vielä. Lisää huoltoasemia ja kirjaa polttoainetta seurataksesi hintoja."
 
 #: app/templates/dashboard.html:156
 msgid "Your Vehicles"
-msgstr "I Tuoi Veicoli"
+msgstr "Ajoneuvosi"
 
 #: app/templates/dashboard.html:157
 msgid "Add"
-msgstr "Aggiungi"
+msgstr "Lisää"
 
 #: app/templates/auth/create_user.html:8 app/templates/auth/create_user.html:62
 #: app/templates/auth/users.html:9
 msgid "Create User"
-msgstr "Crea Utente"
+msgstr "Luo käyttäjä"
 
 #: app/templates/auth/create_user.html:9
 msgid "Add a new user account"
-msgstr "Aggiungi un nuovo account utente"
+msgstr "Lisää uusi käyttäjätili"
 
 #: app/templates/auth/create_user.html:13 app/templates/auth/edit_user.html:13
 msgid "Back to Users"
-msgstr "Torna agli Utenti"
+msgstr "Takaisin käyttäjiin"
 
 #: app/templates/auth/create_user.html:22 app/templates/auth/edit_user.html:23
 msgid "Account Details"
-msgstr "Dettagli Account"
+msgstr "Tilin tiedot"
 
 #: app/templates/auth/create_user.html:27 app/templates/auth/edit_user.html:28
 #: app/templates/auth/settings.html:211
 msgid "Username"
-msgstr "Nome Utente"
+msgstr "Käyttäjänimi"
 
 #: app/templates/auth/create_user.html:33 app/templates/auth/edit_user.html:33
 #: app/templates/auth/settings.html:215 app/templates/auth/settings.html:1202
 msgid "Email"
-msgstr "Email"
+msgstr "Sähköposti"
 
 #: app/templates/auth/create_user.html:40
 msgid "Password"
-msgstr "Password"
+msgstr "Salasana"
 
 #: app/templates/auth/create_user.html:45
 msgid "Confirm Password"
-msgstr "Conferma Password"
+msgstr "Vahvista salasana"
 
 #: app/templates/auth/create_user.html:54 app/templates/auth/edit_user.html:42
 msgid "Administrator"
-msgstr "Amministratore"
+msgstr "Ylläpitäjä"
 
 #: app/templates/auth/edit_user.html:9
 msgid "Update user details and credentials"
-msgstr "Aggiorna dettagli utente e credenziali"
+msgstr "Päivitä käyttäjän tiedot ja tunnukset"
 
 #: app/templates/auth/edit_user.html:51
 msgid "Reset Password"
-msgstr "Reimposta Password"
+msgstr "Nollaa salasana"
 
 #: app/templates/auth/edit_user.html:52
 msgid "Leave blank to keep the current password"
-msgstr "Lascia vuoto per mantenere la password attuale"
+msgstr "Jätä tyhjäksi säilyttääksesi nykyisen salasanan"
 
 #: app/templates/auth/edit_user.html:58 app/templates/auth/settings.html:340
 msgid "New Password"
-msgstr "Nuova Password"
+msgstr "Uusi salasana"
 
 #: app/templates/auth/edit_user.html:63 app/templates/auth/settings.html:346
 msgid "Confirm New Password"
-msgstr "Conferma Nuova Password"
+msgstr "Vahvista uusi salasana"
 
 #: app/templates/auth/edit_user.html:74 app/templates/auth/settings.html:193
 #: app/templates/charging/form.html:158 app/templates/documents/form.html:126
@@ -688,27 +689,27 @@ msgstr "Conferma Nuova Password"
 #: app/templates/recurring/form.html:132 app/templates/stations/form.html:105
 #: app/templates/trips/form.html:114
 msgid "Save Changes"
-msgstr "Salva Modifiche"
+msgstr "Tallenna muutokset"
 
 #: app/templates/auth/settings.html:7
 msgid "Manage your preferences and account"
-msgstr "Gestisci le tue preferenze e il tuo account"
+msgstr "Hallitse asetuksiasi ja tiliäsi"
 
 #: app/templates/auth/settings.html:18 app/templates/auth/settings.html:98
 msgid "Units & Values"
-msgstr "Unità di Misura e Valori"
+msgstr "Yksiköt ja arvot"
 
 #: app/templates/auth/settings.html:26
 msgid "Account & Security"
-msgstr "Account e Sicurezza"
+msgstr "Tili ja turvallisuus"
 
 #: app/templates/auth/settings.html:34 app/templates/auth/settings.html:391
 msgid "Menu & Navigation"
-msgstr "Menu e Navigazione"
+msgstr "Valikko ja navigointi"
 
 #: app/templates/auth/settings.html:42
 msgid "Import / Export"
-msgstr "Importa / Esporta"
+msgstr "Tuonti / Vienti"
 
 #: app/templates/auth/settings.html:50
 msgid "API"
@@ -717,346 +718,346 @@ msgstr "API"
 #: app/templates/auth/settings.html:58 app/templates/auth/settings.html:324
 #: app/templates/auth/settings.html:723
 msgid "Integrations"
-msgstr "Integrazioni"
+msgstr "Integraatiot"
 
 #: app/templates/auth/settings.html:66
 msgid "Notifications"
-msgstr "Notifiche"
+msgstr "Ilmoitukset"
 
 #: app/templates/auth/settings.html:75
 msgid "Branding"
-msgstr "Marchio"
+msgstr "Brändäys"
 
 #: app/templates/auth/settings.html:84 app/templates/auth/settings.html:1588
 msgid "About"
-msgstr "Informazioni"
+msgstr "Tietoja"
 
 #: app/templates/auth/settings.html:99
 msgid "Configure how measurements and currencies are displayed"
-msgstr "Configura come vengono visualizzate le misure e le valute"
+msgstr "Määritä miten mittayksiköt ja valuutat näytetään"
 
 #: app/templates/auth/settings.html:105
 msgid "Language"
-msgstr "Lingua"
+msgstr "Kieli"
 
 #: app/templates/auth/settings.html:115
 msgid "Date Format"
-msgstr "Formato Data"
+msgstr "Päivämäärämuoto"
 
 #: app/templates/auth/settings.html:126 app/templates/trips/form.html:72
 #: app/templates/trips/report.html:102
 msgid "Distance"
-msgstr "Distanza"
+msgstr "Matka"
 
 #: app/templates/auth/settings.html:135 app/templates/fuel/quick.html:55
 msgid "Volume"
-msgstr "Volume"
+msgstr "Tilavuus"
 
 #: app/templates/auth/settings.html:145
 msgid "Fuel Consumption"
-msgstr "Consumo di Carburante"
+msgstr "Polttoaineenkulutus"
 
 #: app/templates/auth/settings.html:157
 msgid "Currency"
-msgstr "Valuta"
+msgstr "Valuutta"
 
 #: app/templates/auth/settings.html:176
 msgid "Custom"
-msgstr "Personalizzata"
+msgstr "Mukautettu"
 
 #: app/templates/auth/settings.html:179
 msgid "Custom Currency"
-msgstr "Valuta Personalizzata"
+msgstr "Mukautettu valuutta"
 
 #: app/templates/auth/settings.html:182
 msgid "e.g. ZAR, R, CHF"
-msgstr "es. ZAR, R, CHF"
+msgstr "esim. EUR, SEK, CHF"
 
 #: app/templates/auth/settings.html:184
 msgid "Enter a currency code or symbol to display"
-msgstr "Inserisci un codice o simbolo di valuta da visualizzare"
+msgstr "Syötä valuuttakoodi tai symboli näytettäväksi"
 
 #: app/templates/auth/settings.html:205
 msgid "Account Information"
-msgstr "Informazioni Account"
+msgstr "Tilin tiedot"
 
 #: app/templates/auth/settings.html:206
 msgid "Your account details"
-msgstr "I dettagli del tuo account"
+msgstr "Tilisi tiedot"
 
 #: app/templates/auth/settings.html:220
 msgid "Member Since"
-msgstr "Membro dal"
+msgstr "Jäsen alkaen"
 
 #: app/templates/auth/settings.html:227
 msgid "Save Email"
-msgstr "Salva Email"
+msgstr "Tallenna sähköposti"
 
 #: app/templates/auth/settings.html:235
 msgid "Appearance"
-msgstr "Aspetto"
+msgstr "Ulkoasu"
 
 #: app/templates/auth/settings.html:236
 msgid "Customize how the app looks"
-msgstr "Personalizza l'aspetto dell'app"
+msgstr "Mukauta sovelluksen ulkoasua"
 
 #: app/templates/auth/settings.html:242
 msgid "Dark Mode"
-msgstr "Modalità Scura"
+msgstr "Tumma tila"
 
 #: app/templates/auth/settings.html:243
 msgid "Use dark theme for the interface"
-msgstr "Usa il tema scuro per l'interfaccia"
+msgstr "Käytä tummaa teemaa käyttöliittymässä"
 
 #: app/templates/auth/settings.html:258
 msgid "User Management"
-msgstr "Gestione Utenti"
+msgstr "Käyttäjähallinta"
 
 #: app/templates/auth/settings.html:259
 msgid "Manage users and permissions"
-msgstr "Gestisci utenti e permessi"
+msgstr "Hallitse käyttäjiä ja oikeuksia"
 
 #: app/templates/auth/settings.html:265
 msgid "Users"
-msgstr "Utenti"
+msgstr "Käyttäjät"
 
 #: app/templates/auth/settings.html:266
 msgid "View and manage all users"
-msgstr "Visualizza e gestisci tutti gli utenti"
+msgstr "Näytä ja hallitse kaikkia käyttäjiä"
 
 #: app/templates/auth/settings.html:270
 msgid "Manage Users"
-msgstr "Gestisci Utenti"
+msgstr "Hallitse käyttäjiä"
 
 #: app/templates/auth/settings.html:276
 msgid "Allow Registration"
-msgstr "Consenti Registrazione"
+msgstr "Salli rekisteröinti"
 
 #: app/templates/auth/settings.html:277
 msgid "Allow new users to create accounts"
-msgstr "Consenti ai nuovi utenti di creare account"
+msgstr "Salli uusien käyttäjien luoda tilejä"
 
 #: app/templates/auth/settings.html:311
 msgid "Admin Settings"
-msgstr "Impostazioni Amministratore"
+msgstr "Ylläpitoasetukset"
 
 #: app/templates/auth/settings.html:312
 msgid "Configure system-wide settings for all users:"
-msgstr "Configura le impostazioni di sistema per tutti gli utenti:"
+msgstr "Määritä järjestelmänlaajuiset asetukset kaikille käyttäjille:"
 
 #: app/templates/auth/settings.html:316
 msgid "SMTP / Notifications"
-msgstr "SMTP / Notifiche"
+msgstr "SMTP / Ilmoitukset"
 
 #: app/templates/auth/settings.html:320
 msgid "Branding / Appearance"
-msgstr "Marchio / Aspetto"
+msgstr "Brändäys / Ulkoasu"
 
 #: app/templates/auth/settings.html:333
 msgid "Change Password"
-msgstr "Cambia Password"
+msgstr "Vaihda salasana"
 
 #: app/templates/auth/settings.html:334
 msgid "Update your password to keep your account secure"
-msgstr "Aggiorna la tua password per mantenere il tuo account sicuro"
+msgstr "Päivitä salasanasi pitääksesi tilisi turvassa"
 
 #: app/templates/auth/settings.html:356
 msgid "Update Password"
-msgstr "Aggiorna Password"
+msgstr "Päivitä salasana"
 
 #: app/templates/auth/settings.html:364
 msgid "Danger Zone"
-msgstr "Zona Pericolosa"
+msgstr "Vaaravyöhyke"
 
 #: app/templates/auth/settings.html:365
 msgid "Irreversible actions"
-msgstr "Azioni irreversibili"
+msgstr "Peruuttamattomat toiminnot"
 
 #: app/templates/auth/settings.html:371 app/templates/auth/settings.html:376
 msgid "Delete Account"
-msgstr "Elimina Account"
+msgstr "Poista tili"
 
 #: app/templates/auth/settings.html:372
 msgid "Permanently delete your account and all data"
-msgstr "Elimina definitivamente il tuo account e tutti i dati"
+msgstr "Poista tilisi ja kaikki tiedot pysyvästi"
 
 #: app/templates/auth/settings.html:392
 msgid "Customize which menu items to show and your start page"
-msgstr "Personalizza quali voci del menu mostrare e la tua pagina iniziale"
+msgstr "Mukauta näytettäviä valikkokohteita ja aloitussivua"
 
 #: app/templates/auth/settings.html:398
 msgid "Start Page"
-msgstr "Pagina Iniziale"
+msgstr "Aloitussivu"
 
 #: app/templates/auth/settings.html:399
 msgid "Which page to show when you log in"
-msgstr "Quale pagina mostrare quando accedi"
+msgstr "Mikä sivu näytetään kirjautuessasi sisään"
 
 #: app/templates/auth/settings.html:409 app/templates/auth/settings.html:464
 #: app/templates/recurring/index.html:7
 msgid "Recurring Expenses"
-msgstr "Spese Ricorrenti"
+msgstr "Toistuvat kulut"
 
 #: app/templates/auth/settings.html:420
 msgid "Quick Entry Button"
-msgstr "Pulsante Inserimento Rapido"
+msgstr "Pikakirjauspainike"
 
 #: app/templates/auth/settings.html:421
 msgid "Show a quick fuel entry button in the navigation bar for rapid logging"
-msgstr "Mostra un pulsante di rifornimento rapido nella barra di navigazione"
+msgstr "Näytä polttoaineen pikakirjauspainike navigointipalkissa"
 
 #: app/templates/auth/settings.html:432
 msgid "Show Menu Items"
-msgstr "Mostra Voci del Menu"
+msgstr "Näytä valikkokohteet"
 
 #: app/templates/auth/settings.html:433
 msgid "Choose which items appear in the navigation menu"
-msgstr "Scegli quali voci visualizzare nel menu di navigazione"
+msgstr "Valitse mitkä kohteet näkyvät navigointivalikossa"
 
 #: app/templates/auth/settings.html:493 app/templates/auth/settings.html:1293
 msgid "Save Preferences"
-msgstr "Salva Preferenze"
+msgstr "Tallenna asetukset"
 
 #: app/templates/auth/settings.html:506
 msgid "Import Data"
-msgstr "Importa Dati"
+msgstr "Tuo tiedot"
 
 #: app/templates/auth/settings.html:507
 msgid "Import your data from other fuel tracking applications"
-msgstr "Importa i tuoi dati da altre applicazioni di monitoraggio carburante"
+msgstr "Tuo tietosi muista polttoaineenseurantasovelluksista"
 
 #: app/templates/auth/settings.html:586
 msgid "Export Data"
-msgstr "Esporta Dati"
+msgstr "Vie tiedot"
 
 #: app/templates/auth/settings.html:587
 msgid "Download your data for backup or migration"
-msgstr "Scarica i tuoi dati per backup o migrazione"
+msgstr "Lataa tietosi varmuuskopiointia tai siirtoa varten"
 
 #: app/templates/auth/settings.html:593
 msgid "Export as CSV"
-msgstr "Esporta come CSV"
+msgstr "Vie CSV-muodossa"
 
 #: app/templates/auth/settings.html:594
 msgid ""
 "Download all your vehicles, fuel logs, and expenses as CSV files (ZIP "
 "archive)"
 msgstr ""
-"Scarica tutti i tuoi veicoli, registri carburante e spese come file CSV "
-"(archivio ZIP)"
+"Lataa kaikki ajoneuvosi, polttoainekirjaukset ja kulut CSV-tiedostoina "
+"(ZIP-arkisto)"
 
 #: app/templates/auth/settings.html:598
 msgid "Download CSV"
-msgstr "Scarica CSV"
+msgstr "Lataa CSV"
 
 #: app/templates/auth/settings.html:604
 msgid "Export as JSON"
-msgstr "Esporta come JSON"
+msgstr "Vie JSON-muodossa"
 
 #: app/templates/auth/settings.html:605
 msgid "Download a complete backup of your data in JSON format"
-msgstr "Scarica un backup completo dei tuoi dati in formato JSON"
+msgstr "Lataa täydellinen varmuuskopio tiedoistasi JSON-muodossa"
 
 #: app/templates/auth/settings.html:609
 msgid "Download JSON"
-msgstr "Scarica JSON"
+msgstr "Lataa JSON"
 
 #: app/templates/auth/settings.html:615
 msgid "Full Backup"
-msgstr "Backup Completo"
+msgstr "Täydellinen varmuuskopio"
 
 #: app/templates/auth/settings.html:616
 msgid ""
 "Download all data and files (images, documents, attachments) as a ZIP "
 "archive"
 msgstr ""
-"Scarica tutti i dati e i file (immagini, documenti, allegati) come archivio "
-"ZIP"
+"Lataa kaikki tiedot ja tiedostot (kuvat, asiakirjat, liitteet) "
+"ZIP-arkistona"
 
 #: app/templates/auth/settings.html:620
 msgid "Download ZIP"
-msgstr "Scarica ZIP"
+msgstr "Lataa ZIP"
 
 #: app/templates/auth/settings.html:636
 msgid "API Access"
-msgstr "Accesso API"
+msgstr "API-käyttöoikeus"
 
 #: app/templates/auth/settings.html:637
 msgid "Generate API keys to connect external applications"
-msgstr "Genera chiavi API per collegare applicazioni esterne"
+msgstr "Luo API-avaimia ulkoisten sovellusten yhdistämiseksi"
 
 #: app/templates/auth/settings.html:639
 msgid "View API Docs"
-msgstr "Visualizza Documentazione API"
+msgstr "Näytä API-dokumentaatio"
 
 #: app/templates/auth/settings.html:648
 msgid "Your API Key"
-msgstr "La Tua Chiave API"
+msgstr "API-avaimesi"
 
 #: app/templates/auth/settings.html:667 app/templates/auth/settings.html:704
 #: app/templates/auth/settings.html:858 app/templates/auth/settings.html:872
 msgid "Copy"
-msgstr "Copia"
+msgstr "Kopioi"
 
 #: app/templates/auth/settings.html:670
 msgid "Created"
-msgstr "Creata"
+msgstr "Luotu"
 
 #: app/templates/auth/settings.html:674
 msgid "Regenerate Key"
-msgstr "Rigenera Chiave"
+msgstr "Luo avain uudelleen"
 
 #: app/templates/auth/settings.html:678
 msgid "Revoke Key"
-msgstr "Revoca Chiave"
+msgstr "Peruuta avain"
 
 #: app/templates/auth/settings.html:685
 msgid "API Key"
-msgstr "Chiave API"
+msgstr "API-avain"
 
 #: app/templates/auth/settings.html:686
 msgid ""
 "Generate an API key to access May programmatically. You can use it to "
 "integrate with other applications or build your own tools."
 msgstr ""
-"Genera una chiave API per accedere a May in modo programmatico. Puoi usarla "
-"per integrare con altre applicazioni o creare i tuoi strumenti."
+"Luo API-avain käyttääksesi May-sovellusta ohjelmallisesti. Voit käyttää "
+"sitä integroidaksesi muiden sovellusten kanssa tai rakentaaksesi omia työkaluja."
 
 #: app/templates/auth/settings.html:689
 msgid "Generate API Key"
-msgstr "Genera Chiave API"
+msgstr "Luo API-avain"
 
 #: app/templates/auth/settings.html:698
 msgid "API Key Generated"
-msgstr "Chiave API Generata"
+msgstr "API-avain luotu"
 
 #: app/templates/auth/settings.html:699
 msgid "Copy your API key now. For security, it won't be shown in full again."
-msgstr "Copia la tua chiave API ora. Per sicurezza, non verrà mostrata di nuovo per intero."
+msgstr "Kopioi API-avaimesi nyt. Turvallisuussyistä sitä ei näytetä kokonaan uudelleen."
 
 #: app/templates/auth/settings.html:710
 msgid "Done"
-msgstr "Fatto"
+msgstr "Valmis"
 
 #: app/templates/auth/settings.html:724
 msgid "Connect May with external services and applications"
-msgstr "Collega May con servizi e applicazioni esterne"
+msgstr "Yhdistä May ulkoisiin palveluihin ja sovelluksiin"
 
 #: app/templates/auth/settings.html:738
 msgid "Calendar"
-msgstr "Calendario"
+msgstr "Kalenteri"
 
 #: app/templates/auth/settings.html:741
 msgid "Subscribe to reminders in your calendar app"
-msgstr "Iscriviti ai promemoria nella tua app calendario"
+msgstr "Tilaa muistutukset kalenterisovellukseesi"
 
 #: app/templates/auth/settings.html:743 app/templates/auth/settings.html:764
 msgid "Ready"
-msgstr "Pronto"
+msgstr "Valmis"
 
 #: app/templates/auth/settings.html:745 app/templates/auth/settings.html:766
 msgid "Requires API key"
-msgstr "Richiede chiave API"
+msgstr "Vaatii API-avaimen"
 
 #: app/templates/auth/settings.html:759 app/templates/auth/settings.html:924
 msgid "Home Assistant"
@@ -1064,7 +1065,7 @@ msgstr "Home Assistant"
 
 #: app/templates/auth/settings.html:762 app/templates/auth/settings.html:925
 msgid "Create sensors and automations for your vehicles"
-msgstr "Crea sensori e automazioni per i tuoi veicoli"
+msgstr "Luo antureita ja automaatioita ajoneuvoillesi"
 
 #: app/templates/auth/settings.html:781
 msgid "DVLA"
@@ -1073,19 +1074,19 @@ msgstr "DVLA"
 #: app/templates/auth/settings.html:782 app/templates/auth/settings.html:804
 #: app/templates/auth/settings.html:1309
 msgid "Admin"
-msgstr "Amministratore"
+msgstr "Ylläpitäjä"
 
 #: app/templates/auth/settings.html:785 app/templates/auth/settings.html:1020
 msgid "Look up UK vehicle MOT and tax status"
-msgstr "Cerca stato MOT e bollo dei veicoli UK"
+msgstr "Hae Britannian ajoneuvojen MOT- ja verotiedot"
 
 #: app/templates/auth/settings.html:787 app/templates/auth/settings.html:809
 msgid "Configured"
-msgstr "Configurato"
+msgstr "Määritetty"
 
 #: app/templates/auth/settings.html:789 app/templates/auth/settings.html:811
 msgid "Not configured"
-msgstr "Non configurato"
+msgstr "Ei määritetty"
 
 #: app/templates/auth/settings.html:803
 msgid "Tessie"
@@ -1093,128 +1094,128 @@ msgstr "Tessie"
 
 #: app/templates/auth/settings.html:807
 msgid "Sync Tesla vehicle odometer and battery"
-msgstr "Sincronizza contachilometri e batteria del veicolo Tesla"
+msgstr "Synkronoi Tesla-ajoneuvon mittarilukema ja akku"
 
 #: app/templates/auth/settings.html:825 app/templates/auth/settings.html:911
 #: app/templates/auth/settings.html:1006 app/templates/auth/settings.html:1077
 msgid "Back to Integrations"
-msgstr "Torna alle Integrazioni"
+msgstr "Takaisin integraatioihin"
 
 #: app/templates/auth/settings.html:838
 msgid "Calendar Subscription"
-msgstr "Abbonamento Calendario"
+msgstr "Kalenteritilaus"
 
 #: app/templates/auth/settings.html:839
 msgid "Subscribe to your reminders in any calendar app"
-msgstr "Iscriviti ai tuoi promemoria in qualsiasi app calendario"
+msgstr "Tilaa muistutuksesi missä tahansa kalenterisovelluksessa"
 
 #: app/templates/auth/settings.html:847
 msgid ""
 "Add this calendar to Apple Calendar, Google Calendar, Outlook, or any "
 "other calendar app that supports iCal subscriptions."
 msgstr ""
-"Aggiungi questo calendario ad Apple Calendar, Google Calendar, Outlook o "
-"qualsiasi altra app calendario che supporta gli abbonamenti iCal."
+"Lisää tämä kalenteri Apple Calendariin, Google Calendariin, Outlookiin tai "
+"mihin tahansa muuhun kalenterisovellukseen, joka tukee iCal-tilauksia."
 
 #: app/templates/auth/settings.html:850
 msgid "Webcal URL"
-msgstr "URL Webcal"
+msgstr "Webcal-URL"
 
 #: app/templates/auth/settings.html:851
 msgid "Use this URL for most calendar apps (Apple Calendar, Outlook, etc.)"
-msgstr "Usa questo URL per la maggior parte delle app calendario (Apple Calendar, Outlook, ecc.)"
+msgstr "Käytä tätä URL-osoitetta useimmissa kalenterisovelluksissa (Apple Calendar, Outlook jne.)"
 
 #: app/templates/auth/settings.html:864
 msgid "HTTPS URL"
-msgstr "URL HTTPS"
+msgstr "HTTPS-URL"
 
 #: app/templates/auth/settings.html:865
 msgid "Use this URL for Google Calendar"
-msgstr "Usa questo URL per Google Calendar"
+msgstr "Käytä tätä URL-osoitetta Google Calendarissa"
 
 #: app/templates/auth/settings.html:878
 msgid "What's included in the calendar?"
-msgstr "Cosa è incluso nel calendario?"
+msgstr "Mitä kalenteri sisältää?"
 
 #: app/templates/auth/settings.html:880
 msgid "Maintenance schedules"
-msgstr "Programmi di manutenzione"
+msgstr "Huoltoaikataulut"
 
 #: app/templates/auth/settings.html:881
 msgid "Recurring expense due dates"
-msgstr "Scadenze delle spese ricorrenti"
+msgstr "Toistuvien kulujen eräpäivät"
 
 #: app/templates/auth/settings.html:882
 msgid "Document expiry dates"
-msgstr "Date di scadenza dei documenti"
+msgstr "Asiakirjojen vanhenemispäivät"
 
 #: app/templates/auth/settings.html:883
 msgid "Custom reminders"
-msgstr "Promemoria personalizzati"
+msgstr "Mukautetut muistutukset"
 
 #: app/templates/auth/settings.html:892 app/templates/auth/settings.html:986
 msgid "API Key Required"
-msgstr "Chiave API Richiesta"
+msgstr "API-avain vaaditaan"
 
 #: app/templates/auth/settings.html:893
 msgid "Generate an API key in the API section to enable calendar integration."
-msgstr "Genera una chiave API nella sezione API per abilitare l'integrazione calendario."
+msgstr "Luo API-avain API-osiossa ottaaksesi kalenteriintegraation käyttöön."
 
 #: app/templates/auth/settings.html:896 app/templates/auth/settings.html:990
 msgid "Go to API Settings"
-msgstr "Vai alle Impostazioni API"
+msgstr "Siirry API-asetuksiin"
 
 #: app/templates/auth/settings.html:933
 msgid ""
 "Add the following configuration to your Home Assistant configuration.yaml"
 " to create vehicle sensors."
 msgstr ""
-"Aggiungi la seguente configurazione al tuo configuration.yaml di Home "
-"Assistant per creare i sensori del veicolo."
+"Lisää seuraava määritys Home Assistantin configuration.yaml-tiedostoon "
+"luodaksesi ajoneuvoanturit."
 
 #: app/templates/auth/settings.html:936
 msgid "REST Sensor Configuration"
-msgstr "Configurazione Sensore REST"
+msgstr "REST-anturimääritys"
 
 #: app/templates/auth/settings.html:952
 msgid "Copy configuration"
-msgstr "Copia configurazione"
+msgstr "Kopioi määritys"
 
 #: app/templates/auth/settings.html:956
 msgid "Available API Endpoints"
-msgstr "Endpoint API Disponibili"
+msgstr "Käytettävissä olevat API-päätepisteet"
 
 #: app/templates/auth/settings.html:960
 msgid "API health check"
-msgstr "Controllo stato API"
+msgstr "API-terveystarkistus"
 
 #: app/templates/auth/settings.html:964
 msgid "List all vehicles"
-msgstr "Elenca tutti i veicoli"
+msgstr "Listaa kaikki ajoneuvot"
 
 #: app/templates/auth/settings.html:968
 msgid "Vehicle statistics"
-msgstr "Statistiche del veicolo"
+msgstr "Ajoneuvotilastot"
 
 #: app/templates/auth/settings.html:972
 msgid "Upcoming reminders"
-msgstr "Promemoria in arrivo"
+msgstr "Tulevat muistutukset"
 
 #: app/templates/auth/settings.html:976
 msgid "Combined summary"
-msgstr "Riepilogo combinato"
+msgstr "Yhdistetty yhteenveto"
 
 #: app/templates/auth/settings.html:987
 msgid ""
 "Generate an API key in the API section to enable Home Assistant "
 "integration."
 msgstr ""
-"Genera una chiave API nella sezione API per abilitare l'integrazione con "
-"Home Assistant."
+"Luo API-avain API-osiossa ottaaksesi Home Assistant "
+"-integraation käyttöön."
 
 #: app/templates/auth/settings.html:1019
 msgid "DVLA Vehicle Lookup"
-msgstr "Ricerca Veicolo DVLA"
+msgstr "DVLA-ajoneuvohaku"
 
 #: app/templates/auth/settings.html:1028
 msgid ""
@@ -1222,55 +1223,54 @@ msgid ""
 "status, and vehicle details for UK registered vehicles. This enables "
 "automatic population of vehicle information when adding new vehicles."
 msgstr ""
-"Il servizio di interrogazione veicoli DVLA ti consente di verificare lo "
-"stato MOT, lo stato del bollo e i dettagli del veicolo per i veicoli "
-"immatricolati nel Regno Unito. Questo consente la compilazione automatica "
-"delle informazioni del veicolo quando ne aggiungi uno nuovo."
+"DVLA Vehicle Enquiry Service mahdollistaa MOT-tilan, verotilan ja "
+"ajoneuvotietojen haun Britanniassa rekisteröidyille ajoneuvoille. Tämä "
+"mahdollistaa ajoneuvotietojen automaattisen täytön uusia ajoneuvoja lisättäessä."
 
 #: app/templates/auth/settings.html:1032
 msgid "How to get an API key"
-msgstr "Come ottenere una chiave API"
+msgstr "Kuinka hankkia API-avain"
 
 #: app/templates/auth/settings.html:1034
 msgid "Visit the"
-msgstr "Visita il"
+msgstr "Käy osoitteessa"
 
 #: app/templates/auth/settings.html:1034
 msgid "DVLA Developer Portal"
-msgstr "Portale Sviluppatori DVLA"
+msgstr "DVLA Developer Portal"
 
 #: app/templates/auth/settings.html:1035
 msgid "Register for a free account"
-msgstr "Registrati per un account gratuito"
+msgstr "Rekisteröi ilmainen tili"
 
 #: app/templates/auth/settings.html:1036
 msgid "Subscribe to the Vehicle Enquiry Service API"
-msgstr "Iscriviti all'API del Servizio di Interrogazione Veicoli"
+msgstr "Tilaa Vehicle Enquiry Service API"
 
 #: app/templates/auth/settings.html:1037
 msgid "Copy your API key and paste it below"
-msgstr "Copia la tua chiave API e incollala qui sotto"
+msgstr "Kopioi API-avaimesi ja liitä se alle"
 
 #: app/templates/auth/settings.html:1044
 msgid "DVLA API Key"
-msgstr "Chiave API DVLA"
+msgstr "DVLA API -avain"
 
 #: app/templates/auth/settings.html:1052 app/templates/auth/settings.html:1132
 #: app/templates/auth/settings.html:1394
 msgid "Test"
-msgstr "Test"
+msgstr "Testaa"
 
 #: app/templates/auth/settings.html:1061
 msgid "Save DVLA Settings"
-msgstr "Salva Impostazioni DVLA"
+msgstr "Tallenna DVLA-asetukset"
 
 #: app/templates/auth/settings.html:1090
 msgid "Tessie Integration"
-msgstr "Integrazione Tessie"
+msgstr "Tessie-integraatio"
 
 #: app/templates/auth/settings.html:1091
 msgid "Sync Tesla vehicle data via Tessie"
-msgstr "Sincronizza i dati del veicolo Tesla tramite Tessie"
+msgstr "Synkronoi Tesla-ajoneuvotiedot Tessien kautta"
 
 #: app/templates/auth/settings.html:1099
 msgid ""
@@ -1278,118 +1278,117 @@ msgid ""
 " and range from your Tesla vehicles. When enabled for a vehicle, odometer"
 " tracking becomes automatic."
 msgstr ""
-"Tessie ti consente di sincronizzare automaticamente le letture del "
-"contachilometri, il livello della batteria e l'autonomia dei tuoi veicoli "
-"Tesla. Quando abilitato per un veicolo, il monitoraggio del contachilometri "
-"diventa automatico."
+"Tessie mahdollistaa mittarilukemien, akun varaustason ja toimintasäteen "
+"automaattisen synkronoinnin Tesla-ajoneuvoistasi. Kun se on käytössä "
+"ajoneuvolle, mittarilukeman seuranta muuttuu automaattiseksi."
 
 #: app/templates/auth/settings.html:1103
 msgid "Important"
-msgstr "Importante"
+msgstr "Tärkeää"
 
 #: app/templates/auth/settings.html:1105
 msgid "Tessie subscription required ($6.99/month per vehicle)"
-msgstr "Abbonamento Tessie richiesto ($6,99/mese per veicolo)"
+msgstr "Tessie-tilaus vaaditaan (6,99 $/kk per ajoneuvo)"
 
 #: app/templates/auth/settings.html:1106
 msgid "Your Tesla must be connected to Tessie"
-msgstr "La tua Tesla deve essere collegata a Tessie"
+msgstr "Teslasi täytyy olla yhdistettynä Tessieen"
 
 #: app/templates/auth/settings.html:1107
 msgid "When enabled, manual odometer entry is disabled"
-msgstr "Quando abilitato, l'inserimento manuale del contachilometri è disabilitato"
+msgstr "Kun käytössä, manuaalinen mittarilukeman syöttö on poistettu käytöstä"
 
 #: app/templates/auth/settings.html:1112
 msgid "How to get an API token"
-msgstr "Come ottenere un token API"
+msgstr "Kuinka hankkia API-tunnus"
 
 #: app/templates/auth/settings.html:1114
 msgid "Sign up at"
-msgstr "Registrati su"
+msgstr "Rekisteröidy osoitteessa"
 
 #: app/templates/auth/settings.html:1115
 msgid "Connect your Tesla account"
-msgstr "Collega il tuo account Tesla"
+msgstr "Yhdistä Tesla-tilisi"
 
 #: app/templates/auth/settings.html:1116
 msgid "Go to Settings and create an API token"
-msgstr "Vai nelle Impostazioni e crea un token API"
+msgstr "Siirry Asetuksiin ja luo API-tunnus"
 
 #: app/templates/auth/settings.html:1117
 msgid "Paste the token below"
-msgstr "Incolla il token qui sotto"
+msgstr "Liitä tunnus alle"
 
 #: app/templates/auth/settings.html:1124
 msgid "Tessie API Token"
-msgstr "Token API Tessie"
+msgstr "Tessie API -tunnus"
 
 #: app/templates/auth/settings.html:1141
 msgid "Save Tessie Settings"
-msgstr "Salva Impostazioni Tessie"
+msgstr "Tallenna Tessie-asetukset"
 
 #: app/templates/auth/settings.html:1160
 msgid "Notification Preferences"
-msgstr "Preferenze di Notifica"
+msgstr "Ilmoitusasetukset"
 
 #: app/templates/auth/settings.html:1161
 msgid "Configure how you receive reminders about your vehicles"
-msgstr "Configura come ricevere i promemoria sui tuoi veicoli"
+msgstr "Määritä miten saat muistutuksia ajoneuvoistasi"
 
 #: app/templates/auth/settings.html:1168
 msgid "Enable Reminders"
-msgstr "Abilita Promemoria"
+msgstr "Ota muistutukset käyttöön"
 
 #: app/templates/auth/settings.html:1169
 msgid "Receive notifications for upcoming reminders"
-msgstr "Ricevi notifiche per i promemoria in arrivo"
+msgstr "Vastaanota ilmoituksia tulevista muistutuksista"
 
 #: app/templates/auth/settings.html:1181
 msgid "Default Reminder Lead Time"
-msgstr "Anticipo Predefinito Promemoria"
+msgstr "Oletusmuistutuksen ennakkoaika"
 
 #: app/templates/auth/settings.html:1182
 msgid "How many days before the due date should you be notified?"
-msgstr "Quanti giorni prima della scadenza vuoi essere avvisato?"
+msgstr "Kuinka monta päivää ennen eräpäivää sinulle ilmoitetaan?"
 
 #: app/templates/auth/settings.html:1185
 msgid "On the due date"
-msgstr "Il giorno della scadenza"
+msgstr "Eräpäivänä"
 
 #: app/templates/auth/settings.html:1186
 msgid "1 day before"
-msgstr "1 giorno prima"
+msgstr "1 päivä ennen"
 
 #: app/templates/auth/settings.html:1187
 msgid "3 days before"
-msgstr "3 giorni prima"
+msgstr "3 päivää ennen"
 
 #: app/templates/auth/settings.html:1188
 msgid "1 week before"
-msgstr "1 settimana prima"
+msgstr "1 viikko ennen"
 
 #: app/templates/auth/settings.html:1189
 msgid "2 weeks before"
-msgstr "2 settimane prima"
+msgstr "2 viikkoa ennen"
 
 #: app/templates/auth/settings.html:1190
 msgid "1 month before"
-msgstr "1 mese prima"
+msgstr "1 kuukausi ennen"
 
 #: app/templates/auth/settings.html:1196
 msgid "Notification Method"
-msgstr "Metodo di Notifica"
+msgstr "Ilmoitustapa"
 
 #: app/templates/auth/settings.html:1197
 msgid "Choose how you want to receive notifications"
-msgstr "Scegli come vuoi ricevere le notifiche"
+msgstr "Valitse miten haluat vastaanottaa ilmoituksia"
 
 #: app/templates/auth/settings.html:1202 app/templates/auth/settings.html:1206
 msgid "not configured"
-msgstr "non configurato"
+msgstr "ei määritetty"
 
 #: app/templates/auth/settings.html:1204
 msgid "ntfy (Push Notifications)"
-msgstr "ntfy (Notifiche Push)"
+msgstr "ntfy (push-ilmoitukset)"
 
 #: app/templates/auth/settings.html:1206 app/templates/auth/settings.html:1407
 msgid "Pushover"
@@ -1401,112 +1400,112 @@ msgstr "Webhook (HTTP POST)"
 
 #: app/templates/auth/settings.html:1218
 msgid "Notifications will be sent to"
-msgstr "Le notifiche saranno inviate a"
+msgstr "Ilmoitukset lähetetään osoitteeseen"
 
 #: app/templates/auth/settings.html:1225
 msgid "Email not configured. Ask an administrator to configure SMTP settings."
-msgstr "Email non configurata. Chiedi a un amministratore di configurare le impostazioni SMTP."
+msgstr "Sähköposti ei ole määritetty. Pyydä ylläpitäjää määrittämään SMTP-asetukset."
 
 #: app/templates/auth/settings.html:1234
 msgid "is a simple pub-sub notification service. Enter your topic below."
-msgstr "è un semplice servizio di notifiche pub-sub. Inserisci il tuo topic qui sotto."
+msgstr "on yksinkertainen pub-sub-ilmoituspalvelu. Syötä aiheesi alle."
 
 #: app/templates/auth/settings.html:1237
 msgid "ntfy Topic or Server URL"
-msgstr "Topic ntfy o URL del Server"
+msgstr "ntfy-aihe tai palvelimen URL"
 
 #: app/templates/auth/settings.html:1242
 msgid ""
 "For ntfy.sh, just enter your topic name. For self-hosted, enter the full "
 "URL."
 msgstr ""
-"Per ntfy.sh, inserisci solo il nome del topic. Per il self-hosted, inserisci "
-"l'URL completo."
+"ntfy.sh-palvelulle syötä vain aiheen nimi. Itse hostetulle palvelulle "
+"syötä koko URL-osoite."
 
 #: app/templates/auth/settings.html:1250
 msgid "sends notifications to your devices. Enter your User Key below."
-msgstr "invia notifiche ai tuoi dispositivi. Inserisci la tua User Key qui sotto."
+msgstr "lähettää ilmoituksia laitteillesi. Syötä käyttäjäavaimesi alle."
 
 #: app/templates/auth/settings.html:1253
 msgid "Pushover User Key"
-msgstr "User Key Pushover"
+msgstr "Pushover-käyttäjäavain"
 
 #: app/templates/auth/settings.html:1258
 msgid "Find your User Key on your Pushover dashboard."
-msgstr "Trova la tua User Key nella dashboard di Pushover."
+msgstr "Löydät käyttäjäavaimesi Pushover-kojelaudaltasi."
 
 #: app/templates/auth/settings.html:1265
 msgid "Notifications will be sent as JSON POST requests to your webhook URL."
-msgstr "Le notifiche saranno inviate come richieste JSON POST al tuo URL webhook."
+msgstr "Ilmoitukset lähetetään JSON POST -pyyntöinä webhook-URL-osoitteeseesi."
 
 #: app/templates/auth/settings.html:1268
 msgid "Webhook URL"
-msgstr "URL Webhook"
+msgstr "Webhook-URL"
 
 #: app/templates/auth/settings.html:1273
 #, python-brace-format
 msgid "JSON payload: {title, message, reminder_id, vehicle_name, due_date}"
-msgstr "Payload JSON: {title, message, reminder_id, vehicle_name, due_date}"
+msgstr "JSON-sisältö: {title, message, reminder_id, vehicle_name, due_date}"
 
 #: app/templates/auth/settings.html:1284
 msgid "Send Test Notification"
-msgstr "Invia Notifica di Test"
+msgstr "Lähetä testi-ilmoitus"
 
 #: app/templates/auth/settings.html:1308
 msgid "Notification Services"
-msgstr "Servizi di Notifica"
+msgstr "Ilmoituspalvelut"
 
 #: app/templates/auth/settings.html:1311
 msgid "Configure notification services available to all users"
-msgstr "Configura i servizi di notifica disponibili per tutti gli utenti"
+msgstr "Määritä kaikille käyttäjille saatavilla olevat ilmoituspalvelut"
 
 #: app/templates/auth/settings.html:1324
 msgid "Email (SMTP)"
-msgstr "Email (SMTP)"
+msgstr "Sähköposti (SMTP)"
 
 #: app/templates/auth/settings.html:1336
 msgid "SMTP Host"
-msgstr "Host SMTP"
+msgstr "SMTP-palvelin"
 
 #: app/templates/auth/settings.html:1343
 msgid "SMTP Port"
-msgstr "Porta SMTP"
+msgstr "SMTP-portti"
 
 #: app/templates/auth/settings.html:1350
 msgid "SMTP Username"
-msgstr "Nome Utente SMTP"
+msgstr "SMTP-käyttäjänimi"
 
 #: app/templates/auth/settings.html:1357
 msgid "SMTP Password"
-msgstr "Password SMTP"
+msgstr "SMTP-salasana"
 
 #: app/templates/auth/settings.html:1364
 msgid "Sender Email"
-msgstr "Email Mittente"
+msgstr "Lähettäjän sähköposti"
 
 #: app/templates/auth/settings.html:1371
 msgid "Sender Name"
-msgstr "Nome Mittente"
+msgstr "Lähettäjän nimi"
 
 #: app/templates/auth/settings.html:1384
 msgid "Use TLS"
-msgstr "Usa TLS"
+msgstr "Käytä TLS:ää"
 
 #: app/templates/auth/settings.html:1390
 msgid "Use SSL"
-msgstr "Usa SSL"
+msgstr "Käytä SSL:ää"
 
 #: app/templates/auth/settings.html:1418
 msgid "sends push notifications to iOS and Android devices."
-msgstr "invia notifiche push ai dispositivi iOS e Android."
+msgstr "lähettää push-ilmoituksia iOS- ja Android-laitteille."
 
 #: app/templates/auth/settings.html:1421
 msgid "Application Token"
-msgstr "Token Applicazione"
+msgstr "Sovellustunnus"
 
 #: app/templates/auth/settings.html:1426
 msgid "Create an application at pushover.net to get your token"
-msgstr "Crea un'applicazione su pushover.net per ottenere il tuo token"
+msgstr "Luo sovellus osoitteessa pushover.net saadaksesi tunnuksesi"
 
 #: app/templates/auth/settings.html:1436
 msgid "ntfy"
@@ -1514,16 +1513,15 @@ msgstr "ntfy"
 
 #: app/templates/auth/settings.html:1437 app/templates/auth/settings.html:1452
 msgid "Always available"
-msgstr "Sempre disponibile"
+msgstr "Aina saatavilla"
 
 #: app/templates/auth/settings.html:1441
 msgid ""
 "is a free, open-source notification service that requires no admin "
 "configuration. Users can set their own topic."
 msgstr ""
-"è un servizio di notifiche gratuito e open-source che non richiede "
-"configurazione da parte dell'amministratore. Gli utenti possono impostare il "
-"proprio topic."
+"on ilmainen, avoimen lähdekoodin ilmoituspalvelu, joka ei vaadi "
+"ylläpitäjän määrityksiä. Käyttäjät voivat asettaa oman aiheensa."
 
 #: app/templates/auth/settings.html:1451
 msgid "Webhook"
@@ -1534,44 +1532,44 @@ msgid ""
 "Webhooks allow users to integrate with any service that accepts HTTP POST"
 " requests (Home Assistant, Discord, Slack, etc.)"
 msgstr ""
-"I webhook consentono agli utenti di integrarsi con qualsiasi servizio che "
-"accetta richieste HTTP POST (Home Assistant, Discord, Slack, ecc.)"
+"Webhookit mahdollistavat integroinnin mihin tahansa palveluun, joka "
+"hyväksyy HTTP POST -pyyntöjä (Home Assistant, Discord, Slack jne.)"
 
 #: app/templates/auth/settings.html:1462
 msgid "Save Notification Settings"
-msgstr "Salva Impostazioni di Notifica"
+msgstr "Tallenna ilmoitusasetukset"
 
 #: app/templates/auth/settings.html:1473
 msgid "Manage Reminders"
-msgstr "Gestisci Promemoria"
+msgstr "Hallitse muistutuksia"
 
 #: app/templates/auth/settings.html:1474
 msgid "View and manage your upcoming reminders"
-msgstr "Visualizza e gestisci i tuoi promemoria in arrivo"
+msgstr "Näytä ja hallitse tulevia muistutuksiasi"
 
 #: app/templates/auth/settings.html:1479
 msgid "View all reminders"
-msgstr "Visualizza tutti i promemoria"
+msgstr "Näytä kaikki muistutukset"
 
 #: app/templates/auth/settings.html:1496
 msgid "Application Branding"
-msgstr "Marchio dell'Applicazione"
+msgstr "Sovelluksen brändäys"
 
 #: app/templates/auth/settings.html:1497
 msgid "Customize how May appears to all users"
-msgstr "Personalizza come May appare a tutti gli utenti"
+msgstr "Mukauta miten May näkyy kaikille käyttäjille"
 
 #: app/templates/auth/settings.html:1503
 msgid "Application Name"
-msgstr "Nome dell'Applicazione"
+msgstr "Sovelluksen nimi"
 
 #: app/templates/auth/settings.html:1511
 msgid "Tagline"
-msgstr "Slogan"
+msgstr "Iskulause"
 
 #: app/templates/auth/settings.html:1519
 msgid "Primary Color"
-msgstr "Colore Primario"
+msgstr "Pääväri"
 
 #: app/templates/auth/settings.html:1531
 msgid "Logo"
@@ -1579,119 +1577,119 @@ msgstr "Logo"
 
 #: app/templates/auth/settings.html:1535 app/templates/auth/settings.html:1536
 msgid "Current logo"
-msgstr "Logo attuale"
+msgstr "Nykyinen logo"
 
 #: app/templates/auth/settings.html:1548
 msgid "Remove Logo"
-msgstr "Rimuovi Logo"
+msgstr "Poista logo"
 
 #: app/templates/auth/settings.html:1553
 msgid "Are you sure you want to remove the logo?"
-msgstr "Sei sicuro di voler rimuovere il logo?"
+msgstr "Haluatko varmasti poistaa logon?"
 
 #: app/templates/auth/settings.html:1576
 msgid "Save Branding"
-msgstr "Salva Marchio"
+msgstr "Tallenna brändäys"
 
 #: app/templates/auth/settings.html:1589
 msgid "Version information and updates"
-msgstr "Informazioni sulla versione e aggiornamenti"
+msgstr "Versiotiedot ja päivitykset"
 
 #: app/templates/auth/settings.html:1596
 msgid "Current Version"
-msgstr "Versione Attuale"
+msgstr "Nykyinen versio"
 
 #: app/templates/auth/settings.html:1619
 msgid "Check for Updates"
-msgstr "Controlla Aggiornamenti"
+msgstr "Tarkista päivitykset"
 
 #: app/templates/auth/settings.html:1620
 msgid "Click to check for newer versions"
-msgstr "Clicca per verificare la disponibilità di nuove versioni"
+msgstr "Napsauta tarkistaaksesi uudemmat versiot"
 
 #: app/templates/auth/settings.html:1627
 msgid "Check Now"
-msgstr "Controlla Ora"
+msgstr "Tarkista nyt"
 
 #: app/templates/auth/settings.html:1638
 msgid "Update Available"
-msgstr "Aggiornamento Disponibile"
+msgstr "Päivitys saatavilla"
 
 #: app/templates/auth/settings.html:1640
 msgid "Version"
-msgstr "Versione"
+msgstr "Versio"
 
 #: app/templates/auth/settings.html:1640
 msgid "is available"
-msgstr "è disponibile"
+msgstr "on saatavilla"
 
 #: app/templates/auth/settings.html:1644
 msgid "View Release Notes"
-msgstr "Visualizza Note di Rilascio"
+msgstr "Näytä julkaisutiedot"
 
 #: app/templates/auth/settings.html:1651
 msgid "To update (Docker):"
-msgstr "Per aggiornare (Docker):"
+msgstr "Päivittäminen (Docker):"
 
 #: app/templates/auth/settings.html:1654
 msgid "Or use Watchtower for automatic updates."
-msgstr "Oppure usa Watchtower per aggiornamenti automatici."
+msgstr "Tai käytä Watchtoweria automaattisiin päivityksiin."
 
 #: app/templates/auth/settings.html:1666
 msgid "You are running the latest version"
-msgstr "Stai utilizzando l'ultima versione"
+msgstr "Käytössäsi on uusin versio"
 
 #: app/templates/auth/settings.html:1673
 msgid "Resources"
-msgstr "Risorse"
+msgstr "Resurssit"
 
 #: app/templates/auth/settings.html:1680
 msgid "Source Code"
-msgstr "Codice Sorgente"
+msgstr "Lähdekoodi"
 
 #: app/templates/auth/settings.html:1687
 msgid "Report an Issue"
-msgstr "Segnala un Problema"
+msgstr "Ilmoita ongelmasta"
 
 #: app/templates/auth/settings.html:1694
 msgid "All Releases"
-msgstr "Tutte le Versioni"
+msgstr "Kaikki julkaisut"
 
 #: app/templates/auth/settings.html:1701
 msgid "Documentation"
-msgstr "Documentazione"
+msgstr "Dokumentaatio"
 
 #: app/templates/auth/settings.html:2106
 msgid "Checking..."
-msgstr "Verifica in corso..."
+msgstr "Tarkistetaan..."
 
 #: app/templates/auth/settings.html:2118
 msgid "A newer version is available"
-msgstr "È disponibile una versione più recente"
+msgstr "Uudempi versio on saatavilla"
 
 #: app/templates/auth/settings.html:2123
 msgid "Last checked just now"
-msgstr "Ultimo controllo appena effettuato"
+msgstr "Viimeksi tarkistettu juuri nyt"
 
 #: app/templates/auth/settings.html:2127
 msgid "Could not check for updates"
-msgstr "Impossibile verificare gli aggiornamenti"
+msgstr "Päivitysten tarkistus epäonnistui"
 
 #: app/templates/auth/settings.html:2132
 msgid "Error checking for updates"
-msgstr "Errore durante la verifica degli aggiornamenti"
+msgstr "Virhe päivitysten tarkistuksessa"
 
 #: app/templates/charging/form.html:7
 msgid "Back to charging sessions"
-msgstr "Torna alle sessioni di ricarica"
+msgstr "Takaisin latausistuntoihin"
 
 #: app/templates/charging/form.html:8
 msgid "Edit Charging Session"
-msgstr "Modifica Sessione di Ricarica"
+msgstr "Muokkaa latausistuntoa"
 
 #: app/templates/charging/form.html:8 app/templates/charging/form.html:158
 msgid "Log Charging Session"
-msgstr "Registra Sessione di Ricarica"
+msgstr "Kirjaa latausistunto"
 
 #: app/templates/charging/form.html:16 app/templates/charging/index.html:36
 #: app/templates/documents/form.html:21 app/templates/fuel/quick.html:15
@@ -1699,83 +1697,83 @@ msgstr "Registra Sessione di Ricarica"
 #: app/templates/trips/form.html:16 app/templates/trips/index.html:44
 #: app/templates/trips/report.html:99
 msgid "Vehicle"
-msgstr "Veicolo"
+msgstr "Ajoneuvo"
 
 #: app/templates/charging/form.html:32 app/templates/maintenance/form.html:100
 #: app/templates/trips/form.html:42 app/templates/trips/report.html:98
 msgid "Date"
-msgstr "Data"
+msgstr "Päivämäärä"
 
 #: app/templates/charging/form.html:39
 msgid "Charger Type"
-msgstr "Tipo di Caricatore"
+msgstr "Laturin tyyppi"
 
 #: app/templates/charging/form.html:42
 msgid "Select type..."
-msgstr "Seleziona tipo..."
+msgstr "Valitse tyyppi..."
 
 #: app/templates/charging/form.html:50
 msgid "Start Time"
-msgstr "Ora di Inizio"
+msgstr "Aloitusaika"
 
 #: app/templates/charging/form.html:57
 msgid "End Time"
-msgstr "Ora di Fine"
+msgstr "Lopetusaika"
 
 #: app/templates/charging/form.html:64
 msgid "Location"
-msgstr "Posizione"
+msgstr "Sijainti"
 
 #: app/templates/charging/form.html:67
 msgid "e.g., Home, Walmart, ChargePoint Station"
-msgstr "es., Casa, Centro Commerciale, Stazione ChargePoint"
+msgstr "esim. Koti, K-Market, ChargePoint-asema"
 
 #: app/templates/charging/form.html:72
 msgid "Network"
-msgstr "Rete"
+msgstr "Verkko"
 
 #: app/templates/charging/form.html:75
 msgid "e.g., ChargePoint, Electrify America"
-msgstr "es., ChargePoint, Electrify America"
+msgstr "esim. ChargePoint, Virta"
 
 #: app/templates/charging/form.html:81 app/templates/fuel/quick.html:33
 #: app/templates/maintenance/form.html:106 app/templates/vehicles/view.html:284
 msgid "Odometer"
-msgstr "Contachilometri"
+msgstr "Mittarilukema"
 
 #: app/templates/charging/form.html:99
 msgid "Energy & State of Charge"
-msgstr "Energia e Stato di Carica"
+msgstr "Energia ja varaustaso"
 
 #: app/templates/charging/form.html:102
 msgid "Energy Added"
-msgstr "Energia Aggiunta"
+msgstr "Lisätty energia"
 
 #: app/templates/charging/form.html:109
 msgid "Start SOC"
-msgstr "SOC Iniziale"
+msgstr "Alku-SOC"
 
 #: app/templates/charging/form.html:115
 msgid "End SOC"
-msgstr "SOC Finale"
+msgstr "Loppu-SOC"
 
 #: app/templates/charging/form.html:125
 msgid "Cost"
-msgstr "Costo"
+msgstr "Hinta"
 
 #: app/templates/charging/form.html:128
 msgid "Cost per kWh"
-msgstr "Costo per kWh"
+msgstr "Hinta per kWh"
 
 #: app/templates/charging/form.html:135 app/templates/charging/index.html:26
 #: app/templates/fuel/quick.html:63
 msgid "Total Cost"
-msgstr "Costo Totale"
+msgstr "Kokonaishinta"
 
 #: app/templates/charging/form.html:144 app/templates/stations/form.html:74
 #: app/templates/trips/form.html:100
 msgid "Notes"
-msgstr "Note"
+msgstr "Muistiinpanot"
 
 #: app/templates/charging/form.html:154 app/templates/documents/form.html:122
 #: app/templates/maintenance/form.html:156
@@ -1783,827 +1781,827 @@ msgstr "Note"
 #: app/templates/recurring/form.html:128 app/templates/stations/form.html:101
 #: app/templates/trips/form.html:110
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Peruuta"
 
 #: app/templates/charging/index.html:7
 msgid "Charging Sessions"
-msgstr "Sessioni di Ricarica"
+msgstr "Latausistunnot"
 
 #: app/templates/charging/index.html:8
 msgid "Track your EV charging sessions"
-msgstr "Monitora le tue sessioni di ricarica EV"
+msgstr "Seuraa sähköautosi latausistuntoja"
 
 #: app/templates/charging/index.html:15
 msgid "Log Charge"
-msgstr "Registra Ricarica"
+msgstr "Kirjaa lataus"
 
 #: app/templates/charging/index.html:22
 msgid "Total Energy"
-msgstr "Energia Totale"
+msgstr "Kokonaisenergia"
 
 #: app/templates/charging/index.html:38 app/templates/documents/index.html:23
 #: app/templates/trips/index.html:46
 msgid "All Vehicles"
-msgstr "Tutti i Veicoli"
+msgstr "Kaikki ajoneuvot"
 
 #: app/templates/charging/index.html:45 app/templates/trips/index.html:71
 msgid "Filter"
-msgstr "Filtra"
+msgstr "Suodata"
 
 #: app/templates/charging/index.html:49 app/templates/trips/index.html:75
 msgid "Clear"
-msgstr "Cancella"
+msgstr "Tyhjennä"
 
 #: app/templates/charging/index.html:139
 msgid "No charging sessions"
-msgstr "Nessuna sessione di ricarica"
+msgstr "Ei latausistuntoja"
 
 #: app/templates/charging/index.html:140
 msgid "Start tracking your EV charging to monitor energy usage and costs."
-msgstr "Inizia a monitorare le ricariche EV per controllare il consumo di energia e i costi."
+msgstr "Aloita sähköauton latauksen seuranta energiankulutuksen ja kustannusten seuraamiseksi."
 
 #: app/templates/charging/index.html:147
 msgid "Log Your First Charge"
-msgstr "Registra la Tua Prima Ricarica"
+msgstr "Kirjaa ensimmäinen latauksesi"
 
 #: app/templates/documents/form.html:6 app/templates/documents/view.html:6
 msgid "Back to Documents"
-msgstr "Torna ai Documenti"
+msgstr "Takaisin asiakirjoihin"
 
 #: app/templates/documents/form.html:13
 msgid "Edit Document"
-msgstr "Modifica Documento"
+msgstr "Muokkaa asiakirjaa"
 
 #: app/templates/documents/form.html:13 app/templates/documents/index.html:15
 #: app/templates/documents/index.html:108
 msgid "Upload Document"
-msgstr "Carica Documento"
+msgstr "Lataa asiakirja"
 
 #: app/templates/documents/form.html:33 app/templates/documents/view.html:70
 msgid "File"
-msgstr "File"
+msgstr "Tiedosto"
 
 #: app/templates/documents/form.html:48
 msgid "Title"
-msgstr "Titolo"
+msgstr "Otsikko"
 
 #: app/templates/documents/form.html:51
 msgid "e.g., Insurance Policy 2024"
-msgstr "es., Polizza Assicurativa 2024"
+msgstr "esim. Vakuutuskirja 2024"
 
 #: app/templates/documents/form.html:56 app/templates/maintenance/form.html:43
 msgid "Type"
-msgstr "Tipo"
+msgstr "Tyyppi"
 
 #: app/templates/documents/form.html:68 app/templates/documents/view.html:64
 msgid "Reference Number"
-msgstr "Numero di Riferimento"
+msgstr "Viitenumero"
 
 #: app/templates/documents/form.html:71
 msgid "e.g., Policy number, certificate ID"
-msgstr "es., Numero polizza, ID certificato"
+msgstr "esim. Vakuutusnumero, todistuksen tunnus"
 
 #: app/templates/documents/form.html:77 app/templates/documents/view.html:79
 msgid "Issue Date"
-msgstr "Data di Emissione"
+msgstr "Myöntämispäivä"
 
 #: app/templates/documents/form.html:83 app/templates/documents/view.html:86
 msgid "Expiry Date"
-msgstr "Data di Scadenza"
+msgstr "Vanhenemispäivä"
 
 #: app/templates/documents/form.html:91 app/templates/documents/view.html:96
 #: app/templates/maintenance/form.html:57 app/templates/recurring/form.html:96
 #: app/templates/trips/form.html:92 app/templates/trips/report.html:101
 msgid "Description"
-msgstr "Descrizione"
+msgstr "Kuvaus"
 
 #: app/templates/documents/form.html:94 app/templates/recurring/form.html:99
 msgid "Optional notes"
-msgstr "Note opzionali"
+msgstr "Valinnaiset muistiinpanot"
 
 #: app/templates/documents/form.html:101
 msgid "Remind me before expiry"
-msgstr "Ricordami prima della scadenza"
+msgstr "Muistuta ennen vanhenemista"
 
 #: app/templates/documents/form.html:105
 msgid "Days before to remind"
-msgstr "Giorni di anticipo per il promemoria"
+msgstr "Muistutus päivää ennen"
 
 #: app/templates/documents/form.html:114 app/templates/recurring/form.html:120
 #: app/templates/stations/form.html:93
 msgid "Delete"
-msgstr "Elimina"
+msgstr "Poista"
 
 #: app/templates/documents/form.html:126
 msgid "Upload"
-msgstr "Carica"
+msgstr "Lataa"
 
 #: app/templates/documents/form.html:138
 msgid "Delete this document?"
-msgstr "Eliminare questo documento?"
+msgstr "Poistetaanko tämä asiakirja?"
 
 #: app/templates/documents/index.html:8
 msgid "Vehicle documents, insurance, MOT certificates"
-msgstr "Documenti del veicolo, assicurazione, certificati MOT"
+msgstr "Ajoneuvoasiakirjat, vakuutukset, katsastustodistukset"
 
 #: app/templates/documents/index.html:74
 msgid "Expires"
-msgstr "Scade"
+msgstr "Vanhenee"
 
 #: app/templates/documents/index.html:82 app/templates/documents/view.html:26
 msgid "Download"
-msgstr "Scarica"
+msgstr "Lataa"
 
 #: app/templates/documents/index.html:100
 msgid "No documents"
-msgstr "Nessun documento"
+msgstr "Ei asiakirjoja"
 
 #: app/templates/documents/index.html:101
 msgid "Store your vehicle documents, insurance policies, and MOT certificates."
-msgstr "Archivia i documenti del veicolo, le polizze assicurative e i certificati MOT."
+msgstr "Tallenna ajoneuvoasiakirjat, vakuutuskirjat ja katsastustodistukset."
 
 #: app/templates/documents/view.html:30 app/templates/maintenance/index.html:83
 #: app/templates/stations/index.html:65
 msgid "Edit"
-msgstr "Modifica"
+msgstr "Muokkaa"
 
 #: app/templates/documents/view.html:44
 msgid "This document has expired!"
-msgstr "Questo documento è scaduto!"
+msgstr "Tämä asiakirja on vanhentunut!"
 
 #: app/templates/documents/view.html:55
 msgid "This document is expiring soon."
-msgstr "Questo documento sta per scadere."
+msgstr "Tämä asiakirja vanhenee pian."
 
 #: app/templates/documents/view.html:104
 msgid "Preview"
-msgstr "Anteprima"
+msgstr "Esikatselu"
 
 #: app/templates/fuel/form.html:82 app/templates/fuel/quick.html:81
 msgid "Station"
-msgstr "Stazione di Servizio"
+msgstr "Asema"
 
 #: app/templates/fuel/form.html:86
 msgid "Select station or enter manually..."
-msgstr "Seleziona stazione o inserisci manualmente..."
+msgstr "Valitse asema tai syötä manuaalisesti..."
 
 #: app/templates/fuel/form.html:97
 msgid "e.g., Shell, BP"
-msgstr "es., Shell, BP"
+msgstr "esim. Shell, Neste"
 
 #: app/templates/fuel/form.html:101
 msgid "Add saved stations"
-msgstr "Aggiungi stazioni salvate"
+msgstr "Lisää tallennettuja asemia"
 
 #: app/templates/fuel/form.html:101
 msgid "for quick selection and price tracking"
-msgstr "per selezione rapida e monitoraggio prezzi"
+msgstr "nopeaa valintaa ja hintaseurantaa varten"
 
 #: app/templates/fuel/quick.html:8
 msgid "Fast fuel logging for mobile"
-msgstr "Registrazione rapida carburante per dispositivi mobili"
+msgstr "Nopea polttoainekirjaus mobiilissa"
 
 #: app/templates/fuel/quick.html:48
 msgid "Last"
-msgstr "Ultimo"
+msgstr "Viimeisin"
 
 #: app/templates/fuel/quick.html:76
 msgid "Full tank"
-msgstr "Serbatoio pieno"
+msgstr "Täysi tankki"
 
 #: app/templates/fuel/quick.html:83 app/templates/maintenance/index.html:125
 #: app/templates/maintenance/index.html:144
 msgid "Optional"
-msgstr "Opzionale"
+msgstr "Valinnainen"
 
 #: app/templates/fuel/quick.html:99
 msgid "Save"
-msgstr "Salva"
+msgstr "Tallenna"
 
 #: app/templates/fuel/quick.html:106
 msgid "Save & Add Another"
-msgstr "Salva e Aggiungi Un Altro"
+msgstr "Tallenna ja lisää uusi"
 
 #: app/templates/fuel/quick.html:113
 msgid "Need more options? Use full form"
-msgstr "Servono più opzioni? Usa il modulo completo"
+msgstr "Tarvitsetko lisää vaihtoehtoja? Käytä täyttä lomaketta"
 
 #: app/templates/maintenance/form.html:6
 msgid "Back to Maintenance"
-msgstr "Torna alla Manutenzione"
+msgstr "Takaisin huoltoon"
 
 #: app/templates/maintenance/form.html:12
 msgid "Edit Maintenance Schedule"
-msgstr "Modifica Programma di Manutenzione"
+msgstr "Muokkaa huoltoaikataulua"
 
 #: app/templates/maintenance/form.html:12
 msgid "New Maintenance Schedule"
-msgstr "Nuovo Programma di Manutenzione"
+msgstr "Uusi huoltoaikataulu"
 
 #: app/templates/maintenance/form.html:34 app/templates/recurring/form.html:34
 #: app/templates/stations/form.html:20
 msgid "Name"
-msgstr "Nome"
+msgstr "Nimi"
 
 #: app/templates/maintenance/form.html:37
 msgid "e.g., Oil Change"
-msgstr "es., Cambio Olio"
+msgstr "esim. Öljynvaihto"
 
 #: app/templates/maintenance/form.html:60
 msgid "Optional notes or instructions"
-msgstr "Note o istruzioni opzionali"
+msgstr "Valinnaiset muistiinpanot tai ohjeet"
 
 #: app/templates/maintenance/form.html:65
 msgid "Service Interval"
-msgstr "Intervallo di Servizio"
+msgstr "Huoltoväli"
 
 #: app/templates/maintenance/form.html:66
 msgid ""
 "Set how often this maintenance should be performed. You can set distance,"
 " time, or both."
 msgstr ""
-"Imposta con quale frequenza eseguire questa manutenzione. Puoi impostare "
-"distanza, tempo o entrambi."
+"Määritä kuinka usein tämä huolto tulisi suorittaa. Voit asettaa matkan, "
+"ajan tai molemmat."
 
 #: app/templates/maintenance/form.html:70
 msgid "Every (km)"
-msgstr "Ogni (km)"
+msgstr "Joka (km)"
 
 #: app/templates/maintenance/form.html:73
 msgid "e.g., 10000"
-msgstr "es., 10000"
+msgstr "esim. 10000"
 
 #: app/templates/maintenance/form.html:77
 msgid "Every (miles)"
-msgstr "Ogni (miglia)"
+msgstr "Joka (mailia)"
 
 #: app/templates/maintenance/form.html:80
 msgid "e.g., 6000"
-msgstr "es., 6000"
+msgstr "esim. 6000"
 
 #: app/templates/maintenance/form.html:84
 msgid "Every (months)"
-msgstr "Ogni (mesi)"
+msgstr "Joka (kuukautta)"
 
 #: app/templates/maintenance/form.html:87
 msgid "e.g., 12"
-msgstr "es., 12"
+msgstr "esim. 12"
 
 #: app/templates/maintenance/form.html:95
 msgid "Last Performed"
-msgstr "Ultima Esecuzione"
+msgstr "Viimeksi suoritettu"
 
 #: app/templates/maintenance/form.html:96
 msgid "When was this maintenance last done? Leave blank if never."
-msgstr "Quando è stata eseguita l'ultima manutenzione? Lascia vuoto se mai."
+msgstr "Milloin tämä huolto suoritettiin viimeksi? Jätä tyhjäksi, jos ei koskaan."
 
 #: app/templates/maintenance/form.html:109
 msgid "e.g., 50000"
-msgstr "es., 50000"
+msgstr "esim. 50000"
 
 #: app/templates/maintenance/form.html:117
 msgid "Additional Settings"
-msgstr "Impostazioni Aggiuntive"
+msgstr "Lisäasetukset"
 
 #: app/templates/maintenance/form.html:121
 msgid "Estimated Cost"
-msgstr "Costo Stimato"
+msgstr "Arvioitu hinta"
 
 #: app/templates/maintenance/form.html:128
 msgid "Remind Days Before"
-msgstr "Giorni di Anticipo Promemoria"
+msgstr "Muistuta päivää ennen"
 
 #: app/templates/maintenance/form.html:139
 msgid "Automatically create reminder when due"
-msgstr "Crea automaticamente un promemoria alla scadenza"
+msgstr "Luo muistutus automaattisesti erääntyessä"
 
 #: app/templates/maintenance/form.html:148
 msgid "Delete Schedule"
-msgstr "Elimina Programma"
+msgstr "Poista aikataulu"
 
 #: app/templates/maintenance/form.html:160
 msgid "Create Schedule"
-msgstr "Crea Programma"
+msgstr "Luo aikataulu"
 
 #: app/templates/maintenance/form.html:172
 msgid "Delete this maintenance schedule?"
-msgstr "Eliminare questo programma di manutenzione?"
+msgstr "Poistetaanko tämä huoltoaikataulu?"
 
 #: app/templates/maintenance/index.html:7
 msgid "Maintenance Schedules"
-msgstr "Programmi di Manutenzione"
+msgstr "Huoltoaikataulut"
 
 #: app/templates/maintenance/index.html:8
 msgid "Set up recurring maintenance with automatic reminders"
-msgstr "Imposta la manutenzione ricorrente con promemoria automatici"
+msgstr "Määritä toistuva huolto automaattisilla muistutuksilla"
 
 #: app/templates/maintenance/index.html:15
 msgid "Add Schedule"
-msgstr "Aggiungi Programma"
+msgstr "Lisää aikataulu"
 
 #: app/templates/maintenance/index.html:33
 msgid "Due Now"
-msgstr "In Scadenza"
+msgstr "Erääntynyt"
 
 #: app/templates/maintenance/index.html:37
 msgid "Due Soon"
-msgstr "In Scadenza a Breve"
+msgstr "Erääntyy pian"
 
 #: app/templates/maintenance/index.html:76
 msgid "Mark Complete"
-msgstr "Segna come Completato"
+msgstr "Merkitse suoritetuksi"
 
 #: app/templates/maintenance/index.html:99
 msgid "No maintenance schedules"
-msgstr "Nessun programma di manutenzione"
+msgstr "Ei huoltoaikatauluja"
 
 #: app/templates/maintenance/index.html:100
 msgid "Set up recurring maintenance reminders for your vehicles."
-msgstr "Imposta promemoria di manutenzione ricorrente per i tuoi veicoli."
+msgstr "Määritä toistuvat huoltomuistutukset ajoneuvoillesi."
 
 #: app/templates/maintenance/index.html:107
 msgid "Add Maintenance Schedule"
-msgstr "Aggiungi Programma di Manutenzione"
+msgstr "Lisää huoltoaikataulu"
 
 #: app/templates/maintenance/index.html:119
 msgid "Mark as Completed"
-msgstr "Segna come Completato"
+msgstr "Merkitse suoritetuksi"
 
 #: app/templates/maintenance/index.html:122
 msgid "Current Odometer"
-msgstr "Contachilometri Attuale"
+msgstr "Nykyinen mittarilukema"
 
 #: app/templates/maintenance/index.html:131
 msgid "Create expense entry"
-msgstr "Crea voce di spesa"
+msgstr "Luo kulumerkintä"
 
 #: app/templates/maintenance/index.html:136
 msgid "Actual Cost"
-msgstr "Costo Effettivo"
+msgstr "Todellinen hinta"
 
 #: app/templates/maintenance/index.html:141
 msgid "Vendor"
-msgstr "Fornitore"
+msgstr "Toimittaja"
 
 #: app/templates/maintenance/index.html:156
 msgid "Complete"
-msgstr "Completa"
+msgstr "Valmis"
 
 #: app/templates/recurring/form.html:6
 msgid "Back to Recurring Expenses"
-msgstr "Torna alle Spese Ricorrenti"
+msgstr "Takaisin toistuviin kuluihin"
 
 #: app/templates/recurring/form.html:13
 msgid "Edit Recurring Expense"
-msgstr "Modifica Spesa Ricorrente"
+msgstr "Muokkaa toistuvaa kulua"
 
 #: app/templates/recurring/form.html:13 app/templates/recurring/index.html:126
 msgid "Add Recurring Expense"
-msgstr "Aggiungi Spesa Ricorrente"
+msgstr "Lisää toistuva kulu"
 
 #: app/templates/recurring/form.html:37
 msgid "e.g., Car Insurance, Road Tax"
-msgstr "es., Assicurazione Auto, Bollo"
+msgstr "esim. Autovakuutus, Ajoneuvovero"
 
 #: app/templates/recurring/form.html:42
 msgid "Category"
-msgstr "Categoria"
+msgstr "Kategoria"
 
 #: app/templates/recurring/form.html:54
 msgid "Frequency"
-msgstr "Frequenza"
+msgstr "Tiheys"
 
 #: app/templates/recurring/form.html:57
 msgid "Monthly"
-msgstr "Mensile"
+msgstr "Kuukausittain"
 
 #: app/templates/recurring/form.html:58
 msgid "Quarterly (every 3 months)"
-msgstr "Trimestrale (ogni 3 mesi)"
+msgstr "Neljännesvuosittain (joka 3. kuukausi)"
 
 #: app/templates/recurring/form.html:59
 msgid "Biannual (every 6 months)"
-msgstr "Semestrale (ogni 6 mesi)"
+msgstr "Puolivuosittain (joka 6. kuukausi)"
 
 #: app/templates/recurring/form.html:60
 msgid "Yearly"
-msgstr "Annuale"
+msgstr "Vuosittain"
 
 #: app/templates/recurring/form.html:65
 msgid "Amount"
-msgstr "Importo"
+msgstr "Summa"
 
 #: app/templates/recurring/form.html:75
 msgid "Leave blank if amount varies"
-msgstr "Lascia vuoto se l'importo varia"
+msgstr "Jätä tyhjäksi, jos summa vaihtelee"
 
 #: app/templates/recurring/form.html:80
 msgid "Start Date"
-msgstr "Data di Inizio"
+msgstr "Aloituspäivä"
 
 #: app/templates/recurring/form.html:87
 msgid "Next Due"
-msgstr "Prossima Scadenza"
+msgstr "Seuraava eräpäivä"
 
 #: app/templates/recurring/form.html:106
 msgid "Auto-create expense when due"
-msgstr "Crea automaticamente la spesa alla scadenza"
+msgstr "Luo kulu automaattisesti erääntyessä"
 
 #: app/templates/recurring/form.html:110
 msgid "Remind days before"
-msgstr "Giorni di anticipo promemoria"
+msgstr "Muistuta päivää ennen"
 
 #: app/templates/recurring/form.html:132 app/templates/recurring/index.html:15
 msgid "Add Recurring"
-msgstr "Aggiungi Ricorrente"
+msgstr "Lisää toistuva"
 
 #: app/templates/recurring/form.html:144
 msgid "Delete this recurring expense?"
-msgstr "Eliminare questa spesa ricorrente?"
+msgstr "Poistetaanko tämä toistuva kulu?"
 
 #: app/templates/recurring/index.html:8
 msgid "Auto-generate regular expenses"
-msgstr "Genera automaticamente le spese regolari"
+msgstr "Luo säännölliset kulut automaattisesti"
 
 #: app/templates/recurring/index.html:64
 msgid "Next due"
-msgstr "Prossima scadenza"
+msgstr "Seuraava eräpäivä"
 
 #: app/templates/recurring/index.html:76
 msgid "Generate Expense"
-msgstr "Genera Spesa"
+msgstr "Luo kulu"
 
 #: app/templates/recurring/index.html:87
 msgid "Pause"
-msgstr "Pausa"
+msgstr "Keskeytä"
 
 #: app/templates/recurring/index.html:87
 msgid "Activate"
-msgstr "Attiva"
+msgstr "Aktivoi"
 
 #: app/templates/recurring/index.html:118
 msgid "No recurring expenses"
-msgstr "Nessuna spesa ricorrente"
+msgstr "Ei toistuvia kuluja"
 
 #: app/templates/recurring/index.html:119
 msgid "Set up recurring expenses like insurance, road tax, or parking permits."
-msgstr "Imposta spese ricorrenti come assicurazione, bollo o permessi di parcheggio."
+msgstr "Määritä toistuvia kuluja kuten vakuutus, ajoneuvovero tai pysäköintiluvat."
 
 #: app/templates/stations/cheapest.html:6 app/templates/stations/prices.html:11
 msgid "Back to stations"
-msgstr "Torna alle stazioni"
+msgstr "Takaisin asemiin"
 
 #: app/templates/stations/cheapest.html:8
 msgid "Stations ranked by most recent reported prices"
-msgstr "Stazioni classificate in base ai prezzi più recenti"
+msgstr "Asemat viimeisimpien ilmoitettujen hintojen mukaan"
 
 #: app/templates/stations/cheapest.html:36
 #: app/templates/stations/prices.html:15
 msgid "No address"
-msgstr "Nessun indirizzo"
+msgstr "Ei osoitetta"
 
 #: app/templates/stations/cheapest.html:51
 msgid "View history"
-msgstr "Visualizza storico"
+msgstr "Näytä historia"
 
 #: app/templates/stations/cheapest.html:68
 msgid "No price data available"
-msgstr "Nessun dato sui prezzi disponibile"
+msgstr "Ei hintatietoja saatavilla"
 
 #: app/templates/stations/cheapest.html:69
 msgid "Prices are automatically tracked when you log fuel at saved stations."
-msgstr "I prezzi vengono monitorati automaticamente quando registri il carburante nelle stazioni salvate."
+msgstr "Hinnat seurataan automaattisesti, kun kirjaat polttoainetta tallennetuilla asemilla."
 
 #: app/templates/stations/cheapest.html:76
 msgid "Add a Station"
-msgstr "Aggiungi una Stazione"
+msgstr "Lisää asema"
 
 #: app/templates/stations/form.html:6
 msgid "Back to Stations"
-msgstr "Torna alle Stazioni"
+msgstr "Takaisin asemiin"
 
 #: app/templates/stations/form.html:13
 msgid "Edit Fuel Station"
-msgstr "Modifica Stazione di Servizio"
+msgstr "Muokkaa huoltoasemaa"
 
 #: app/templates/stations/form.html:13
 msgid "Add Fuel Station"
-msgstr "Aggiungi Stazione di Servizio"
+msgstr "Lisää huoltoasema"
 
 #: app/templates/stations/form.html:23
 msgid "e.g., Shell Main Street"
-msgstr "es., Shell Via Principale"
+msgstr "esim. Shell Mannerheimintie"
 
 #: app/templates/stations/form.html:28
 msgid "Brand"
-msgstr "Marca"
+msgstr "Brändi"
 
 #: app/templates/stations/form.html:31
 msgid "e.g., Shell, BP, Esso"
-msgstr "es., Shell, BP, Esso"
+msgstr "esim. Shell, Neste, ABC"
 
 #: app/templates/stations/form.html:51
 msgid "Address"
-msgstr "Indirizzo"
+msgstr "Osoite"
 
 #: app/templates/stations/form.html:54
 msgid "Street address"
-msgstr "Indirizzo stradale"
+msgstr "Katuosoite"
 
 #: app/templates/stations/form.html:60
 msgid "City"
-msgstr "Città"
+msgstr "Kaupunki"
 
 #: app/templates/stations/form.html:66
 msgid "Postcode"
-msgstr "CAP"
+msgstr "Postinumero"
 
 #: app/templates/stations/form.html:77
 msgid "e.g., Good prices, open 24h"
-msgstr "es., Buoni prezzi, aperto 24h"
+msgstr "esim. Hyvät hinnat, auki 24h"
 
 #: app/templates/stations/form.html:83
 msgid "Mark as favorite"
-msgstr "Segna come preferita"
+msgstr "Merkitse suosikiksi"
 
 #: app/templates/stations/form.html:105 app/templates/stations/index.html:23
 #: app/templates/stations/index.html:90
 msgid "Add Station"
-msgstr "Aggiungi Stazione"
+msgstr "Lisää asema"
 
 #: app/templates/stations/form.html:117
 msgid "Delete this station?"
-msgstr "Eliminare questa stazione?"
+msgstr "Poistetaanko tämä asema?"
 
 #: app/templates/stations/index.html:8
 msgid "Your favorite fuel stations"
-msgstr "Le tue stazioni di servizio preferite"
+msgstr "Suosikkihuoltoasemasi"
 
 #: app/templates/stations/index.html:56
 msgid "Used"
-msgstr "Utilizzata"
+msgstr "Käytetty"
 
 #: app/templates/stations/index.html:59 app/templates/stations/prices.html:21
 msgid "Price History"
-msgstr "Storico Prezzi"
+msgstr "Hintahistoria"
 
 #: app/templates/stations/index.html:82
 msgid "No fuel stations"
-msgstr "Nessuna stazione di servizio"
+msgstr "Ei huoltoasemia"
 
 #: app/templates/stations/index.html:83
 msgid "Save your favorite stations for quick access when logging fuel."
-msgstr "Salva le tue stazioni preferite per un accesso rapido durante la registrazione del carburante."
+msgstr "Tallenna suosikkiasemasi nopeaa käyttöä varten polttoainetta kirjattaessa."
 
 #: app/templates/stations/prices.html:46
 msgid "No price history available for this station."
-msgstr "Nessuno storico prezzi disponibile per questa stazione."
+msgstr "Ei hintahistoriaa saatavilla tälle asemalle."
 
 #: app/templates/stations/prices.html:47
 msgid "Prices are automatically recorded when you log fuel at this station."
-msgstr "I prezzi vengono registrati automaticamente quando fai rifornimento in questa stazione."
+msgstr "Hinnat kirjataan automaattisesti, kun tankkaat tällä asemalla."
 
 #: app/templates/stations/prices.html:69
 msgid "Price per"
-msgstr "Prezzo per"
+msgstr "Hinta per"
 
 #: app/templates/timeline/index.html:11
 msgid "Back to"
-msgstr "Torna a"
+msgstr "Takaisin"
 
 #: app/templates/timeline/index.html:12
 msgid "Service Timeline"
-msgstr "Cronologia Servizi"
+msgstr "Huoltoaikajana"
 
 #: app/templates/timeline/index.html:13
 msgid "Complete history of fuel, expenses, and charging"
-msgstr "Cronologia completa di carburante, spese e ricariche"
+msgstr "Täydellinen historia polttoaineesta, kuluista ja latauksesta"
 
 #: app/templates/timeline/index.html:18
 msgid "Monthly Costs"
-msgstr "Costi Mensili"
+msgstr "Kuukausikustannukset"
 
 #: app/templates/timeline/index.html:27
 msgid "Activity Timeline"
-msgstr "Cronologia Attività"
+msgstr "Aktiviteettiaikajana"
 
 #: app/templates/timeline/index.html:86
 msgid "No activity recorded for this vehicle yet."
-msgstr "Nessuna attività registrata per questo veicolo."
+msgstr "Tälle ajoneuvolle ei ole vielä kirjattu aktiviteettia."
 
 #: app/templates/timeline/index.html:114
 msgid "Charging"
-msgstr "Ricarica"
+msgstr "Lataus"
 
 #: app/templates/trips/form.html:7 app/templates/trips/report.html:12
 msgid "Back to trips"
-msgstr "Torna ai viaggi"
+msgstr "Takaisin matkoihin"
 
 #: app/templates/trips/form.html:8
 msgid "Edit Trip"
-msgstr "Modifica Viaggio"
+msgstr "Muokkaa matkaa"
 
 #: app/templates/trips/form.html:8 app/templates/trips/form.html:114
 #: app/templates/trips/index.html:23 app/templates/vehicles/view.html:120
 msgid "Log Trip"
-msgstr "Registra Viaggio"
+msgstr "Kirjaa matka"
 
 #: app/templates/trips/form.html:31
 msgid "Last odometer"
-msgstr "Ultimo contachilometri"
+msgstr "Viimeisin mittarilukema"
 
 #: app/templates/trips/form.html:49 app/templates/trips/index.html:53
 #: app/templates/trips/report.html:100
 msgid "Purpose"
-msgstr "Scopo"
+msgstr "Tarkoitus"
 
 #: app/templates/trips/form.html:59
 msgid "Start Odometer"
-msgstr "Contachilometri Iniziale"
+msgstr "Alku mittarilukema"
 
 #: app/templates/trips/form.html:67
 msgid "End Odometer"
-msgstr "Contachilometri Finale"
+msgstr "Loppu mittarilukema"
 
 #: app/templates/trips/form.html:76
 msgid "Start Location"
-msgstr "Luogo di Partenza"
+msgstr "Lähtöpaikka"
 
 #: app/templates/trips/form.html:79
 msgid "e.g., Home, Office"
-msgstr "es., Casa, Ufficio"
+msgstr "esim. Koti, Toimisto"
 
 #: app/templates/trips/form.html:84
 msgid "End Location"
-msgstr "Luogo di Arrivo"
+msgstr "Määränpää"
 
 #: app/templates/trips/form.html:87
 msgid "e.g., Client Site, Airport"
-msgstr "es., Sede Cliente, Aeroporto"
+msgstr "esim. Asiakaskäynti, Lentokenttä"
 
 #: app/templates/trips/form.html:95
 msgid "e.g., Client meeting, Site visit"
-msgstr "es., Incontro con cliente, Visita in cantiere"
+msgstr "esim. Asiakastapaaminen, Työmaakäynti"
 
 #: app/templates/trips/index.html:8
 msgid "Track your trips for mileage and tax deductions"
-msgstr "Monitora i tuoi viaggi per il chilometraggio e le detrazioni fiscali"
+msgstr "Seuraa matkojasi kilometrikorvauksia ja verovähennyksiä varten"
 
 #: app/templates/trips/index.html:16
 msgid "Report"
-msgstr "Report"
+msgstr "Raportti"
 
 #: app/templates/trips/index.html:35 app/templates/trips/report.html:39
 msgid "Business Distance"
-msgstr "Distanza Lavorativa"
+msgstr "Työmatkan pituus"
 
 #: app/templates/trips/index.html:55
 msgid "All Purposes"
-msgstr "Tutti gli Scopi"
+msgstr "Kaikki tarkoitukset"
 
 #: app/templates/trips/index.html:62
 msgid "Year"
-msgstr "Anno"
+msgstr "Vuosi"
 
 #: app/templates/trips/index.html:64
 msgid "All Years"
-msgstr "Tutti gli Anni"
+msgstr "Kaikki vuodet"
 
 #: app/templates/trips/index.html:144
 msgid "No trips logged"
-msgstr "Nessun viaggio registrato"
+msgstr "Ei kirjattuja matkoja"
 
 #: app/templates/trips/index.html:145
 msgid "Start logging your trips for mileage tracking and tax deductions."
-msgstr "Inizia a registrare i tuoi viaggi per il monitoraggio del chilometraggio e le detrazioni fiscali."
+msgstr "Aloita matkojen kirjaaminen kilometriseurantaa ja verovähennyksiä varten."
 
 #: app/templates/trips/index.html:152
 msgid "Log Your First Trip"
-msgstr "Registra il Tuo Primo Viaggio"
+msgstr "Kirjaa ensimmäinen matkasi"
 
 #: app/templates/trips/report.html:13
 msgid "Trip Report"
-msgstr "Report Viaggi"
+msgstr "Matkaraportti"
 
 #: app/templates/trips/report.html:14
 msgid "Summary of trips by purpose for tax deductions"
-msgstr "Riepilogo dei viaggi per scopo per le detrazioni fiscali"
+msgstr "Yhteenveto matkoista tarkoituksen mukaan verovähennyksiä varten"
 
 #: app/templates/trips/report.html:31
 msgid "Total Trips"
-msgstr "Viaggi Totali"
+msgstr "Matkat yhteensä"
 
 #: app/templates/trips/report.html:41
 msgid "Tax deductible"
-msgstr "Deducibile fiscalmente"
+msgstr "Verovähennyskelpoinen"
 
 #: app/templates/trips/report.html:48
 msgid "Breakdown by Purpose"
-msgstr "Suddivisione per Scopo"
+msgstr "Erittely tarkoituksen mukaan"
 
 #: app/templates/trips/report.html:65
 msgid "trips"
-msgstr "viaggi"
+msgstr "matkaa"
 
 #: app/templates/trips/report.html:70
 msgid "of total"
-msgstr "del totale"
+msgstr "kokonaismäärästä"
 
 #: app/templates/trips/report.html:82
 msgid "Distance by Purpose"
-msgstr "Distanza per Scopo"
+msgstr "Matka tarkoituksen mukaan"
 
 #: app/templates/trips/report.html:91
 msgid "All Trips"
-msgstr "Tutti i Viaggi"
+msgstr "Kaikki matkat"
 
 #: app/templates/trips/report.html:126
 msgid "Total"
-msgstr "Totale"
+msgstr "Yhteensä"
 
 #: app/templates/trips/report.html:134
 msgid "No trips logged for"
-msgstr "Nessun viaggio registrato per"
+msgstr "Ei kirjattuja matkoja vuodelle"
 
 #: app/templates/vehicles/view.html:103
 msgid "Add Fuel Log"
-msgstr "Aggiungi Registro Carburante"
+msgstr "Lisää polttoainekirjaus"
 
 #: app/templates/vehicles/view.html:112
 msgid "Add Charging"
-msgstr "Aggiungi Ricarica"
+msgstr "Lisää lataus"
 
 #: app/templates/vehicles/view.html:127
 msgid "Add Expense"
-msgstr "Aggiungi Spesa"
+msgstr "Lisää kulu"
 
 #: app/templates/vehicles/view.html:134
 msgid "Add Reminder"
-msgstr "Aggiungi Promemoria"
+msgstr "Lisää muistutus"
 
 #: app/templates/vehicles/view.html:141
 msgid "Parts"
-msgstr "Ricambi"
+msgstr "Osat"
 
 #: app/templates/vehicles/view.html:148
 msgid "Timeline"
-msgstr "Cronologia"
+msgstr "Aikajana"
 
 #: app/templates/vehicles/view.html:160
 msgid "DVLA Status"
-msgstr "Stato DVLA"
+msgstr "DVLA-tila"
 
 #: app/templates/vehicles/view.html:167 app/templates/vehicles/view.html:276
 msgid "Refresh"
-msgstr "Aggiorna"
+msgstr "Päivitä"
 
 #: app/templates/vehicles/view.html:174
 msgid "MOT Status"
-msgstr "Stato MOT"
+msgstr "MOT-tila"
 
 #: app/templates/vehicles/view.html:192
 msgid "MOT Expiry"
-msgstr "Scadenza MOT"
+msgstr "MOT-vanheneminen"
 
 #: app/templates/vehicles/view.html:202
 msgid "Tax Status"
-msgstr "Stato Bollo"
+msgstr "Verotila"
 
 #: app/templates/vehicles/view.html:220
 msgid "Tax Due"
-msgstr "Scadenza Bollo"
+msgstr "Vero erääntyy"
 
 #: app/templates/vehicles/view.html:231 app/templates/vehicles/view.html:333
 msgid "Last updated"
-msgstr "Ultimo aggiornamento"
+msgstr "Viimeksi päivitetty"
 
 #: app/templates/vehicles/view.html:235
 msgid "No DVLA data available for this vehicle."
-msgstr "Nessun dato DVLA disponibile per questo veicolo."
+msgstr "DVLA-tietoja ei ole saatavilla tälle ajoneuvolle."
 
 #: app/templates/vehicles/view.html:241
 msgid "Fetch from DVLA"
-msgstr "Recupera da DVLA"
+msgstr "Hae DVLA:sta"
 
 #: app/templates/vehicles/view.html:258
 msgid "Tessie Status"
-msgstr "Stato Tessie"
+msgstr "Tessie-tila"
 
 #: app/templates/vehicles/view.html:260
 msgid "Live"
-msgstr "In tempo reale"
+msgstr "Reaaliaikainen"
 
 #: app/templates/vehicles/view.html:269
 msgid "Import Charges"
-msgstr "Importa Ricariche"
+msgstr "Tuo lataukset"
 
 #: app/templates/vehicles/view.html:298
 msgid "Battery Level"
-msgstr "Livello Batteria"
+msgstr "Akkutaso"
 
 #: app/templates/vehicles/view.html:314
 msgid "Est. Range"
-msgstr "Autonomia Stimata"
+msgstr "Arv. toimintasäde"
 
 #: app/templates/vehicles/view.html:328
 msgid "VIN"
@@ -2611,11 +2609,8 @@ msgstr "VIN"
 
 #: app/templates/vehicles/view.html:337
 msgid "No Tessie data available for this vehicle yet."
-msgstr "Nessun dato Tessie disponibile per questo veicolo."
+msgstr "Tessie-tietoja ei ole vielä saatavilla tälle ajoneuvolle."
 
 #: app/templates/vehicles/view.html:343
 msgid "Fetch from Tessie"
-msgstr "Recupera da Tessie"
-
-#~ msgid "Make"
-#~ msgstr "Marca"
+msgstr "Hae Tessiestä"

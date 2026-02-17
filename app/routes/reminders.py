@@ -1,6 +1,7 @@
 from datetime import datetime, date, timedelta
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from app import db, DATE_FORMATS
 from app.models import Reminder, Vehicle, REMINDER_TYPES, RECURRENCE_OPTIONS
 
@@ -59,7 +60,7 @@ def new(vehicle_id=None):
     vehicles = current_user.get_all_vehicles()
 
     if not vehicles:
-        flash('Please add a vehicle first', 'error')
+        flash(_('Please add a vehicle first'), 'error')
         return redirect(url_for('vehicles.index'))
 
     if request.method == 'POST':
@@ -67,13 +68,13 @@ def new(vehicle_id=None):
         vehicle = Vehicle.query.get_or_404(vehicle_id)
 
         if vehicle not in vehicles:
-            flash('Access denied', 'error')
+            flash(_('Access denied'), 'error')
             return redirect(url_for('reminders.index'))
 
         try:
             due_date = datetime.strptime(request.form.get('due_date'), '%Y-%m-%d').date()
         except ValueError:
-            flash('Invalid date format', 'error')
+            flash(_('Invalid date format'), 'error')
             return redirect(url_for('reminders.new', vehicle_id=vehicle_id))
 
         reminder = Reminder(
@@ -90,7 +91,7 @@ def new(vehicle_id=None):
         db.session.add(reminder)
         db.session.commit()
 
-        flash(f'Reminder "{reminder.title}" created successfully', 'success')
+        flash(_('Reminder "%(title)s" created successfully') % {'title': reminder.title}, 'success')
 
         # Redirect back to vehicle page if we came from there
         if request.form.get('return_to') == 'vehicle':
@@ -121,14 +122,14 @@ def edit(reminder_id):
     vehicles = current_user.get_all_vehicles()
 
     if reminder.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('reminders.index'))
 
     if request.method == 'POST':
         try:
             due_date = datetime.strptime(request.form.get('due_date'), '%Y-%m-%d').date()
         except ValueError:
-            flash('Invalid date format', 'error')
+            flash(_('Invalid date format'), 'error')
             return redirect(url_for('reminders.edit', reminder_id=reminder_id))
 
         reminder.title = request.form.get('title')
@@ -139,7 +140,7 @@ def edit(reminder_id):
         reminder.notify_days_before = int(request.form.get('notify_days_before', 7))
 
         db.session.commit()
-        flash('Reminder updated successfully', 'success')
+        flash(_('Reminder updated successfully'), 'success')
         return redirect(url_for('reminders.index'))
 
     return render_template('reminders/form.html',
@@ -158,7 +159,7 @@ def complete(reminder_id):
     vehicles = current_user.get_all_vehicles()
 
     if reminder.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('reminders.index'))
 
     reminder.is_completed = True
@@ -180,9 +181,9 @@ def complete(reminder_id):
         db.session.add(new_reminder)
         user_format = getattr(current_user, 'date_format', None) or 'DD/MM/YYYY'
         fmt = DATE_FORMATS.get(user_format, DATE_FORMATS['DD/MM/YYYY'])['default']
-        flash(f'Reminder completed. Next occurrence created for {new_due_date.strftime(fmt)}', 'success')
+        flash(_('Reminder completed. Next occurrence created for %(date)s') % {'date': new_due_date.strftime(fmt)}, 'success')
     else:
-        flash('Reminder marked as completed', 'success')
+        flash(_('Reminder marked as completed'), 'success')
 
     db.session.commit()
 
@@ -202,14 +203,14 @@ def uncomplete(reminder_id):
     vehicles = current_user.get_all_vehicles()
 
     if reminder.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('reminders.index'))
 
     reminder.is_completed = False
     reminder.completed_at = None
     db.session.commit()
 
-    flash('Reminder marked as not completed', 'success')
+    flash(_('Reminder marked as not completed'), 'success')
     return redirect(url_for('reminders.index'))
 
 
@@ -221,14 +222,14 @@ def delete(reminder_id):
     vehicles = current_user.get_all_vehicles()
 
     if reminder.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('reminders.index'))
 
     vehicle_id = reminder.vehicle_id
     db.session.delete(reminder)
     db.session.commit()
 
-    flash('Reminder deleted', 'success')
+    flash(_('Reminder deleted'), 'success')
 
     # Redirect back to referrer if available
     return_to = request.args.get('return_to')

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from app import db
 from app.models import RecurringExpense, Vehicle, Expense, EXPENSE_CATEGORIES
 from datetime import date
@@ -32,7 +33,7 @@ def new():
     vehicles = current_user.get_all_vehicles()
 
     if not vehicles:
-        flash('Please add a vehicle first.', 'warning')
+        flash(_('Please add a vehicle first.'), 'warning')
         return redirect(url_for('vehicles.new'))
 
     if request.method == 'POST':
@@ -41,7 +42,7 @@ def new():
         # Verify user has access to vehicle
         vehicle = Vehicle.query.get(vehicle_id)
         if not vehicle or vehicle not in vehicles:
-            flash('Invalid vehicle.', 'error')
+            flash(_('Invalid vehicle.'), 'error')
             return redirect(url_for('recurring.new'))
 
         # Parse dates
@@ -68,7 +69,7 @@ def new():
         db.session.add(recurring)
         db.session.commit()
 
-        flash('Recurring expense created.', 'success')
+        flash(_('Recurring expense created.'), 'success')
         return redirect(url_for('recurring.index'))
 
     return render_template('recurring/form.html',
@@ -110,7 +111,7 @@ def edit(recurring_id):
 
         db.session.commit()
 
-        flash('Recurring expense updated.', 'success')
+        flash(_('Recurring expense updated.'), 'success')
         return redirect(url_for('recurring.index'))
 
     return render_template('recurring/form.html',
@@ -133,7 +134,7 @@ def delete(recurring_id):
     db.session.delete(recurring)
     db.session.commit()
 
-    flash('Recurring expense deleted.', 'success')
+    flash(_('Recurring expense deleted.'), 'success')
     return redirect(url_for('recurring.index'))
 
 
@@ -173,7 +174,7 @@ def generate(recurring_id):
 
     db.session.commit()
 
-    flash(f'Expense created for {recurring.name}.', 'success')
+    flash(_('Expense created for %(name)s.') % {'name': recurring.name}, 'success')
     return redirect(url_for('recurring.index'))
 
 
@@ -192,5 +193,5 @@ def toggle_active(recurring_id):
     db.session.commit()
 
     status = 'activated' if recurring.is_active else 'paused'
-    flash(f'Recurring expense {status}.', 'success')
+    flash(_('Recurring expense %(status)s.') % {'status': status}, 'success')
     return redirect(url_for('recurring.index'))

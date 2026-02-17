@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from app import db
 from app.models import Vehicle, FuelLog, Attachment, FuelStation, FuelPriceHistory
 from app.security import validate_file_upload, secure_filename_with_uuid, validate_positive_number
+from flask_babel import gettext as _
 from app.services.tessie import TessieService
 
 bp = Blueprint('fuel', __name__, url_prefix='/fuel')
@@ -39,7 +40,7 @@ def new():
     vehicles = current_user.get_all_vehicles()
 
     if not vehicles:
-        flash('Please add a vehicle first', 'info')
+        flash(_('Please add a vehicle first'), 'info')
         return redirect(url_for('vehicles.new'))
 
     if request.method == 'POST':
@@ -48,7 +49,7 @@ def new():
 
         # Check access
         if vehicle not in vehicles:
-            flash('Access denied', 'error')
+            flash(_('Access denied'), 'error')
             return redirect(url_for('fuel.index'))
 
         date_str = request.form.get('date')
@@ -129,7 +130,7 @@ def new():
                 db.session.add(attachment)
                 db.session.commit()
 
-        flash('Fuel log added successfully', 'success')
+        flash(_('Fuel log added successfully'), 'success')
         return redirect(url_for('vehicles.view', vehicle_id=vehicle_id))
 
     # Pre-select vehicle if provided
@@ -156,7 +157,7 @@ def edit(log_id):
 
     # Check access
     if log.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('fuel.index'))
 
     if request.method == 'POST':
@@ -191,7 +192,7 @@ def edit(log_id):
                 db.session.add(attachment)
 
         db.session.commit()
-        flash('Fuel log updated successfully', 'success')
+        flash(_('Fuel log updated successfully'), 'success')
         return redirect(url_for('vehicles.view', vehicle_id=log.vehicle_id))
 
     # Get user's fuel stations for dropdown
@@ -215,7 +216,7 @@ def delete(log_id):
 
     # Check access
     if log.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('fuel.index'))
 
     vehicle_id = log.vehicle_id
@@ -228,7 +229,7 @@ def delete(log_id):
 
     db.session.delete(log)
     db.session.commit()
-    flash('Fuel log deleted successfully', 'success')
+    flash(_('Fuel log deleted successfully'), 'success')
     return redirect(url_for('vehicles.view', vehicle_id=vehicle_id))
 
 
@@ -241,7 +242,7 @@ def quick():
     vehicles = current_user.get_all_vehicles()
 
     if not vehicles:
-        flash('Please add a vehicle first', 'info')
+        flash(_('Please add a vehicle first'), 'info')
         return redirect(url_for('vehicles.new'))
 
     # Get user's fuel stations for dropdown
@@ -255,7 +256,7 @@ def quick():
         vehicle = Vehicle.query.get_or_404(vehicle_id)
 
         if vehicle not in vehicles:
-            flash('Access denied', 'error')
+            flash(_('Access denied'), 'error')
             return redirect(url_for('fuel.quick'))
 
         log = FuelLog(
@@ -286,7 +287,7 @@ def quick():
         db.session.add(log)
         db.session.commit()
 
-        flash('Fuel log added!', 'success')
+        flash(_('Fuel log added!'), 'success')
 
         # Return to quick entry or vehicle page based on preference
         if request.form.get('add_another'):

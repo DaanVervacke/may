@@ -1,6 +1,7 @@
 from datetime import datetime, date
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from app import db
 from app.models import (
     Vehicle, MaintenanceSchedule, Expense, MAINTENANCE_TYPES, EXPENSE_CATEGORIES
@@ -44,7 +45,7 @@ def new():
         vehicle = Vehicle.query.get(vehicle_id)
 
         if not vehicle or vehicle not in vehicles:
-            flash('Invalid vehicle', 'error')
+            flash(_('Invalid vehicle'), 'error')
             return redirect(url_for('maintenance.index'))
 
         schedule = MaintenanceSchedule(
@@ -80,7 +81,7 @@ def new():
         db.session.add(schedule)
         db.session.commit()
 
-        flash(f'Maintenance schedule "{schedule.name}" created', 'success')
+        flash(_('Maintenance schedule "%(name)s" created') % {'name': schedule.name}, 'success')
         return redirect(url_for('maintenance.index'))
 
     # Pre-select vehicle if passed in URL
@@ -101,7 +102,7 @@ def edit(schedule_id):
     vehicles = current_user.get_all_vehicles()
 
     if schedule.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('maintenance.index'))
 
     if request.method == 'POST':
@@ -125,7 +126,7 @@ def edit(schedule_id):
         schedule.calculate_next_due()
         db.session.commit()
 
-        flash('Maintenance schedule updated', 'success')
+        flash(_('Maintenance schedule updated'), 'success')
         return redirect(url_for('maintenance.index'))
 
     return render_template('maintenance/form.html',
@@ -143,7 +144,7 @@ def complete(schedule_id):
     vehicles = current_user.get_all_vehicles()
 
     if schedule.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('maintenance.index'))
 
     # Update last performed
@@ -174,7 +175,7 @@ def complete(schedule_id):
             db.session.add(expense)
 
     db.session.commit()
-    flash(f'Maintenance "{schedule.name}" marked as completed', 'success')
+    flash(_('Maintenance "%(name)s" marked as completed') % {'name': schedule.name}, 'success')
     return redirect(url_for('maintenance.index'))
 
 
@@ -186,12 +187,12 @@ def delete(schedule_id):
     vehicles = current_user.get_all_vehicles()
 
     if schedule.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('maintenance.index'))
 
     name = schedule.name
     db.session.delete(schedule)
     db.session.commit()
 
-    flash(f'Maintenance schedule "{name}" deleted', 'success')
+    flash(_('Maintenance schedule "%(name)s" deleted') % {'name': name}, 'success')
     return redirect(url_for('maintenance.index'))

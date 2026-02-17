@@ -3,6 +3,7 @@ import uuid
 import requests
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_babel import gettext as _
 from werkzeug.utils import secure_filename
 from app import db
 from app.models import User, AppSettings
@@ -35,7 +36,7 @@ def login():
             safe_redirect = get_safe_redirect_url(next_page, default=None)
             return redirect(safe_redirect or get_start_page_url(user))
 
-        flash('Invalid username or password', 'error')
+        flash(_('Invalid username or password'), 'error')
 
     registration_enabled = AppSettings.get('registration_enabled', 'true') == 'true'
     smtp_configured = bool(
@@ -58,7 +59,7 @@ def forgot_password():
     )
 
     if not smtp_configured:
-        flash('Password reset by email is not available. Please contact an administrator.', 'info')
+        flash(_('Password reset by email is not available. Please contact an administrator.'), 'info')
         return redirect(url_for('auth.login'))
 
     if request.method == 'POST':
@@ -87,7 +88,7 @@ def forgot_password():
             NotificationService.send_email(user.email, f'{app_name} - Password Reset', body, html_body)
 
         # Always show the same message to prevent email enumeration
-        flash('If an account with that email exists, a password reset link has been sent.', 'success')
+        flash(_('If an account with that email exists, a password reset link has been sent.'), 'success')
         return redirect(url_for('auth.login'))
 
     return render_template('auth/forgot_password.html')
@@ -100,7 +101,7 @@ def reset_password(token):
 
     user = User.get_by_reset_token(token)
     if not user:
-        flash('Invalid or expired reset link. Please request a new one.', 'error')
+        flash(_('Invalid or expired reset link. Please request a new one.'), 'error')
         return redirect(url_for('auth.login'))
 
     if request.method == 'POST':
@@ -108,7 +109,7 @@ def reset_password(token):
         confirm_password = request.form.get('confirm_password', '')
 
         if password != confirm_password:
-            flash('Passwords do not match', 'error')
+            flash(_('Passwords do not match'), 'error')
             return render_template('auth/reset_password.html', token=token)
 
         is_valid, error_msg = validate_password_strength(password)
@@ -120,7 +121,7 @@ def reset_password(token):
         user.clear_reset_token()
         db.session.commit()
 
-        flash('Your password has been reset. Please log in.', 'success')
+        flash(_('Your password has been reset. Please log in.'), 'success')
         return redirect(url_for('auth.login'))
 
     return render_template('auth/reset_password.html', token=token)
@@ -154,7 +155,7 @@ def register():
 
     # Check if registration is enabled
     if AppSettings.get('registration_enabled', 'true') != 'true':
-        flash('New account registration is currently disabled.', 'error')
+        flash(_('New account registration is currently disabled.'), 'error')
         return redirect(url_for('auth.login'))
 
     if request.method == 'POST':
@@ -164,7 +165,7 @@ def register():
         confirm_password = request.form.get('confirm_password')
 
         if password != confirm_password:
-            flash('Passwords do not match', 'error')
+            flash(_('Passwords do not match'), 'error')
             return render_template('auth/register.html')
 
         # Validate password strength
@@ -174,11 +175,11 @@ def register():
             return render_template('auth/register.html')
 
         if User.query.filter_by(username=username).first():
-            flash('Username already exists', 'error')
+            flash(_('Username already exists'), 'error')
             return render_template('auth/register.html')
 
         if User.query.filter_by(email=email).first():
-            flash('Email already registered', 'error')
+            flash(_('Email already registered'), 'error')
             return render_template('auth/register.html')
 
         user = User(username=username, email=email)
@@ -186,7 +187,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        flash('Registration successful! Please log in.', 'success')
+        flash(_('Registration successful! Please log in.'), 'success')
         return redirect(url_for('auth.login'))
 
     return render_template('auth/register.html')
@@ -196,7 +197,7 @@ def register():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
+    flash(_('You have been logged out.'), 'info')
     return redirect(url_for('auth.login'))
 
 
@@ -220,7 +221,7 @@ def settings():
         if new_email and new_email != current_user.email:
             existing = User.query.filter(User.email == new_email, User.id != current_user.id).first()
             if existing:
-                flash('Email already in use by another account', 'error')
+                flash(_('Email already in use by another account'), 'error')
                 branding = AppSettings.get_all_branding() if current_user.is_admin else {}
                 return render_template('auth/settings.html', branding=branding)
             current_user.email = new_email
@@ -230,7 +231,7 @@ def settings():
         if new_password:
             confirm_password = request.form.get('confirm_new_password')
             if new_password != confirm_password:
-                flash('Passwords do not match', 'error')
+                flash(_('Passwords do not match'), 'error')
                 branding = AppSettings.get_all_branding() if current_user.is_admin else {}
                 return render_template('auth/settings.html', branding=branding)
             # Validate password strength
@@ -242,7 +243,7 @@ def settings():
             current_user.set_password(new_password)
 
         db.session.commit()
-        flash('Settings updated successfully', 'success')
+        flash(_('Settings updated successfully'), 'success')
         return redirect(url_for('auth.settings'))
 
     branding = AppSettings.get_all_branding() if current_user.is_admin else {}
@@ -320,7 +321,7 @@ def notifications():
     if webhook_url:
         is_valid, error_msg = validate_webhook_url(webhook_url)
         if not is_valid:
-            flash(f'Invalid webhook URL: {error_msg}', 'error')
+            flash(_('Invalid webhook URL: %(error)s') % {'error': error_msg}, 'error')
             return redirect(url_for('auth.settings') + '#notifications')
 
     current_user.email_reminders = request.form.get('email_reminders') == 'true'
@@ -330,7 +331,7 @@ def notifications():
     current_user.ntfy_topic = request.form.get('ntfy_topic') or None
     current_user.pushover_user_key = request.form.get('pushover_user_key') or None
     db.session.commit()
-    flash('Notification preferences updated', 'success')
+    flash(_('Notification preferences updated'), 'success')
     return redirect(url_for('auth.settings') + '#notifications')
 
 
@@ -351,7 +352,7 @@ def menu_preferences():
     current_user.show_menu_charging = request.form.get('show_menu_charging') == 'on'
     current_user.show_quick_entry = request.form.get('show_quick_entry') == 'on'
     db.session.commit()
-    flash('Menu preferences updated', 'success')
+    flash(_('Menu preferences updated'), 'success')
     return redirect(url_for('auth.settings') + '#menu')
 
 
@@ -376,7 +377,7 @@ def smtp_settings():
     AppSettings.set('pushover_enabled', 'true' if request.form.get('pushover_enabled') else 'false')
     AppSettings.set('pushover_app_token', request.form.get('pushover_app_token', ''))
 
-    flash('Notification settings updated', 'success')
+    flash(_('Notification settings updated'), 'success')
     return redirect(url_for('auth.settings') + '#notifications')
 
 
@@ -405,7 +406,7 @@ def branding():
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
             AppSettings.set('logo_filename', filename)
 
-    flash('Branding settings updated successfully', 'success')
+    flash(_('Branding settings updated successfully'), 'success')
     return redirect(url_for('auth.settings') + '#branding')
 
 
@@ -421,7 +422,7 @@ def remove_logo():
             os.remove(logo_path)
         AppSettings.set('logo_filename', '')
 
-    flash('Logo removed successfully', 'success')
+    flash(_('Logo removed successfully'), 'success')
     return redirect(url_for('auth.settings') + '#branding')
 
 
@@ -434,7 +435,7 @@ def dvla_settings():
     api_key = request.form.get('dvla_api_key', '').strip()
     AppSettings.set('dvla_api_key', api_key)
 
-    flash('DVLA settings updated', 'success')
+    flash(_('DVLA settings updated'), 'success')
     return redirect(url_for('auth.settings') + '#services-dvla')
 
 
@@ -447,7 +448,7 @@ def tessie_settings():
     api_token = request.form.get('tessie_api_token', '').strip()
     AppSettings.set('tessie_api_token', api_token)
 
-    flash('Tessie settings updated', 'success')
+    flash(_('Tessie settings updated'), 'success')
     return redirect(url_for('auth.settings') + '#services-tessie')
 
 
@@ -460,7 +461,7 @@ def registration_settings():
     enabled = 'true' if request.form.get('registration_enabled') else 'false'
     AppSettings.set('registration_enabled', enabled)
 
-    flash('Registration settings updated', 'success')
+    flash(_('Registration settings updated'), 'success')
     return redirect(url_for('auth.settings') + '#account')
 
 
@@ -480,7 +481,7 @@ def toggle_admin(user_id):
     if user.id != current_user.id:
         user.is_admin = not user.is_admin
         db.session.commit()
-        flash(f'Admin status updated for {user.username}', 'success')
+        flash(_('Admin status updated for %(username)s') % {'username': user.username}, 'success')
 
     return redirect(url_for('auth.users'))
 
@@ -493,7 +494,7 @@ def delete_user(user_id):
     if user.id != current_user.id:
         db.session.delete(user)
         db.session.commit()
-        flash(f'User {user.username} deleted', 'success')
+        flash(_('User %(username)s deleted') % {'username': user.username}, 'success')
 
     return redirect(url_for('auth.users'))
 
@@ -510,7 +511,7 @@ def edit_user(user_id):
         if new_email and new_email != user.email:
             existing = User.query.filter(User.email == new_email, User.id != user.id).first()
             if existing:
-                flash('Email already in use by another account', 'error')
+                flash(_('Email already in use by another account'), 'error')
                 return render_template('auth/edit_user.html', user=user)
             user.email = new_email
 
@@ -518,7 +519,7 @@ def edit_user(user_id):
         if new_password:
             confirm_password = request.form.get('confirm_new_password', '')
             if new_password != confirm_password:
-                flash('Passwords do not match', 'error')
+                flash(_('Passwords do not match'), 'error')
                 return render_template('auth/edit_user.html', user=user)
             is_valid, error_msg = validate_password_strength(new_password)
             if not is_valid:
@@ -531,7 +532,7 @@ def edit_user(user_id):
             user.is_admin = is_admin
 
         db.session.commit()
-        flash(f'User {user.username} updated successfully', 'success')
+        flash(_('User %(username)s updated successfully') % {'username': user.username}, 'success')
         return redirect(url_for('auth.users'))
 
     return render_template('auth/edit_user.html', user=user)
@@ -550,11 +551,11 @@ def create_user():
         is_admin = request.form.get('is_admin') == 'on'
 
         if not username or not email or not password:
-            flash('Username, email, and password are required', 'error')
+            flash(_('Username, email, and password are required'), 'error')
             return render_template('auth/create_user.html')
 
         if password != confirm_password:
-            flash('Passwords do not match', 'error')
+            flash(_('Passwords do not match'), 'error')
             return render_template('auth/create_user.html')
 
         is_valid, error_msg = validate_password_strength(password)
@@ -563,11 +564,11 @@ def create_user():
             return render_template('auth/create_user.html')
 
         if User.query.filter_by(username=username).first():
-            flash('Username already exists', 'error')
+            flash(_('Username already exists'), 'error')
             return render_template('auth/create_user.html')
 
         if User.query.filter_by(email=email).first():
-            flash('Email already in use', 'error')
+            flash(_('Email already in use'), 'error')
             return render_template('auth/create_user.html')
 
         user = User(username=username, email=email, is_admin=is_admin)
@@ -575,7 +576,7 @@ def create_user():
         db.session.add(user)
         db.session.commit()
 
-        flash(f'User {username} created successfully', 'success')
+        flash(_('User %(username)s created successfully') % {'username': username}, 'success')
         return redirect(url_for('auth.users'))
 
     return render_template('auth/create_user.html')

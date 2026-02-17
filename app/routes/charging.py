@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from app import db
 from app.models import Vehicle, ChargingSession, CHARGER_TYPES
 
@@ -50,7 +51,7 @@ def new():
     ev_vehicles = [v for v in vehicles if v.is_electric()]
 
     if not ev_vehicles:
-        flash('No electric vehicles found. Add an EV or hybrid vehicle first.', 'info')
+        flash(_('No electric vehicles found. Add an EV or hybrid vehicle first.'), 'info')
         return redirect(url_for('vehicles.new'))
 
     if request.method == 'POST':
@@ -58,7 +59,7 @@ def new():
         vehicle = Vehicle.query.get_or_404(vehicle_id)
 
         if vehicle not in vehicles:
-            flash('Access denied', 'error')
+            flash(_('Access denied'), 'error')
             return redirect(url_for('charging.index'))
 
         date_str = request.form.get('date')
@@ -96,7 +97,7 @@ def new():
         db.session.add(session)
         db.session.commit()
 
-        flash('Charging session logged successfully', 'success')
+        flash(_('Charging session logged successfully'), 'success')
         return redirect(url_for('charging.index'))
 
     # Pre-select vehicle if provided
@@ -118,7 +119,7 @@ def edit(session_id):
     ev_vehicles = [v for v in vehicles if v.is_electric()]
 
     if session.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('charging.index'))
 
     if request.method == 'POST':
@@ -150,7 +151,7 @@ def edit(session_id):
             session.total_cost = round(session.kwh_added * session.cost_per_kwh, 2)
 
         db.session.commit()
-        flash('Charging session updated successfully', 'success')
+        flash(_('Charging session updated successfully'), 'success')
         return redirect(url_for('charging.index'))
 
     return render_template('charging/form.html',
@@ -168,10 +169,10 @@ def delete(session_id):
     vehicles = current_user.get_all_vehicles()
 
     if session.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('charging.index'))
 
     db.session.delete(session)
     db.session.commit()
-    flash('Charging session deleted successfully', 'success')
+    flash(_('Charging session deleted successfully'), 'success')
     return redirect(url_for('charging.index'))

@@ -4,6 +4,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app, send_from_directory
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
+from flask_babel import gettext as _
 from app import db
 from app.models import Vehicle, Document, DOCUMENT_TYPES
 
@@ -58,17 +59,17 @@ def new():
         vehicle = Vehicle.query.get(vehicle_id)
 
         if not vehicle or vehicle not in vehicles:
-            flash('Invalid vehicle', 'error')
+            flash(_('Invalid vehicle'), 'error')
             return redirect(url_for('documents.index'))
 
         # Handle file upload
         if 'file' not in request.files:
-            flash('No file selected', 'error')
+            flash(_('No file selected'), 'error')
             return redirect(request.url)
 
         file = request.files['file']
         if file.filename == '':
-            flash('No file selected', 'error')
+            flash(_('No file selected'), 'error')
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
@@ -104,10 +105,10 @@ def new():
             db.session.add(document)
             db.session.commit()
 
-            flash(f'Document "{document.title}" uploaded', 'success')
+            flash(_('Document "%(title)s" uploaded') % {'title': document.title}, 'success')
             return redirect(url_for('documents.index'))
         else:
-            flash('Invalid file type', 'error')
+            flash(_('Invalid file type'), 'error')
             return redirect(request.url)
 
     selected_vehicle = request.args.get('vehicle_id')
@@ -126,7 +127,7 @@ def view(document_id):
     vehicles = current_user.get_all_vehicles()
 
     if document.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('documents.index'))
 
     return render_template('documents/view.html',
@@ -142,7 +143,7 @@ def download(document_id):
     vehicles = current_user.get_all_vehicles()
 
     if document.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('documents.index'))
 
     return send_from_directory(
@@ -161,7 +162,7 @@ def edit(document_id):
     vehicles = current_user.get_all_vehicles()
 
     if document.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('documents.index'))
 
     if request.method == 'POST':
@@ -183,7 +184,7 @@ def edit(document_id):
             document.expiry_date = None
 
         db.session.commit()
-        flash('Document updated', 'success')
+        flash(_('Document updated'), 'success')
         return redirect(url_for('documents.view', document_id=document.id))
 
     return render_template('documents/form.html',
@@ -201,7 +202,7 @@ def delete(document_id):
     vehicles = current_user.get_all_vehicles()
 
     if document.vehicle not in vehicles:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('documents.index'))
 
     # Delete file
@@ -216,5 +217,5 @@ def delete(document_id):
     db.session.delete(document)
     db.session.commit()
 
-    flash(f'Document "{title}" deleted', 'success')
+    flash(_('Document "%(title)s" deleted') % {'title': title}, 'success')
     return redirect(url_for('documents.index'))

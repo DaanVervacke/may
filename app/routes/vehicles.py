@@ -4,6 +4,7 @@ from io import BytesIO
 from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app, Response
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from werkzeug.utils import secure_filename
 from app import db
 from app.models import Vehicle, VehicleSpec, VehiclePart, FuelLog, Expense, User, Reminder, VEHICLE_TYPES, FUEL_TYPES, VEHICLE_SPEC_TYPES, REMINDER_TYPES, PART_TYPES, TRACKING_UNITS, AppSettings
@@ -85,7 +86,7 @@ def new():
 
         db.session.commit()
 
-        flash(f'Vehicle "{vehicle.name}" added successfully', 'success')
+        flash(_('Vehicle "%(name)s" added successfully') % {'name': vehicle.name}, 'success')
         return redirect(url_for('vehicles.view', vehicle_id=vehicle.id))
 
     tessie_configured = TessieService.is_configured()
@@ -105,7 +106,7 @@ def view(vehicle_id):
 
     # Check access
     if vehicle not in current_user.get_all_vehicles():
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     # Get recent activity
@@ -160,7 +161,7 @@ def edit(vehicle_id):
 
     # Check ownership
     if vehicle.owner_id != current_user.id and not current_user.is_admin:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     if request.method == 'POST':
@@ -213,7 +214,7 @@ def edit(vehicle_id):
                 db.session.add(spec)
 
         db.session.commit()
-        flash('Vehicle updated successfully', 'success')
+        flash(_('Vehicle updated successfully'), 'success')
         return redirect(url_for('vehicles.view', vehicle_id=vehicle.id))
 
     specs = vehicle.specs.all()
@@ -235,7 +236,7 @@ def delete(vehicle_id):
 
     # Check ownership
     if vehicle.owner_id != current_user.id and not current_user.is_admin:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     # Delete image
@@ -246,7 +247,7 @@ def delete(vehicle_id):
 
     db.session.delete(vehicle)
     db.session.commit()
-    flash('Vehicle deleted successfully', 'success')
+    flash(_('Vehicle deleted successfully'), 'success')
     return redirect(url_for('vehicles.index'))
 
 
@@ -257,7 +258,7 @@ def share(vehicle_id):
 
     # Check ownership
     if vehicle.owner_id != current_user.id and not current_user.is_admin:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     if request.method == 'POST':
@@ -265,15 +266,15 @@ def share(vehicle_id):
         user = User.query.filter_by(username=username).first()
 
         if not user:
-            flash('User not found', 'error')
+            flash(_('User not found'), 'error')
         elif user.id == current_user.id:
-            flash('You are already the owner', 'error')
+            flash(_('You are already the owner'), 'error')
         elif user in vehicle.shared_users.all():
-            flash('Vehicle already shared with this user', 'error')
+            flash(_('Vehicle already shared with this user'), 'error')
         else:
             vehicle.shared_users.append(user)
             db.session.commit()
-            flash(f'Vehicle shared with {user.username}', 'success')
+            flash(_('Vehicle shared with %(username)s') % {'username': user.username}, 'success')
 
         return redirect(url_for('vehicles.share', vehicle_id=vehicle.id))
 
@@ -288,14 +289,14 @@ def unshare(vehicle_id, user_id):
 
     # Check ownership
     if vehicle.owner_id != current_user.id and not current_user.is_admin:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     user = User.query.get_or_404(user_id)
     if user in vehicle.shared_users.all():
         vehicle.shared_users.remove(user)
         db.session.commit()
-        flash(f'Sharing removed for {user.username}', 'success')
+        flash(_('Sharing removed for %(username)s') % {'username': user.username}, 'success')
 
     return redirect(url_for('vehicles.share', vehicle_id=vehicle.id))
 
@@ -307,12 +308,12 @@ def archive(vehicle_id):
 
     # Check ownership
     if vehicle.owner_id != current_user.id and not current_user.is_admin:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     vehicle.is_active = False
     db.session.commit()
-    flash(f'Vehicle "{vehicle.name}" has been archived', 'success')
+    flash(_('Vehicle "%(name)s" has been archived') % {'name': vehicle.name}, 'success')
     return redirect(url_for('vehicles.index'))
 
 
@@ -323,12 +324,12 @@ def unarchive(vehicle_id):
 
     # Check ownership
     if vehicle.owner_id != current_user.id and not current_user.is_admin:
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     vehicle.is_active = True
     db.session.commit()
-    flash(f'Vehicle "{vehicle.name}" has been restored', 'success')
+    flash(_('Vehicle "%(name)s" has been restored') % {'name': vehicle.name}, 'success')
     return redirect(url_for('vehicles.index'))
 
 
@@ -340,13 +341,13 @@ def report(vehicle_id):
 
     # Check access
     if vehicle not in current_user.get_all_vehicles():
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     try:
         from weasyprint import HTML, CSS
     except ImportError:
-        flash('PDF generation is not available. Please install weasyprint.', 'error')
+        flash(_('PDF generation is not available. Please install weasyprint.'), 'error')
         return redirect(url_for('vehicles.view', vehicle_id=vehicle_id))
 
     # Gather all data for the report
@@ -405,7 +406,7 @@ def parts(vehicle_id):
 
     # Check access
     if vehicle not in current_user.get_all_vehicles():
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     # Get parts grouped by type
@@ -434,7 +435,7 @@ def new_part(vehicle_id):
 
     # Check access
     if vehicle not in current_user.get_all_vehicles():
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     if request.method == 'POST':
@@ -454,7 +455,7 @@ def new_part(vehicle_id):
         db.session.add(part)
         db.session.commit()
 
-        flash(f'Part "{part.name}" added successfully', 'success')
+        flash(_('Part "%(name)s" added successfully') % {'name': part.name}, 'success')
         return redirect(url_for('vehicles.parts', vehicle_id=vehicle.id))
 
     return render_template('vehicles/part_form.html',
@@ -472,12 +473,12 @@ def edit_part(vehicle_id, part_id):
 
     # Check access
     if vehicle not in current_user.get_all_vehicles():
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     # Verify part belongs to vehicle
     if part.vehicle_id != vehicle.id:
-        flash('Part not found', 'error')
+        flash(_('Part not found'), 'error')
         return redirect(url_for('vehicles.parts', vehicle_id=vehicle.id))
 
     if request.method == 'POST':
@@ -492,7 +493,7 @@ def edit_part(vehicle_id, part_id):
 
         db.session.commit()
 
-        flash('Part updated successfully', 'success')
+        flash(_('Part updated successfully'), 'success')
         return redirect(url_for('vehicles.parts', vehicle_id=vehicle.id))
 
     return render_template('vehicles/part_form.html',
@@ -510,16 +511,16 @@ def delete_part(vehicle_id, part_id):
 
     # Check access
     if vehicle not in current_user.get_all_vehicles():
-        flash('Access denied', 'error')
+        flash(_('Access denied'), 'error')
         return redirect(url_for('vehicles.index'))
 
     # Verify part belongs to vehicle
     if part.vehicle_id != vehicle.id:
-        flash('Part not found', 'error')
+        flash(_('Part not found'), 'error')
         return redirect(url_for('vehicles.parts', vehicle_id=vehicle.id))
 
     db.session.delete(part)
     db.session.commit()
 
-    flash('Part deleted successfully', 'success')
+    flash(_('Part deleted successfully'), 'success')
     return redirect(url_for('vehicles.parts', vehicle_id=vehicle.id))

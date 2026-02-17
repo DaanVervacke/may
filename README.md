@@ -273,6 +273,31 @@ The calendar includes:
 - Document expiry dates
 - Custom reminders
 
+## 🌍 Supported Languages
+
+May is available in the following languages:
+
+| Language | Code | Language | Code |
+|----------|------|----------|------|
+| English | `en` | Swedish | `sv` |
+| German (Deutsch) | `de` | Danish (Dansk) | `da` |
+| Spanish (Español) | `es` | Norwegian (Norsk) | `no` |
+| French (Français) | `fr` | Finnish (Suomi) | `fi` |
+| Italian (Italiano) | `it` | Japanese (日本語) | `ja` |
+| Dutch (Nederlands) | `nl` | Chinese (中文) | `zh` |
+| Portuguese (Português) | `pt` | Korean (한국어) | `ko` |
+| Polish (Polski) | `pl` | | |
+
+You can change your language in **Settings > Units & Values > Language**.
+
+### Improving Translations
+
+Translations were generated with AI assistance and may contain inaccuracies. If you spot an incorrect translation, contributions are very welcome:
+
+1. Translation files are located in `app/translations/<lang>/LC_MESSAGES/messages.po`
+2. Edit the `msgstr` value for any incorrect entry
+3. Submit a pull request with your fix
+
 ## 🛠️ Tech Stack
 
 - **Backend**: Python / Flask

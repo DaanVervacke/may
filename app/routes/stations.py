@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from sqlalchemy import func
+from flask_babel import gettext as _
 from app import db
 from app.models import FuelStation, FuelPriceHistory
 
@@ -45,7 +46,7 @@ def new():
         db.session.add(station)
         db.session.commit()
 
-        flash(f'Station "{station.name}" added', 'success')
+        flash(_('Station "%(name)s" added') % {'name': station.name}, 'success')
         return redirect(url_for('stations.index'))
 
     return render_template('stations/form.html', station=None)
@@ -76,7 +77,7 @@ def edit(station_id):
             station.longitude = None
 
         db.session.commit()
-        flash('Station updated', 'success')
+        flash(_('Station updated'), 'success')
         return redirect(url_for('stations.index'))
 
     return render_template('stations/form.html', station=station)
@@ -104,7 +105,7 @@ def delete(station_id):
     db.session.delete(station)
     db.session.commit()
 
-    flash(f'Station "{name}" deleted', 'success')
+    flash(_('Station "%(name)s" deleted') % {'name': name}, 'success')
     return redirect(url_for('stations.index'))
 
 
