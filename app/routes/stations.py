@@ -134,11 +134,21 @@ def price_history(station_id):
     station = FuelStation.query.get_or_404(station_id)
 
     # Get price history ordered by date
-    prices = FuelPriceHistory.query.filter_by(station_id=station_id).order_by(
+    price_records = FuelPriceHistory.query.filter_by(station_id=station_id).order_by(
         FuelPriceHistory.date.desc()
     ).limit(50).all()
 
-    return render_template('stations/prices.html', station=station, prices=prices)
+    prices = price_records
+    prices_json = [
+        {
+            'date': p.date.isoformat() if p.date else None,
+            'fuel_type': p.fuel_type,
+            'price_per_unit': p.price_per_unit,
+        }
+        for p in price_records
+    ]
+
+    return render_template('stations/prices.html', station=station, prices=prices, prices_json=prices_json)
 
 
 @bp.route('/cheapest')

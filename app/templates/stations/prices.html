@@ -53,7 +53,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const ctx = document.getElementById('priceChart').getContext('2d');
-    const prices = {{ prices | tojson }};
+    const prices = {{ prices_json | tojson }};
 
     // Reverse to show chronological order
     const sortedPrices = prices.slice().reverse();
