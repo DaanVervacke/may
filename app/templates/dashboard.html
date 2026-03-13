@@ -107,6 +107,16 @@
     </div>
 </div>
 
+<!-- Start Trip Button -->
+<div class="mb-8">
+    <a href="{{ url_for('trips.start') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-900">
+        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+        </svg>
+        {{ _('Start Trip') }}
+    </a>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Monthly Spending Chart -->
     <div class="lg:col-span-2 bg-white dark:bg-gray-800 shadow rounded-lg p-6">

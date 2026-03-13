@@ -94,6 +94,12 @@ def _run_schema_migrations(app):
         'charging_sessions': [
             ('tessie_charge_id', 'VARCHAR(50)'),
         ],
+        'trips': [
+            ('status', "VARCHAR(20) DEFAULT 'completed'"),
+            ('driver_id', 'INTEGER REFERENCES users(id)'),
+            ('started_at', 'DATETIME'),
+            ('stopped_at', 'DATETIME'),
+        ],
     }
 
     # Define unique indexes to create after adding columns

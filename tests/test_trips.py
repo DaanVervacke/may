@@ -1,7 +1,7 @@
 import pytest
 from app import db
 from app.models import Trip
-from datetime import date
+from datetime import date, datetime
 
 
 @pytest.fixture
@@ -14,6 +14,22 @@ def sample_trip(app, test_user, sample_vehicle):
         end_odometer=10150.0,
         purpose='business',
         description='Client meeting',
+        status='completed',
+    )
+    db.session.add(trip)
+    db.session.commit()
+    return trip
+
+
+@pytest.fixture
+def running_trip(app, test_user, sample_vehicle):
+    trip = Trip(
+        vehicle_id=sample_vehicle.id,
+        user_id=test_user.id,
+        date=date.today(),
+        status='running',
+        driver_id=test_user.id,
+        started_at=datetime.utcnow(),
     )
     db.session.add(trip)
     db.session.commit()
@@ -33,7 +49,12 @@ class TestTripIndex:
     def test_index_shows_trips(self, auth_client, sample_trip):
         resp = auth_client.get('/trips/')
         assert resp.status_code == 200
-        assert b'Client meeting' in resp.data
+        assert b'Test Car' in resp.data
+
+    def test_index_shows_running_trips(self, auth_client, running_trip):
+        resp = auth_client.get('/trips/')
+        assert resp.status_code == 200
+        assert b'Running Trips' in resp.data
 
 
 class TestTripNew:
@@ -63,30 +84,68 @@ class TestTripNew:
         assert trip.start_odometer == 12000.0
         assert trip.end_odometer == 12200.0
         assert trip.user_id == test_user.id
+        assert trip.status == 'completed'
 
 
-class TestTripEdit:
-    def test_edit_requires_auth(self, client, sample_trip):
-        resp = client.get(f'/trips/{sample_trip.id}/edit', follow_redirects=False)
+class TestTripStart:
+    def test_start_requires_auth(self, client):
+        resp = client.get('/trips/start', follow_redirects=False)
         assert resp.status_code == 302
         assert '/auth/login' in resp.headers['Location']
 
-    def test_get_edit_form_returns_200(self, auth_client, sample_trip):
-        resp = auth_client.get(f'/trips/{sample_trip.id}/edit')
+    def test_get_start_form_returns_200(self, auth_client, sample_vehicle):
+        resp = auth_client.get('/trips/start')
         assert resp.status_code == 200
 
-    def test_edit_trip(self, auth_client, sample_trip):
-        resp = auth_client.post(f'/trips/{sample_trip.id}/edit', data={
-            'date': '2024-02-01',
-            'start_odometer': '10000',
-            'end_odometer': '10200',
-            'purpose': 'personal',
-            'description': 'Updated trip',
+    def test_start_trip(self, auth_client, sample_vehicle, test_user):
+        resp = auth_client.post('/trips/start', data={
+            'vehicle_id': str(sample_vehicle.id),
+            'driver_id': str(test_user.id),
         }, follow_redirects=True)
         assert resp.status_code == 200
+        trip = Trip.query.filter_by(status='running').first()
+        assert trip is not None
+        assert trip.vehicle_id == sample_vehicle.id
+        assert trip.driver_id == test_user.id
+        assert trip.started_at is not None
+
+    def test_start_trip_with_notes(self, auth_client, sample_vehicle, test_user):
+        resp = auth_client.post('/trips/start', data={
+            'vehicle_id': str(sample_vehicle.id),
+            'driver_id': str(test_user.id),
+            'notes': 'Quick errand',
+        }, follow_redirects=True)
+        assert resp.status_code == 200
+        trip = Trip.query.filter_by(status='running').first()
+        assert trip is not None
+        assert trip.notes == 'Quick errand'
+
+
+class TestTripStop:
+    def test_stop_requires_auth(self, client, running_trip):
+        resp = client.post(f'/trips/{running_trip.id}/stop', follow_redirects=False)
+        assert resp.status_code == 302
+        assert '/auth/login' in resp.headers['Location']
+
+    def test_stop_trip(self, auth_client, running_trip):
+        trip_id = running_trip.id
+        resp = auth_client.post(f'/trips/{trip_id}/stop', follow_redirects=True)
+        assert resp.status_code == 200
+        db.session.refresh(running_trip)
+        assert running_trip.status == 'completed'
+        assert running_trip.stopped_at is not None
+
+    def test_stop_trip_flashes_key_reminder(self, auth_client, running_trip):
+        resp = auth_client.post(f'/trips/{running_trip.id}/stop', follow_redirects=True)
+        assert resp.status_code == 200
+        assert 'forget to return the key' in resp.data.decode('utf-8')
+
+    def test_stop_non_running_trip_fails(self, auth_client, sample_trip):
+        resp = auth_client.post(f'/trips/{sample_trip.id}/stop', follow_redirects=True)
+        assert resp.status_code == 200
         db.session.refresh(sample_trip)
-        assert sample_trip.description == 'Updated trip'
-        assert sample_trip.purpose == 'personal'
+        # Should still be completed (unchanged), not re-stopped
+        assert sample_trip.status == 'completed'
 
 
 class TestTripDelete:

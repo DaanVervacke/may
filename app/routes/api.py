@@ -1267,7 +1267,7 @@ def export_csv():
         writer.writerow([
             'id', 'vehicle_id', 'vehicle_name', 'date', 'start_odometer', 'end_odometer',
             'distance', 'purpose', 'description', 'start_location', 'end_location',
-            'notes', 'created_at'
+            'notes', 'status', 'driver_id', 'started_at', 'stopped_at', 'created_at'
         ])
         for vehicle in current_user.get_all_vehicles():
             for trip in vehicle.trips.order_by(Trip.date.desc()).all():
@@ -1277,7 +1277,9 @@ def export_csv():
                     trip.start_odometer, trip.end_odometer, trip.distance,
                     trip.purpose, trip.description,
                     trip.start_location, trip.end_location,
-                    trip.notes,
+                    trip.notes, trip.status, trip.driver_id,
+                    trip.started_at.isoformat() if trip.started_at else '',
+                    trip.stopped_at.isoformat() if trip.stopped_at else '',
                     trip.created_at.isoformat() if trip.created_at else ''
                 ])
         zip_file.writestr('trips.csv', trips_csv.getvalue())
@@ -1562,6 +1564,10 @@ def export_json():
                 'start_location': trip.start_location,
                 'end_location': trip.end_location,
                 'notes': trip.notes,
+                'status': trip.status,
+                'driver_id': trip.driver_id,
+                'started_at': trip.started_at.isoformat() if trip.started_at else None,
+                'stopped_at': trip.stopped_at.isoformat() if trip.stopped_at else None,
                 'created_at': trip.created_at.isoformat() if trip.created_at else None
             })
 
@@ -1887,6 +1893,10 @@ def export_full_backup():
                 'start_location': trip.start_location,
                 'end_location': trip.end_location,
                 'notes': trip.notes,
+                'status': trip.status,
+                'driver_id': trip.driver_id,
+                'started_at': trip.started_at.isoformat() if trip.started_at else None,
+                'stopped_at': trip.stopped_at.isoformat() if trip.stopped_at else None,
                 'created_at': trip.created_at.isoformat() if trip.created_at else None
             })
 
@@ -2908,6 +2918,7 @@ def create_record(data_type, mapped_row, vehicle_id, user_id, date_format):
             start_odometer=start_odo,
             end_odometer=end_odo,
             purpose=purpose,
+            status='completed',
             description=mapped_row.get('description', '').strip() or None,
             start_location=mapped_row.get('start_location', '').strip() or None,
             end_location=mapped_row.get('end_location', '').strip() or None,

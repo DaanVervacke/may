@@ -402,7 +402,7 @@
                 {% if messages %}
                 <div class="mb-4 space-y-2">
                     {% for category, message in messages %}
-                    <div class="rounded-md p-4 {% if category == 'error' %}bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-200{% elif category == 'success' %}bg-green-50 dark:bg-green-900/50 text-green-700 dark:text-green-200{% else %}bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-200{% endif %}">
+                    <div class="flash-message rounded-md p-4 transition-opacity duration-500 {% if category == 'error' %}bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-200{% elif category == 'success' %}bg-green-50 dark:bg-green-900/50 text-green-700 dark:text-green-200{% else %}bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-200{% endif %}">
                         <p class="text-sm">{{ message }}</p>
                     </div>
                     {% endfor %}
@@ -420,7 +420,7 @@
         {% if messages %}
         <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md space-y-2">
             {% for category, message in messages %}
-            <div class="rounded-md p-4 {% if category == 'error' %}bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-200{% elif category == 'success' %}bg-green-50 dark:bg-green-900/50 text-green-700 dark:text-green-200{% else %}bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-200{% endif %}">
+            <div class="flash-message rounded-md p-4 transition-opacity duration-500 {% if category == 'error' %}bg-red-50 dark:bg-red-900/50 text-red-700 dark:text-red-200{% elif category == 'success' %}bg-green-50 dark:bg-green-900/50 text-green-700 dark:text-green-200{% else %}bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-200{% endif %}">
                 <p class="text-sm">{{ message }}</p>
             </div>
             {% endfor %}
@@ -432,6 +432,17 @@
     {% endif %}
 
     <script>
+    // Auto-dismiss flash messages after 5 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        var flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(function(msg) {
+            setTimeout(function() {
+                msg.style.opacity = '0';
+                setTimeout(function() { msg.remove(); }, 500);
+            }, 5000);
+        });
+    });
+
     function toggleDarkMode() {
         fetch('/api/toggle-dark-mode', {
             method: 'POST',

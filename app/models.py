@@ -317,7 +317,9 @@ class Vehicle(db.Model):
         last_fuel = self.fuel_logs.order_by(FuelLog.odometer.desc()).first()
         fuel_odo = last_fuel.odometer if last_fuel else 0
 
-        last_trip = self.trips.order_by(Trip.end_odometer.desc()).first()
+        last_trip = self.trips.filter(
+            Trip.end_odometer.isnot(None), Trip.status == 'completed'
+        ).order_by(Trip.end_odometer.desc()).first()
         trip_odo = last_trip.end_odometer if last_trip else 0
 
         last_charge = self.charging_sessions.filter(ChargingSession.odometer.isnot(None)).order_by(
@@ -331,8 +333,11 @@ class Vehicle(db.Model):
         return sum(session.total_cost for session in self.charging_sessions.all() if session.total_cost) or 0
 
     def get_total_trip_distance(self):
-        """Get total distance from all trips"""
-        return sum(trip.distance for trip in self.trips.all()) or 0
+        """Get total distance from all completed trips"""
+        return sum(
+            trip.distance for trip in self.trips.filter(Trip.status == 'completed').all()
+            if trip.distance
+        ) or 0
 
     def get_cost_per_distance(self):
         """Calculate total cost of ownership per distance unit"""
@@ -1021,10 +1026,10 @@ class Trip(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
-    start_odometer = db.Column(db.Float, nullable=False)
-    end_odometer = db.Column(db.Float, nullable=False)
+    start_odometer = db.Column(db.Float, nullable=True)
+    end_odometer = db.Column(db.Float, nullable=True)
 
-    purpose = db.Column(db.String(20), nullable=False)  # business, personal, commute, etc.
+    purpose = db.Column(db.String(20), nullable=True)  # business, personal, commute, etc.
     description = db.Column(db.String(200))
     start_location = db.Column(db.String(200))
     end_location = db.Column(db.String(200))
@@ -1032,13 +1037,52 @@ class Trip(db.Model):
     notes = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # Start/stop trip fields
+    status = db.Column(db.String(20), nullable=False, default='completed')  # running, completed
+    driver_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    started_at = db.Column(db.DateTime, nullable=True)
+    stopped_at = db.Column(db.DateTime, nullable=True)
+
     # Relationships
-    user = db.relationship('User', backref=db.backref('trips', lazy='dynamic'))
+    user = db.relationship('User', foreign_keys=[user_id],
+                           backref=db.backref('trips', lazy='dynamic'))
+    driver = db.relationship('User', foreign_keys=[driver_id],
+                             backref=db.backref('driven_trips', lazy='dynamic'))
 
     @property
     def distance(self):
         """Calculate trip distance"""
-        return self.end_odometer - self.start_odometer
+        if self.start_odometer is not None and self.end_odometer is not None:
+            return self.end_odometer - self.start_odometer
+        return 0
+
+    @property
+    def is_running(self):
+        """Check if trip is currently running"""
+        return self.status == 'running'
+
+    @property
+    def duration(self):
+        """Calculate trip duration for running or completed trips"""
+        if self.started_at:
+            end = self.stopped_at or datetime.utcnow()
+            return end - self.started_at
+        return None
+
+    @property
+    def duration_display(self):
+        """Human-readable duration (e.g., '2h 35m', '45m')"""
+        d = self.duration
+        if not d:
+            return None
+        total_minutes = int(d.total_seconds() // 60)
+        hours, minutes = divmod(total_minutes, 60)
+        if hours and minutes:
+            return f'{hours}h {minutes}m'
+        elif hours:
+            return f'{hours}h'
+        else:
+            return f'{minutes}m'
 
     def to_dict(self):
         """Serialize trip to dictionary for API"""
@@ -1054,6 +1098,10 @@ class Trip(db.Model):
             'start_location': self.start_location,
             'end_location': self.end_location,
             'notes': self.notes,
+            'status': self.status,
+            'driver_id': self.driver_id,
+            'started_at': self.started_at.isoformat() if self.started_at else None,
+            'stopped_at': self.stopped_at.isoformat() if self.stopped_at else None,
             'created_at': self.created_at.isoformat() if self.created_at else None
         }
 
