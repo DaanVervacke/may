@@ -2,10 +2,13 @@ name: Docker
 
 on:
   push:
-    branches:
-      - dev
-    tags:
-      - 'v*'
+    paths:
+      - "*"
+
+  pull_request:
+    paths:
+      - "*"
+
   workflow_dispatch:
 
 env:
@@ -22,8 +25,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          cache: 'pip'
+          python-version: "3.12"
+          cache: "pip"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -80,4 +83,3 @@ jobs:
             BUILD_DATE=${{ github.event.head_commit.timestamp }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
