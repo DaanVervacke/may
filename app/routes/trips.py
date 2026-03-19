@@ -144,7 +144,7 @@ def start():
             notes=request.form.get('notes', '').strip() or None,
             status='running',
             driver_id=driver_id,
-            started_at=datetime.utcnow()
+            started_at=datetime.now()
         )
 
         db.session.add(trip)
@@ -172,7 +172,7 @@ def stop(trip_id):
         return redirect(url_for('trips.index'))
 
     trip.status = 'completed'
-    trip.stopped_at = datetime.utcnow()
+    trip.stopped_at = datetime.now()
 
     db.session.commit()
 

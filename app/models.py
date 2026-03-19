@@ -1065,7 +1065,7 @@ class Trip(db.Model):
     def duration(self):
         """Calculate trip duration for running or completed trips"""
         if self.started_at:
-            end = self.stopped_at or datetime.utcnow()
+            end = self.stopped_at or datetime.now()
             return end - self.started_at
         return None
 
