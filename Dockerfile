@@ -35,6 +35,7 @@ ARG BUILD_DATE=""
 LABEL com.centurylinklabs.watchtower.enable="true"
 
 # Set environment variables
+ENV TZ=Europe/Brussels
 ENV FLASK_APP=run.py
 ENV PYTHONUNBUFFERED=1
 ENV GIT_SHA=${GIT_SHA}
