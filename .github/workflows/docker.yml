@@ -2,12 +2,12 @@ name: Docker
 
 on:
   push:
-    paths:
-      - "*"
+    branches:
+      - "**"
 
   pull_request:
-    paths:
-      - "*"
+    branches:
+      - "**"
 
   workflow_dispatch:
 
