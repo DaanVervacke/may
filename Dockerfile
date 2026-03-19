@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gir1.2-pango-1.0 \
     gir1.2-gdkpixbuf-2.0 \
     gosu \
+    tzdata \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
