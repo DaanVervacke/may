@@ -1,8 +1,8 @@
-from flask import Flask, request, g
+from flask import Flask, request, g, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, current_user
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect, CSRFError
 from flask_babel import Babel, gettext as _
 from config import Config
 import os
@@ -250,6 +250,11 @@ def create_app(config_class=Config):
         # Permissions policy (formerly feature policy)
         response.headers['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=()'
         return response
+
+    @app.errorhandler(CSRFError)
+    def handle_csrf_error(e):
+        flash(_('Your session has expired. Please try again.'), 'warning')
+        return redirect(request.referrer or url_for('main.index'))
 
     with app.app_context():
         db.create_all()
